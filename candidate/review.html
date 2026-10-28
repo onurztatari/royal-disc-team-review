@@ -1,0 +1,1221 @@
+<!doctype html><html lang="en" data-disc-shell="1"><head><script>(() => {
+ window.GRAPHICS_REVIEW_ERRORS=[];
+ window.addEventListener('error',e=>window.GRAPHICS_REVIEW_ERRORS.push({message:e.message,source:e.filename,line:e.lineno,stack:e.error?.stack}));
+ window.addEventListener('unhandledrejection',e=>window.GRAPHICS_REVIEW_ERRORS.push({message:String(e.reason),stack:e.reason?.stack}));
+
+ const requested=Math.max(1,Math.min(120,Number(new URLSearchParams(location.search).get('level'))||120));
+ window.ROYAL_DISC_REVIEW=true;const platform=new URLSearchParams(location.search).get('platform');window.ROYAL_DISC_ORBIT=['orbit','combo'].includes(platform);window.ROYAL_DISC_ELEVATOR=platform==='combo';window.ROYAL_DISC_MECHANICS=platform==='campaign';window.ROYAL_DISC_MECHANICS_REVIEW=platform==='campaign';
+ window.addEventListener('royal-disc-loading',e=>parent.postMessage({kind:'graphics-loading',...e.detail},location.origin));
+ let tries=0;const tick=setInterval(()=>{
+  if(window.ROYAL_DISC_STARTUP_ERROR){clearInterval(tick);parent.postMessage({kind:'graphics-error',message:window.ROYAL_DISC_STARTUP_ERROR},location.origin);return;}
+  if(window.DISC_QA&&window.SMASH?.ready){
+   clearInterval(tick);
+   const reviewLevel=DISC_QA.reviewLevel;
+   DISC_QA.reviewLevel=n=>{
+    // Reuse the existing Play Level action to dismiss a completed test's tools.
+    // This wrapper belongs only to the local preview, not the shipping shell.
+    const panel=document.getElementById('rdIterationTools');
+    if(panel&&!panel.hidden){const select=document.getElementById('rdIterationLevel');select.value=String(n);select.dispatchEvent(new Event('change'));document.getElementById('rdIterationPlay').click();return;}
+    return reviewLevel(n);
+   };
+   DISC_QA.reviewLevel(requested);
+   window.GRAPHICS_REVIEW_READY=true;
+   parent.postMessage({kind:'graphics-ready',level:requested},location.origin);
+  }else if(++tries>1800){clearInterval(tick);parent.postMessage({kind:'graphics-error',message:'Loading took too long. Please reload.'},location.origin);}
+ },100);
+})();
+</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#153556"><meta name="description" content="Launch the Crown Disc. Scatter cans, slide ice, break jam jars and blast towers in Royal Disc."><link rel="icon" href="data:,">
+<title>Royal Disc — Royal UI</title><style>@font-face{font-family:Royal;src:url('assets/font.ttf') format('truetype');font-display:swap}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:radial-gradient(ellipse at 50% 40%,#34778a 0,#153c55 45%,#0b2338 90%);display:grid;place-items:center;color:#183458;font:15px/1.4 system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer;touch-action:manipulation}button:focus-visible,canvas:focus-visible,select:focus-visible{outline:3px solid #fff7a4;outline-offset:3px}button:disabled{opacity:.55;cursor:default}[hidden]{display:none!important}#game{height:calc(100dvh - 24px);aspect-ratio:464/848;max-width:100vw;position:relative;overflow:hidden;isolation:isolate;background:#63b9f3;border-radius:24px;box-shadow:0 30px 90px #0006,0 0 0 2px #fff2;container-type:inline-size}canvas{width:100%;height:100%;display:block;touch-action:none;outline:none}#hud{position:absolute;inset:0;pointer-events:none;font-family:Royal,sans-serif;color:white;text-shadow:0 2px 0 #164076;user-select:none}#hud button{pointer-events:auto}.shot-card{position:absolute;top:4.3%;left:4%;width:19.5%;height:10.2%;border:3px solid #80e4ff;border-radius:17px;background:linear-gradient(#2187f1,#0647b7);box-shadow:0 0 0 3px #155cac,0 5px 0 3px #113b87;padding:15% 5% 4%;display:grid;place-items:center}.shot-card span{position:absolute;top:-12%;left:-1%;width:102%;background:linear-gradient(#1c99ff,#0554cb);border:2px solid #ffd456;border-radius:10px;box-shadow:0 0 0 2px #bd790c;padding:3px 0;text-align:center;font-size:3.1cqw}.shot-card strong{position:absolute;inset:19% 10% 9%;display:grid;place-items:center;border-radius:9px;background:linear-gradient(white,#e1f3ff);font-size:10.8cqw;font-weight:400;line-height:1;-webkit-text-stroke:1.7px #173271;paint-order:stroke fill;color:white;text-shadow:0 3px #14316c}.heading{position:absolute;top:3.1%;left:27%;width:48%;text-align:center}.wordmark{font-size:5.3cqw;line-height:1.1;color:#fff4ba;-webkit-text-stroke:1px #855c24;paint-order:stroke fill;text-shadow:0 3px #7d491d,0 5px 7px #265e7a66}.heading button{margin-top:9px;padding:4px 14px;border:1px solid #caf1ff6b;border-radius:30px;background:#1745868a;color:white;font-family:Royal;font-size:2.8cqw}.round{background:linear-gradient(#37d8ff,#056cd7);border:2px solid #ffe875;border-radius:50%;box-shadow:0 0 0 2px #c68720,0 4px 0 #7e511a,inset 0 0 0 2px #b3efff;color:white;display:grid;place-items:center}.pause{position:absolute;top:5%;right:4.5%;width:10%;aspect-ratio:1}.pause svg{width:54%;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round}.objective{position:absolute;top:16.4%;left:10%;width:80%;text-align:center}.objective h2{font-size:4.7cqw;line-height:1.2;margin:0 0 6px;font-weight:400;text-shadow:0 2px 0 #286198,0 0 12px #5f96c5}.progress{width:50%;height:6px;background:#18427166;border:1px solid #fff8;border-radius:8px;margin:0 auto 3px;overflow:hidden}.progress i{display:block;width:0;height:100%;background:#fff090;box-shadow:0 0 8px #fdb93c;transition:width .2s}.objective span{font-family:system-ui;font-size:2.8cqw;font-weight:700;text-shadow:0 1px 3px #234c77}#aim-hint{position:absolute;bottom:18%;width:100%;text-align:center;opacity:.9;transition:opacity .4s;pointer-events:none}#aim-hint span{font-size:3.2cqw;letter-spacing:.09em}#aim-hint small{display:block;font:500 2.8cqw system-ui;margin-top:4px}.bottom-bar{position:absolute;left:6%;right:6%;bottom:2.1%;display:flex;justify-content:space-around;gap:12px}.bottom-bar button{display:flex;align-items:center;flex-direction:column;gap:4px;border:0;color:#fff2c9;background:transparent;text-shadow:0 2px #63411e;font:2.4cqw Royal}.bottom-bar svg{width:9.5cqw;height:9.5cqw;padding:2.2cqw;border:2px solid #fadc79;border-radius:50%;background:linear-gradient(#0d83cf,#054a8d);box-shadow:0 3px 0 #714616,inset 0 0 0 1px #7cd6e2;fill:none;stroke:#fff2c9;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.bottom-bar button:active svg,.gold-button:active{transform:translateY(2px);box-shadow:0 1px 0 #805616}#toast{position:absolute;top:25%;left:7%;right:7%;font-size:4.1cqw;text-align:center;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s;text-shadow:0 2px 0 #245382,0 4px 8px #16325166}#toast.visible{opacity:1;transform:translateY(0)}#combo{position:absolute;top:30%;width:100%;text-align:center;font-size:7cqw;color:#fff08a;-webkit-text-stroke:1px #ad581c;paint-order:stroke fill;opacity:0;transform:scale(.8)}#combo.pop{animation:combo .7s ease-out}@keyframes combo{15%,65%{opacity:1;transform:scale(1.08)}100%{opacity:0;transform:scale(1) translateY(-20px)}}#flash{position:absolute;inset:0;background:#fff7d7;opacity:0;pointer-events:none;z-index:3}#loading{position:absolute;inset:0;z-index:10;background:radial-gradient(ellipse at 50% 35%,#217ebb,#163252);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;text-align:center}#loading h1{font:9cqw/.96 Royal;color:#fff3b6;text-shadow:0 4px #90501c,0 7px 18px #061e35;margin:10px 0 35px}#loading h1 span{font-size:14cqw}#loading p{font-size:3.3cqw;margin:0 0 13px}#loading small{font-size:2.2cqw;letter-spacing:.19em;opacity:.55;margin-top:30px}.crown-mark{font-size:18cqw;line-height:1;color:#ffdb58;filter:drop-shadow(0 3px 0 #ac6e1b)}.load-track{height:7px;width:52%;background:#102d49;border-radius:10px;overflow:hidden}.load-track i{display:block;height:100%;width:0%;transition:width .15s;background:linear-gradient(90deg,#ffd059,#fff3a6)}.overlay{position:absolute;inset:0;z-index:5;background:#07244399;backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;pointer-events:auto}.result-card,.menu-card,.tune-card{width:100%;max-height:90%;overflow:auto;overscroll-behavior:contain;background:#fff9e9;border:3px solid #ffdf7d;border-radius:24px;box-shadow:0 8px 0 #9b6525,0 24px 45px #03192c66;padding:24px 20px}.result-card{text-align:center}.result-card h2{font:7cqw/1.08 Royal;color:#23498d;margin:18px 0 10px}.result-card p{font-size:3.6cqw;margin-bottom:24px}.stars{color:#ffc429;font-size:11cqw;letter-spacing:-.02em;filter:drop-shadow(0 3px 0 #cc831b)}.gold-button{width:100%;padding:14px 18px;border:2px solid #ffe791;border-radius:14px;background:linear-gradient(#ffe879,#ffbb35);box-shadow:0 4px 0 #b8791f;color:#694316;font:4cqw Royal;text-shadow:0 1px #fff9;display:flex;align-items:center;justify-content:center;gap:10px}.gold-button span{font-size:1.4em;line-height:.7}.text-button{display:block;margin:17px auto 0;padding:4px;border:0;background:transparent;color:#38639b;font-weight:650;font-size:3.2cqw}.menu-card header,.tune-card header{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:18px}header small{font-size:2.4cqw;color:#a37329;font-weight:750;letter-spacing:.1em}header h2{font:5.7cqw/1.13 Royal;color:#244680;margin:5px 0}.close{flex-shrink:0;width:32px;height:32px;border:0;border-radius:50%;font:26px/1 system-ui;background:#e8e0ce;color:#776246}#level-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:20px}#level-grid button{border:1px solid #dcd4bc;border-radius:12px;background:#fffef8;padding:12px 8px;color:#375481;font-size:2.7cqw;text-align:left;min-height:62px}#level-grid button b{display:block;font:5cqw Royal;color:#a77826}#level-grid button.current{border:2px solid #e7b942;background:#fff0bd}#level-grid button em{float:right;color:#b8811c;font-size:11px;font-style:normal}.fine{font-size:2.7cqw!important;line-height:1.5;color:#7d7e7d;margin:18px 0 0}.tune-card{padding:21px 17px;max-height:94%}.tabs{display:flex;gap:5px;border-bottom:1px solid #ddd7c6;padding-bottom:10px;margin-bottom:15px}.tabs button{flex:1;border:0;border-radius:9px;padding:8px 3px;color:#5f6f7d;background:#eee9da;font-size:3cqw;font-weight:700}.tabs button.selected{color:white;background:#24669b}.tab-content p{font-size:3.2cqw;line-height:1.5}.tab-content h3{font-size:3.5cqw}.tab-content ul{padding-left:18px;font-size:2.9cqw;line-height:1.6}#material-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:15px 0}#material-grid button{padding:11px 7px;border:1px solid #dcd4c5;border-radius:10px;background:white;color:#455c75;text-align:left;font-size:3cqw;font-weight:700}#material-grid button.selected{box-shadow:inset 0 0 0 2px #2975b0;border-color:#2975b0}#material-grid i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}.select-row{display:flex;gap:10px;margin-bottom:15px}.select-row label{flex:1;font-size:3cqw;font-weight:650}.select-row select,.material-select select{display:block;width:100%;background:white;color:#354c66;border:1px solid #c5ccd4;border-radius:8px;padding:8px 5px;margin-top:5px;font-size:3cqw}.check{display:flex;align-items:center;gap:8px;font-size:3cqw;margin:9px 0}.check input{accent-color:#22659d;width:17px;height:17px}#start-lab{margin-top:20px}.slider-row{padding:10px 0;border-bottom:1px solid #e8e0cf}.slider-label{display:flex;justify-content:space-between;gap:10px;font-size:3cqw;font-weight:650}.slider-label output{font-variant-numeric:tabular-nums;color:#246a9a}.slider-row input{width:100%;accent-color:#2575a3;margin:9px 0 0}.material-select{display:block;margin-top:18px;font-size:3cqw;font-weight:700}#apply-tuning{margin-top:18px}.desktop-caption{position:absolute;bottom:24px;left:28px;color:#c4d8e2;display:grid;gap:4px;pointer-events:none;font-size:12px}.desktop-caption b{font:17px Royal;color:#f7de99}.desktop-caption span{opacity:.65}body.modal-open #aim-hint{opacity:0!important}@media(max-width:620px){#game{height:100dvh;border-radius:0;box-shadow:none;width:100vw;aspect-ratio:auto}.desktop-caption{display:none}}@media(prefers-reduced-motion:reduce){*{transition:none!important}#combo.pop{animation:none;opacity:1}}@media(max-height:550px) and (min-width:620px){.desktop-caption{display:none}}
+
+/* Keep the target silhouette and flight path readable. */
+.objective{top:14%;}.objective h2{font-size:3.7cqw}.wordmark{font-size:4.5cqw}.shot-card{height:8.5%;width:17%;top:3%;}.shot-card strong{font-size:8.5cqw}.heading{top:2.7%}.pause{top:3%}#toast{top:20%;font-size:3.2cqw}#combo{top:21%;font-size:5cqw}#aim-hint{bottom:6%;}#aim-hint small{font-size:2.5cqw}.bottom-bar{bottom:1.6%;left:3%;right:3%;justify-content:space-between}.bottom-bar button{font-size:2cqw}.bottom-bar svg{width:8cqw;height:8cqw;padding:1.8cqw}
+.objective{top:9.5%}.objective h2{font-size:3.3cqw;margin:0 0 4px}.progress{height:4px;margin:0 auto 2px}.objective span{font-size:2.6cqw}#toast{top:auto;bottom:22%}
+
+#aim-hint{transition:opacity .1s} #aim-hint.shot-hidden{display:none}
+
+#aim-hint{bottom:20%;opacity:.85}#aim-hint span{font-size:2.8cqw}#aim-hint small{font-size:2.4cqw}
+
+/* Keep contextual level guidance above the aiming gesture hint. */
+#toast{bottom:26%}
+
+/* Precise numeric entry alongside the expanded experiment ranges. */
+.slider-label{align-items:center}.slider-label input[type=number]{width:calc(10ch + 28px);min-width:0;flex-shrink:0;margin:0;padding:6px 5px;border:1px solid #c5ccd4;border-radius:7px;background:#fff;color:#246a9a;text-align:right;font-size:3cqw;font-variant-numeric:tabular-nums}.slider-limits{display:flex;justify-content:space-between;color:#697785;font-size:2.6cqw;margin-top:2px}
+
+.parameter-help{font-family:Arial,sans-serif!important;font-size:13px!important;line-height:1.45!important;color:#536776;margin:7px 0 13px!important}.core-row{padding:12px 0;border-bottom:1px solid #d5e0e8}.core-row b,.core-row strong{display:block}.core-row b{color:#526b7e;font-size:13px}.core-row strong{margin:4px 0;font-size:16px}.core-row p{font:14px/1.45 Arial,sans-serif;margin:5px 0!important}.tab-content summary{cursor:pointer;padding:15px 0;font-size:15px}
+
+.core-materials{width:100%;border-collapse:collapse;font:13px/1.5 Arial,sans-serif}.core-materials th,.core-materials td{text-align:left;padding:8px 4px;border-bottom:1px solid #d5e0e8}.core-materials th{color:#526b7e}
+
+#sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 20px}#sample-grid button{padding:12px;border:1px solid #dcc591;border-radius:12px;background:#fff7e3;color:#503316;text-align:left}#sample-grid b,#sample-grid span{display:block}#sample-grid span{font-size:12px;margin-top:5px}#lab-measurement{margin-top:20px}.tab-content a{color:#946117}
+
+#mechanic-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 20px}#mechanic-grid button{padding:12px;border:1px solid #bb897b;border-radius:12px;background:#fff1e9;color:#6a3a31;text-align:left}#mechanic-grid b,#mechanic-grid span{display:block}#mechanic-grid span{font-size:12px;margin-top:5px}.bg-directions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.bg-directions button{padding:14px 9px;border:2px solid #d6c9ac;border-radius:13px;background:#e7f5fa;color:#224b70}.bg-directions button:last-child{background:#fff0d5;color:#82511c}.bg-directions button[aria-pressed=true]{border-color:#2672a3;box-shadow:0 0 0 2px #2672a322}.bg-directions b,.bg-directions span{display:block}.bg-directions span{font-size:12px;margin-top:5px}.wall-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.wall-fields label{min-width:0;font-size:13px;font-weight:650}.wall-fields input{display:block;width:100%;min-width:0;margin-top:5px;padding:9px 5px;border:1px solid #c5ccd4;border-radius:8px;background:white;color:#245079}.wall-fields input:disabled{opacity:.5}#mechanic-measurement{margin-top:20px}.tabs{flex-wrap:wrap}.tabs button{min-width:20%}
+
+#test-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:360px;overflow:auto;margin:12px 0 24px}#test-grid button{min-height:76px;padding:12px;background:#e9f4fa;border:1px solid #bdd7e4;border-radius:12px;color:#183e60;text-align:left}#test-grid b,#test-grid span{display:block}#test-grid span{font-size:11px;line-height:1.5;margin-top:6px}.review-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.review-actions button{padding:10px 12px;min-height:44px;border:1px solid #a9bfcd;border-radius:10px}.review-ratings{display:grid;grid-template-columns:1fr 1fr;gap:12px}.review-decision{display:grid;gap:6px;margin:12px 0}#tab-review input,#tab-review textarea,#tab-review select{width:100%;box-sizing:border-box;min-height:44px;padding:10px;border:1px solid #abc1cc;border-radius:8px;background:#fff;color:#183e60;font-size:14px}#tab-review label{display:block;margin:10px 0}#tab-review details{padding:14px 0;border-top:1px solid #c4d8e2}#tab-review summary{cursor:pointer;min-height:32px}#review-summary{padding:12px;border-radius:10px;background:#e4f1eb}#result .result-card{max-height:90vh;overflow:auto}
+
+#tutorial-instruction{position:absolute;top:20%;left:7%;right:7%;margin:0;padding:10px 14px;border-radius:14px;background:#173d60ed;border:1px solid #afdef68c;color:#fff;font:600 14px/1.4 system-ui;text-align:center;pointer-events:none;text-shadow:none}#tutorial-instruction[hidden]{display:none}
+
+#test-grid button.current{border:2px solid #dca53f;background:#fff0bd}
+/* Short, non-blocking coaching. The target cue never captures touch. */
+#tutorial-instruction{top:18%;left:9%;right:9%;padding:8px 11px;border-radius:12px;font-size:clamp(11px,3.15cqw,14px);line-height:1.35;background:#163e60e3;transition:opacity .12s}
+#tutorial-instruction.aiming{opacity:.72}
+#tutorial-target{position:absolute;width:34px;height:34px;transform:translate(-50%,-50%);pointer-events:none;text-shadow:none}
+#tutorial-target i{display:block;position:absolute;inset:0;border:2px solid #fff5b0;border-radius:50%;box-shadow:0 0 0 3px #17517b85,0 0 15px #fff6c0a0;animation:target-breathe 1.4s ease-in-out infinite}
+#tutorial-target span{position:absolute;left:50%;top:44px;transform:translateX(-50%);white-space:nowrap;border-radius:20px;padding:4px 9px;background:#173d60e8;color:#fff5bf;font:650 11px/1.2 system-ui}
+@keyframes target-breathe{50%{transform:scale(1.18);opacity:.65}}
+@media(prefers-reduced-motion:reduce){#tutorial-target i{animation:none}}
+
+/* The wide contact matrix scrolls inside the tuning panel on phones. */
+.contact-settings{margin-top:24px;padding-top:14px;border-top:1px solid #d9cba8}.contact-preview{margin:20px 0}.contact-preview summary{cursor:pointer;font-weight:700}.contact-matrix-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.contact-matrix{min-width:940px;font-size:12px}.contact-matrix th,.contact-matrix td{white-space:nowrap}.contact-matrix caption{text-align:left;padding:8px 0}.contact-matrix th:first-child{position:sticky;left:0;background:#fff9ec;z-index:1}
+
+/* Minimal gameplay HUD: reference-sized counter and settings, no coaching. */
+.shot-card{top:max(6.8%,calc(env(safe-area-inset-top) + 16px));left:4.5%;width:21.5%;height:21.5cqw;padding:0;border-radius:4cqw}
+.shot-card span{font-size:3.7cqw;line-height:1.15;padding:1cqw 0;border-radius:2.4cqw}
+.shot-card strong{font-size:10.5cqw;border-radius:2.2cqw;inset:21% 9% 9%}
+.heading{top:max(6.8%,calc(env(safe-area-inset-top) + 16px));left:29%;width:42%}
+#level-pill{display:inline-block;padding:1.4cqw 2.6cqw;color:#fff;font:3.6cqw Royal,sans-serif;text-shadow:0 2px 2px #153556b3}
+.pause{top:max(7.3%,calc(env(safe-area-inset-top) + 24px));right:4.5%;width:14.5%;min-width:44px;padding:0}
+.pause svg{width:61%;fill:#fff;stroke:#17578c;stroke-width:.8;stroke-linejoin:round;filter:drop-shadow(0 2px 1px #17497b)}
+.pause svg circle{fill:#237ec7;stroke:#17578c;stroke-width:1}
+.settings-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.settings-actions button{min-height:48px;padding:9px 4px;border:1px solid #1464a0;border-radius:10px;background:#e0f2ff;color:#164b75;font:600 13px/1.25 system-ui}
+#menu #toast{position:static;transform:none;max-width:none;width:auto;opacity:1;background:none;color:#164b75;text-shadow:none;font:500 13px system-ui;padding:0;margin:0 0 12px;border:0;box-shadow:none}
+#menu #toast:empty{display:none}
+
+/* Royal Flow shell styles (job 20260930-rf1-repo-ftue; I0 skeleton + I1 boot). Linked only in the RF build, by the
+   rfIndex transform (vite.config.ts). Layout numbers live here; every duration, curve and the plate geometry come from
+   config/rf-*.json through the shell (no transition/animation durations in this file either). */
+
+@font-face { font-family: "RF Display"; src: url("assets/rf/fonts/titanone-tr-subset.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+/* The engine's sound gate never shows in Royal Flow: any first gesture initialises audio (main.js capture listeners)
+   and go('board') hides #tapstart once the context exists; this covers boards reached without a prior tap (S2b W16). */
+#tapstart { display: none !important; }
+
+/* ── #rf: the shell root, FIRST child of #vp (where the engine's #bootSeq stood), above every engine layer ───────────
+   The parser reaches it before any engine screen, so from the first painted frame until boot.ts runs, #rf alone is the
+   cover — the Terra bumper's own field (terra-bumper.js FALLBACK_FIELD, its "field already on screen" handoff), so
+   nothing of the engine shows before the bumper and the bumper's mount is seamless. boot.ts then sets data-state and
+   the cover moves into .rf-boot; once the boot cover is gone (idle) #rf is transparent to input and only its popups
+   take taps. Until the reveal (boot.ts sets html[data-rf-revealed]) the page, body and #vp are the field too: the parser
+   can yield — and a frame be drawn — before it reaches #rf (after #vp's inline script, or before <body>). */
+:root { --rf-field: radial-gradient(ellipse 103.2% 57.16% at 50% 50%, #0044FC 0%, #0044FB 12%, #0042FB 20%, #003CF9 30%,
+  #0035F6 40%, #002FF2 50%, #0029EB 60%, #0023E0 70%, #001FD4 80%, #001CCC 90%, #001CC8 100%); }
+html:not([data-rf-revealed]), html:not([data-rf-revealed]) body, html:not([data-rf-revealed]) #vp { background: #0044FC var(--rf-field); }
+#rf { position: absolute; inset: 0; z-index: 100100; pointer-events: none; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif; color: #1d1640;
+  -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; }
+#rf:not([data-state]) { background: #0044FC var(--rf-field); pointer-events: auto; }
+#rf .rf-boot { position: absolute; inset: 0; background: #0044FC var(--rf-field); pointer-events: auto; overflow: hidden; }
+#rf[data-state="revealing"] .rf-boot { pointer-events: none; }
+#rf .rf-layer { position: absolute; inset: 0; }
+#rf img.rf-plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%;
+  display: block; pointer-events: none; -webkit-user-drag: none; }
+
+/* loading (loading.ts): the art and its logo, each placed by a translate + size (layout.ts put), no bar */
+#rf .rf-loading img { position: absolute; display: block; max-width: none; pointer-events: none; -webkit-user-drag: none; }
+/* UI polish L14: the character splash in three layers (charSplash.ts splashGeometry) */
+#rf .rf-charsplash { overflow: hidden; }
+#rf .rf-charsplash img { position: absolute; display: block; max-width: none; pointer-events: none; -webkit-user-drag: none; }
+
+/* popups (popups.ts): dim (opacity from rf-ui-motion global.popup.dim.alpha) + panel */
+#rf .rf-pop { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: auto;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); box-sizing: border-box; }   /* the 16 px sides = rf-ui-motion.json global.popup.sidePadPx: the panels size themselves inside it (note 2 of job 20261013-rf-ui4) */
+#rf .rf-dim { position: absolute; inset: 0; background: #000; }
+#rf .rf-panel { position: relative; will-change: transform; }
+
+/* SCR_CONSENT card (consent.ts) — sits on the opaque boot cover, no dim */
+#rf .rf-consent-card, #rf .rf-lives-card { box-sizing: border-box; width: min(100%, 360px); max-height: 100%; overflow: auto;
+  background: #fffdf7; border-radius: 24px; padding: 22px 20px 18px; text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 12, 70, .45), inset 0 -4px 0 rgba(0, 40, 160, .08); }
+#rf .rf-consent-title, #rf .rf-lives-title { margin: 0 0 10px; font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  font-size: 22px; line-height: 1.15; letter-spacing: -.02em; color: #0044FC; }
+#rf .rf-consent-body { margin: 0 0 10px; font-size: 15px; line-height: 1.42; color: #2b2550; }
+#rf .rf-consent-link { display: inline-block; margin: 0 0 16px; font-size: 14px; font-weight: 600; color: #0044FC; text-decoration: underline; }
+#rf .rf-consent-actions, #rf .rf-lives-actions { display: flex; gap: 10px; }
+#rf .rf-lives-next { margin: 0 0 16px; font-size: 16px; color: #2b2550; }
+
+/* buttons */
+#rf .rf-btn, #rfHub .rf-btn { flex: 1 1 0; min-height: 48px; padding: 12px 14px; border-radius: 16px; border: 0; cursor: pointer;
+  font-family: "RF Display", system-ui, sans-serif; font-size: 18px; line-height: 1.1; letter-spacing: -.02em;
+  touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+#rf .rf-btn-primary, #rfHub .rf-btn-play { background: linear-gradient(180deg, #ffd54a 0%, #ffb81f 100%); color: #4a2a00;
+  box-shadow: 0 4px 0 #c97f00, 0 6px 12px rgba(120, 70, 0, .3); }
+#rf .rf-btn-secondary { background: #fff; color: #0044FC; box-shadow: inset 0 0 0 2px #0044FC; }
+#rf .rf-btn:disabled { opacity: .45; cursor: default; }
+
+/* the hub: a real .screen section (engine-bridge.js routes every grid-bound go() here). transit = blank Terra Blue (the
+   field also shows wherever no plate has decoded); home = SCR_HOME (home.ts), shop = the Shop tab's placeholder (shop.ts).
+   I3a: #rfHub cuts in one frame — the engine's screenIn fade (index.html:84-85, 200 ms from opacity 0 over #vp's sea-blue)
+   is off for the shell's own screen: Home and the Shop are 1-frame pages (rf-ui-motion global.page), and the arrival's
+   dim (arrival.ts) must cover the cut from the v15 win screen with no sea-blue frame. Every engine screen keeps its fade. */
+#rfHub { background: radial-gradient(120% 80% at 50% 30%, #2a67ff 0%, #0044FC 45%, #0029b0 100%); align-items: center; justify-content: center; }
+#rfHub.screen.active { animation: none; }
+#rfHub .rf-btn-play { flex: 0 0 auto; min-width: 200px; min-height: 64px; font-size: 28px; border-radius: 22px; }
+
+/* ── I2 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* the transit view and the win seal (transit.ts, seal.ts): the board's last frame — #board's own ground + a copy of its
+   canvas at the canvas's box — under the shell's popups; the seal adds a dim and the logo, centred */
+#rf .rf-transit, #rf .rf-seal { position: absolute; inset: 0; overflow: hidden; pointer-events: auto; }
+#rf .rf-seal-ground { position: absolute; inset: 0; }
+#rf .rf-transit-board { position: absolute; display: block; pointer-events: none; }
+#rf .rf-seal .rf-dim { position: absolute; inset: 0; }
+#rf .rf-seal-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+#rf .rf-seal-logo { display: block; height: auto; max-width: 92%; will-change: transform; -webkit-user-drag: none;
+  filter: drop-shadow(0 6px 14px rgba(0, 6, 40, .55)); }
+
+/* POP_PLAY (playPopup.ts): the plate panel. --s = CSS px per comp px (set by code); every box below is comp px x --s.
+   The panel box is the visible popup (ribbon top → body bottom); the plate overflows it upward (the skins' decorations). */
+#rf .rf-playpop .rf-panel { flex: 0 0 auto; }
+#rf .rf-pp { position: relative; pointer-events: none; }
+#rf .rf-pp-plate { position: absolute; }
+#rf .rf-pp-bg, #rf .rf-pp-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+#rf .rf-pp-title { font-family: "RF Display", system-ui, sans-serif; font-weight: 400; }
+#rf .rf-pp-play, #rf .rf-pp-close { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; pointer-events: auto;
+  cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-pp-close { border-radius: 50%; }
+/* R1 fix 7 (S5 m4): the ✕ is the plate's own art — 40.7 px wide on a 320×568 screen. Its hit area is padded to Apple's
+   44 pt minimum target at every size: an invisible square centred on the art, part of the button (a tap on it is the ✕);
+   CSS px = iOS points in the WKWebView. Oyna sits far below it on every skin. */
+#rf .rf-pp-close::before { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px);
+  transform: translate(-50%, -50%); }
+#rf .rf-pp-sprite { display: block; width: 100%; height: 100%; transform-origin: 50% 50%; will-change: transform; }
+#rf .rf-pp-fallback { box-sizing: border-box; width: min(100%, 340px); background: #fffdf7; border-radius: 24px; padding: 26px 22px 22px;
+  text-align: center; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 18px 40px rgba(0, 12, 70, .45); }
+#rf .rf-pp-fallback-title { margin: 0; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; font-size: 34px; line-height: 1.1;
+  letter-spacing: -.02em; color: #0044FC; }
+#rf .rf-pp-fallback .rf-btn { min-height: 60px; font-size: 26px; }
+
+/* the tutorial (tutorial.ts): L1 tint + hole + halo + hand (an SVG over #rf, no input of its own), L2 badges */
+#rf .rf-tut, #rf .rf-badges { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+#rf .rf-tut-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+#rf .rf-badge { position: absolute; transform: translate(-50%, -50%); filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .45)); }
+#rf .rf-badge svg { display: block; width: 100%; height: 100%; }
+
+/* ── R1 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* the v15 win screen at v21's pace (src/goldenhour/skin/win.js, the pinned engine's) in Royal Flow (R1 fix 7, S5 m11;
+   packet POP_SUCCESS, Berkant 26.09): K2 — the "x2 Reward" button is removed (#rfw-x2vis: its art, label and hit rect);
+   K5 — the "Finish levels to unlock new items! n/5" meter is removed, Journey being out of scope (#rfw-panel: its plate,
+   caption, bar and n/5). Hidden, the groups paint nothing and take no tap; win.js still animates their attributes. */
+#rfWin #rfw-x2vis { display: none !important; }
+/* Level reward (founder 8 Oct): K5's meter is back as "complete levels to earn rewards" (levelReward.ts) — #rfw-panel shows */
+/* …and Continue, the left half of the old pair (x 24-212 of win.js's 440-wide scene), is centred on the screen's axis
+   (x 220): a lone button left of centre reads as a broken layout. Its hit rect moves with it (it is inside the group). */
+#rfWin #rfw-actions > g:first-child { transform: translate(102px, 0); }
+
+/* ── I3a · I3c ───────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* code labels and rimmed tabs (label.ts: the Shop's ribbon, POP_PLAY's "Tekrar Dene") */
+#rf .rf-tab, #rfHub .rf-tab { position: absolute; box-sizing: border-box; transform: translateX(-50%); white-space: nowrap; text-align: center;
+  pointer-events: none; box-shadow: 0 0.12em 0 rgba(0, 0, 0, .25); }
+#rf .rf-label, #rfHub .rf-label { display: inline-block; white-space: nowrap; }
+#rf .rf-tab-label, #rfHub .rf-tab-label { display: block; }
+/* I3c — SCR_HOME = the founder's Miro (home.ts, events.ts, nav.ts): every element is absolutely positioned in the stage's
+   CSS px by layout.ts (rule 1); nothing here holds a position or a size. Stacking in #rfHub: Home (1: the scene, the eight
+   event buttons, Oyna) · the nav (2) · the arrival's dim (3, arrival.ts) · the top bar (4) · the arrival's coins (5); the
+   toast lives in #rf above every popup. */
+/* UI polish L27 (warm.ts): the hub's views stay built and displayed; the ones not on screen are warm (.rf-warm: painted at
+   --rf-warm-alpha in their own layer, or visibility hidden on a board) so a nav tab or a ✕ is a one-frame cut; only the nav
+   follows data-view (none in the transit view). The Shop and the Liderlik Tablosu tab sit above Home (z 1, later in the DOM). */
+#rfHub .rf-nav { display: none; }
+#rfHub[data-view="home"] .rf-nav, #rfHub[data-view="shop"] .rf-nav, #rfHub[data-view="leaderboard"] .rf-nav { display: block; }
+#rfHub .rf-home, #rfHub .rf-hud, #rfHub .rf-shop, #rfHub .rf-lb, #rf .rf-page, #rf .rf-pop { will-change: transform; }
+#rf .rf-warm, #rfHub .rf-warm, #rf .rf-warm *, #rfHub .rf-warm * { pointer-events: none !important; }
+#rf .rf-warm[data-warm="painted"], #rfHub .rf-warm[data-warm="painted"] { opacity: var(--rf-warm-alpha, 0.001); }
+#rf .rf-warm[data-warm="hidden"], #rfHub .rf-warm[data-warm="hidden"] { visibility: hidden; }
+#rfHub .rf-home { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+#rfHub .rf-home-scene { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-home[data-scene="0"] .rf-home-scene { visibility: hidden; }
+#rfHub .rf-label.rf-ev-text, #rfHub .rf-hud-num, #rfHub .rf-nav-label, #rfHub .rf-home-level, #rfHub .rf-home-tab-label { font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  paint-order: stroke fill; pointer-events: none; }
+/* UI polish L3 (founder 7 Oct: "the written parts of currency and life smaller and not bold"): the top bar's numbers in the
+   system's rounded face, semibold (SF Pro Rounded on iOS, as Royal Disc's lighter "215" / "13:57"), not Titan One */
+#rfHub .rf-hud-num { font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, sans-serif; font-weight: 800; letter-spacing: 0; font-variant-numeric: tabular-nums; }   /* the countdown keeps its width as it ticks; L36 (founder 13 Oct: "can ve coin yazıları bold yazılmalı"): 600 → 800 (SF Pro Rounded Heavy) */
+/* the event buttons: the reveal scales .rf-ev-in, the press .rf-ev-press */
+#rfHub .rf-events { position: absolute; inset: 0; pointer-events: none; }
+#rfHub .rf-ev { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+/* UI polish L2b: the buttons are drawn at Royal Disc's size (40 pt wide on a 320x568 phone); the tap target stays ≥ 44 pt:
+   an invisible square centred on the art */
+#rfHub .rf-ev::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: max(100%, 44px); height: max(100%, 44px); }
+#rfHub .rf-ev-in, #rfHub .rf-ev-press { position: absolute; inset: 0; transform-origin: 50% 50%; }
+#rfHub .rf-ev-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-ev-lock { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-ev-text { position: absolute; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  border-style: solid; border-radius: 999px; }   /* note 6 (14 Oct): the pill is this capsule now — its face, edge, size and padding set by events.ts over the sprite's baked one */
+/* Oyna (the founder's button; a code-drawn one inside its box when the sprite does not decode) */
+#rfHub .rf-home-play { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rfHub .rf-home-press { position: absolute; inset: 0; transform-origin: 50% 50%; }
+/* UI polish L4: "Bölüm N" on the play button, the difficulty tab above it (behind the button's rim) */
+#rfHub .rf-home-level, #rfHub .rf-home-tab-label { position: absolute; display: block; text-align: center; white-space: nowrap; overflow: visible; }
+#rfHub .rf-home-tab { position: absolute; pointer-events: none; }
+#rfHub .rf-home-tab-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; }
+#rfHub .rf-home[data-oyna="0"] .rf-home-level, #rfHub .rf-home[data-oyna="0"] .rf-home-tab { visibility: hidden; }
+#rfHub .rf-home-oyna { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-home-fallback { display: none; position: absolute; min-width: 0; min-height: 0; padding: 0; pointer-events: auto; }
+#rfHub .rf-home[data-oyna="0"] .rf-home-fallback { display: block; }
+#rfHub .rf-home[data-oyna="0"] .rf-home-oyna { visibility: hidden; }
+/* the top bar (its own layer: the arrival's dim sits under it) */
+#rfHub .rf-hud { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+#rfHub .rf-hud-sprite { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-hud-num { position: absolute; display: block; text-align: center; white-space: nowrap; overflow: visible; }
+#rfHub .rf-hud-hit { position: absolute; margin: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; pointer-events: auto; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+/* Apple's 44 pt minimum target at every size (CSS px = iOS pt): an invisible square centred on the art */
+#rfHub .rf-hud-hit::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: max(100%, 44px); height: max(100%, 44px); }
+/* the gear sits close to the right edge (UI polish L2, Royal Disc's margin): its square grows leftwards from the art's
+   right edge instead, so all 44 pt of it stay on screen */
+#rfHub #rfGear::before { left: auto; right: 0; transform: translateY(-50%); }
+/* the nav (nav.ts): the band, the separators, the raised panel, the icons, the active label, the tab buttons */
+#rfHub .rf-nav { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+#rfHub .rf-nav-band { position: absolute; overflow: hidden; }
+#rfHub .rf-nav-band-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; }
+#rfHub .rf-nav-sep, #rfHub .rf-nav-panel, #rfHub .rf-nav-icon { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-nav-panel { box-sizing: border-box; border-style: solid; border-color: transparent; border-image-repeat: stretch; }   /* L32: the 9-slice panel (nav.ts) */
+#rfHub .rf-nav-panel-src { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: var(--rf-warm-alpha); pointer-events: none; }   /* L32: the panel sprite kept decoded */
+#rfHub .rf-nav-label { position: absolute; white-space: nowrap; }
+#rfHub .rf-nav-tab { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer; overflow: visible;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rfHub .rf-nav-hit { position: absolute; display: block; }
+/* the arrival after a win (arrival.ts): a dim over the scene, the events, Oyna and the nav, under the top bar; the coins
+   above everything of #rfHub. Neither takes a tap (SCR_HOME.arrivalAfterWin.inputBlocked false). */
+#rfHub .rf-arrive-dim { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+#rfHub .rf-arrive-coins { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+#rfHub .rf-arrive-coin { position: absolute; left: 0; top: 0; display: block; object-fit: contain; transform-origin: 50% 50%; will-change: transform;
+  pointer-events: none; -webkit-user-drag: none; filter: drop-shadow(0 2px 3px rgba(0, 10, 60, .5)); }
+/* the toast (toast.ts): bare outlined text above every popup, no input */
+#rf .rf-toast { position: absolute; z-index: 20; pointer-events: none; white-space: nowrap; line-height: 1; will-change: transform, opacity;
+  font-family: "RF Display", system-ui, sans-serif; font-weight: 400; }
+/* the Ayarlar page (settings.ts, I3c §6): a full-screen page in #rf over Home (its background — the comp's edge colours — is
+   set by the code); the plate, the switches, the labels and the hit areas are placed in CSS px by layout.ts. A switch = the
+   off state's still copy (the plate bakes "on") under the pressed face; the hit areas over the plate's ✕ / Destek / terms
+   are ≥ 44 pt; their words show only when the plate did not decode (no dead end) */
+#rf .rf-page { position: absolute; inset: 0; overflow: hidden; pointer-events: auto; }
+/* the Journey page (journey.ts, UI polish L5): the plate, the rail's fill, the marker and the live texts */
+#rf .rf-jr-plate, #rf .rf-jr-marker, #rf .rf-jr-header { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-jr-header { z-index: 1; }
+#rf .rf-jr-band { z-index: 1; }
+#rf .rf-jr-close { z-index: 2; }
+#rf .rf-jr-scroll { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; touch-action: pan-y; pointer-events: auto; }
+#rf .rf-jr-scroll::-webkit-scrollbar { display: none; }
+#rf .rf-jr-sizer { position: relative; width: 100%; overflow: hidden; }
+#rf .rf-jr-stack { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#rf .rf-jr-stack .rf-jr-l1, #rf .rf-jr-stack .rf-jr-l2, #rf .rf-jr-stack .rf-jr-num, #rf .rf-jr-stack .rf-jr-ms-word, #rf .rf-jr-stack .rf-jr-ms-num { transform: translate(-50%, -50%); }
+#rf .rf-jr-fill { position: absolute; pointer-events: none; }
+/* job 20261015-rf-journey (the founder, 15 Oct, Royal Disc's Journey video): the rail, the area cards (the unit art cropped to
+   its card), the Kullan pills, the milestone rows (the "Bölüm N" card, the gold bars, the reward tile with its band and badge),
+   the marker clipped to its body — every size and colour inline from rf-ftue journey.* (comp px of the scaled stack) */
+#rf .rf-jr-rail { position: absolute; pointer-events: none; border-radius: 60px; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.18); }
+#rf .rf-jr-fill { border-radius: 60px; box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.12), inset 0 6px 0 rgba(255, 255, 255, 0.35); }
+#rf .rf-jr-card { position: absolute; overflow: hidden; pointer-events: none; }
+#rf .rf-jr-card-img { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-jr-use { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; pointer-events: auto; overflow: visible;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-jr-use-face { position: absolute; inset: 0; box-sizing: border-box; border-style: solid; border-radius: 999px;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.22), inset 0 6px 0 rgba(255, 255, 255, 0.28); }
+#rf .rf-jr-use-text { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+#rf .rf-jr-ms-label { position: absolute; box-sizing: border-box; border-style: solid; pointer-events: none; box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2); }
+#rf .rf-jr-ms-bar { position: absolute; pointer-events: none; border-radius: 11px; }
+#rf .rf-jr-tile { position: absolute; margin: 0; padding: 0; box-sizing: border-box; border-style: solid; overflow: visible; cursor: default; pointer-events: none;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2); }
+#rf .rf-jr-tile[data-state="claimable"] { cursor: pointer; pointer-events: auto; }
+#rf .rf-jr-tile-glow { position: absolute; opacity: 0; pointer-events: none; will-change: opacity; }   /* the claimable tile's glow: its opacity breathes while the page is open (journey.ts startGlows) */
+#rf .rf-jr-tile-ic { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; object-fit: contain; }
+#rf .rf-jr-tile-band { position: absolute; overflow: hidden; pointer-events: none; box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.35); }
+#rf .rf-jr-tile-text { position: absolute; transform: translate(-50%, -50%); }
+#rf .rf-jr-badge { position: absolute; box-sizing: border-box; border-style: solid; border-radius: 50%; pointer-events: none; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.22); }
+#rf .rf-jr-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#rf .rf-jr-badge-ic { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-jr-marker-clip { position: absolute; overflow: hidden; pointer-events: none; }
+#rf .rf-jr-l1, #rf .rf-jr-l2, #rf .rf-jr-num, #rf .rf-jr-ms-word, #rf .rf-jr-ms-num, #rf .rf-jr-use-text, #rf .rf-jr-tile-text { position: absolute; white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  paint-order: stroke fill; pointer-events: none; }
+#rf .rf-journey[data-plate="0"] .rf-jr-header { visibility: hidden; }
+#rf .rf-journey[data-plate="0"] .rf-set-fb { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+  box-sizing: border-box; border: 2px solid #fff; border-radius: 12px; color: #fff; font-family: "RF Display", system-ui, sans-serif;
+  font-size: 16px; white-space: nowrap; }
+#rf .rf-set-plate { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-settings[data-plate="0"] .rf-set-plate { visibility: hidden; }
+#rf .rf-set-sw { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; overflow: visible;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-set-still, #rf .rf-set-face { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none;
+  -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-set-press { position: absolute; inset: 0; transform-origin: 50% 50%; }
+#rf .rf-set-sw[data-on="1"] .rf-set-still, #rf .rf-set-sw[data-on="1"] .rf-set-face-off, #rf .rf-set-sw[data-on="0"] .rf-set-face-on { display: none; }
+#rf .rf-set-label { position: absolute; white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  paint-order: stroke fill; pointer-events: none; }
+#rf .rf-set-hit { position: absolute; display: block; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; text-decoration: none;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-set-hit::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: max(100%, 44px); height: max(100%, 44px); }
+#rf .rf-set-fb { display: none; }
+#rf .rf-settings[data-plate="0"] .rf-set-fb { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+  box-sizing: border-box; border: 2px solid #fff; border-radius: 12px; color: #fff; font-family: "RF Display", system-ui, sans-serif;
+  font-size: 16px; white-space: nowrap; }
+/* TEST PHASE ONLY (job 20261011-rf-test-reset): the Ayarlar page's reset pill above Destek (settings.ts resetTap) — a code-drawn
+   button, red; armed (data-armed="1") it lights up and asks again; "2" = wiping, the reload is coming. Remove with it. */
+#rf .rf-set-reset { display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+  background: linear-gradient(180deg, #c8403a 0%, #a51d1f 100%); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .6), 0 3px 0 #6e1012, 0 5px 10px rgba(0, 0, 0, .3); }
+#rf .rf-set-reset[data-armed="1"] { background: linear-gradient(180deg, #ff6b5e 0%, #e5383b 100%); }
+#rf .rf-set-reset[data-armed="2"] { opacity: .55; }
+#rf .rf-set-reset-label { color: #fff; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill;
+  white-space: nowrap; pointer-events: none; }
+#rf .rf-btn-danger { background: linear-gradient(180deg, #ff6b5e 0%, #e5383b 100%); color: #fff; box-shadow: 0 4px 0 #a51d1f, 0 6px 12px rgba(120, 0, 0, .3); }
+/* the board's quit confirm (quit.ts, I3c §7): I3a's card and strings over the popup kit's dim, when the engine's own menu exit
+   puts a heart at stake */
+#rf .rf-quit-card { box-sizing: border-box; width: min(100%, 340px); background: #fffdf7; border-radius: 24px; padding: 22px 20px 18px; text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 12, 70, .45), inset 0 -4px 0 rgba(0, 40, 160, .08); }
+#rf .rf-quit-ask { margin: 4px 0 6px; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.15;
+  letter-spacing: -.02em; color: #2b2550; }
+#rf .rf-quit-life { margin: 0 0 6px; font-size: 16px; font-weight: 600; color: #b3261e; }
+#rf .rf-quit-actions { display: flex; gap: 10px; margin-top: 14px; }
+/* the Shop tab's placeholder (shop.ts): the plate frame (comp px of plates[SCR_SHOP], top-anchored), a veil over the cards,
+   the "Yakında" ribbon; nothing in it takes a tap — only the shared nav does */
+#rfHub .rf-shf { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+/* POP_PLAY's Try Again state (playPopup.ts, I3a item 6): the "Tekrar Dene" tab above the baked Oyna, in comp px scaled by --s */
+#rf .rf-pp-retry { position: absolute; width: 0; height: 0; transform: scale(var(--s)); transform-origin: 0 0; pointer-events: none; }
+
+/* ── TF5.1 (job 20261008-rf-board-banner, RF-DEC-2026-004) ───────────────────────────────────────────────────────────────
+   The board's top banner: the founder's Bölüm 10 mock's own (castles at the sides, mountains, the gold arc) as a 4K master →
+   a 1920-px WebP (tools/royalflow/make_rf_banner.py; since TF5.3, job 20261009-rf-banner-gpt, RF-DEC-2026-007, the scene is
+   redrawn in ChatGPT + Higgsfield). It is the top layer of #board's ground; under it a sky fill, #107CEA (L26: the founder's scene of 10 Oct; TF5.3 #0E7FE9) = the WebP's rows
+   0–8 (only where the banner's top edge would be below the screen's top: never on today's phones, see make_rf_banner.py
+   step 2), then the engine's ground exactly as splash.css:8-12 sets it (repeated because `background` is one property, and
+   splash.css is pinned).
+   #vp in the selector outranks splash.css's rule whatever the stylesheet order; !important as there (applyBoardMood() writes an
+   inline background). Full width; the arc's band centre sits on the level pill's centre:
+   - --rfb-pill = the pill's centre below the top row's 10-px floor: 46 (coin, gear) + 28 (row gap) + 38 / 2 = 93 → 103 px
+     (splash.css:21-35); at ≤ 360 px the bar shrinks to 41 + 25 + 34 / 2 = 83 → 93 px (splash.css:92-100);
+   - plus the top row's padding above its floor, max(10px, 2px + --safe-top) − 10px (index.html:393);
+   - minus 0.50448 × the drawn width, 0.50448 = the band centre's depth in the banner / its width (`make_rf_banner.py encode
+     --check` prints it).
+   --rfb-w = #vp's width: 100vw on phones, the 393-px stage above 460 px (index.html:375-386; 100vw also in the 1-px gap between
+   the two media queries). transit.ts / seal.ts copy #board's computed ground, so both carry it. */
+@media (min-width: 461px) { html[data-board="splash"] #vp #board { --rfb-w: 393px; } }
+html[data-board="splash"] #vp #board {
+  --rfb-pill: 103px;
+  --rfb-top: calc(var(--rfb-pill) + max(10px, 2px + var(--safe-top)) - 10px - var(--rfb-w, 100vw) * 0.50448);
+  background:
+    url("assets/rf/BOARD_TOP/banner.webp") center var(--rfb-top) / var(--rfb-w, 100vw) auto no-repeat,
+    linear-gradient(#107CEA, #107CEA) center top / 100% max(0px, var(--rfb-top) + 2px) no-repeat,
+    var(--sk-stars, none) center / 100% 100% no-repeat,
+    radial-gradient(ellipse 110% 42% at 50% 43%, #00085B 0%, #03082E 100%) !important;
+}
+@media (max-width: 360px) { html[data-board="splash"] #vp #board { --rfb-pill: 93px; } }
+
+/* The board's top row, larger and framed (job 20261013-rf-hud, the product lead's note 11, 13 Oct: "coin ve settings butonları
+   görüntüleri ufak kalmış backgroundda tam seçilemiyor … gold çerçeve … settingse bastığında çıkan butonlar da ufak"). splash.css
+   (pinned) sets the comp's gear 46 px, the coin capsule 95×46, the gear menu's four round buttons 46 px with a 46/φ³ gap under
+   the gear; #vp in the selector outranks it. Here: the gear and the capsule ×1.26 (58 px; the capsule keeps its art's 329:160),
+   the capsule's figure 18 px; a gold frame on both — four offset drop-shadows of the cards' gold trace the art's own alpha (the
+   coin, the capsule's pill, the gear's ring) 1.5 px out, under a dark shadow that lifts them off the castle sky; the menu's
+   buttons 58 px, gap 58/φ³ = 13.7, the column's top = the row's floor + 58 + 13.7. The level pill (row 2) keeps the comp's size;
+   the top row grows by 12 px, so --rfb-pill (the banner's anchor on the pill's centre, above) is 103 + 12 = 115 (≤ 360 px: 93 +
+   11 = 104, the row there 41 → 52). */
+html[data-board="splash"] #vp #board { --rfb-pill: 115px; }
+html[data-board="splash"] #vp #board .top .sk-gear { width: 58px; height: 58px; filter: drop-shadow(1.5px 0 0 #F7CE4B) drop-shadow(-1.5px 0 0 #F7CE4B) drop-shadow(0 1.5px 0 #F7CE4B) drop-shadow(0 -1.5px 0 #F7CE4B) drop-shadow(0 3px 4px rgba(0, 0, 0, .55)); }
+html[data-board="splash"] #vp #board .sk-coin { width: 119px; height: 58px; filter: drop-shadow(1.5px 0 0 #F7CE4B) drop-shadow(-1.5px 0 0 #F7CE4B) drop-shadow(0 1.5px 0 #F7CE4B) drop-shadow(0 -1.5px 0 #F7CE4B) drop-shadow(0 3px 4px rgba(0, 0, 0, .55)); }
+html[data-board="splash"] #vp #board .sk-coin .coinval { font-size: 18px; }
+html[data-board="splash"] #vp #board.sk-menu-open .sk-menu { top: calc(max(10px, calc(2px + var(--safe-top))) + 58px + 13.7px); gap: 13.7px; }
+html[data-board="splash"] #vp #board .sk-mbtn { width: 58px; height: 58px; }
+@media (max-width: 360px) {
+  html[data-board="splash"] #vp #board { --rfb-pill: 104px; }
+  html[data-board="splash"] #vp #board .top .sk-gear { width: 52px; height: 52px; }
+  html[data-board="splash"] #vp #board .sk-coin { width: 107px; height: 52px; }
+  html[data-board="splash"] #vp #board .sk-coin .coinval { font-size: 16px; }
+  html[data-board="splash"] #vp #board.sk-menu-open .sk-menu { top: calc(max(10px, calc(2px + var(--safe-top))) + 52px + 12.3px); gap: 12.3px; }
+  html[data-board="splash"] #vp #board .sk-mbtn { width: 52px; height: 52px; }
+}
+
+/* The tool rail's tiles, polished, in a THICK toon gold frame — always (job 20261013-rf-boosters, the product lead's notes 9 + 10,
+   13 Oct: "Booster UI'ları daha kaliteli durmalıdır … undo tuşu ve diğer tuşlar net olarak polished olmalıdır ve daha net
+   gözükebilir" · "Booster butonları kalın altın çerçevede olmalıdır her zaman … İnce olan altın çizgiler kalın olmalıdır").
+   splash.css (pinned) stretches btn_undo/shuffle/add.png (240 × 227, 248 × 227, 241 × 226) over 66 × 65 tiles; each file holds a
+   230 × 225 tile body (a thin gold line baked at its edge, an orange line inside it, the tan bevel, the cream face; corners
+   25.4 % of the body) with a green "+" disc hanging 6–14 px over its right edge — stretched, the three bodies land at different
+   sizes (undo 95.8 % of the tile wide, shuffle 92.7 %) and the baked lines never align; the count sits on the disc at 84.2 % /
+   81.4 %; the locked tile (tool_locked.webp, the rule above) has no gold at all. Here the tile's own background is dropped and
+   the art goes on ::before at its natural aspect with the BODY on the 70 × 69 box (gap 70/φ = 43.3: the golden pitch holds), the
+   disc overhanging on the right as drawn; the frame = ::after, an 8.5 px ring of gold (a top sheen over a light→deep gradient;
+   the mask leaves the middle open and cuts the disc's circle out, so the disc rides the frame like a badge) whose outer edge
+   sits 3.5 px outside the box and whose inner edge 5 px inside it — over the baked thin line and the orange line, on the tan
+   bevel (the art's corners are squircles, 0.5 px further out on the diagonal than a circle of their tangent radius 17.8: the
+   ring's hole is rounded 14.8, the outer edge 23.3, so the gold covers the orange line at the corners too); the dark keyline round the ring is the tile's own 5 px spread shadow, seen 3.5–5 px out; the count disc (the shell's,
+   over the baked one) 24 px at the disc's centre, above the frame. The same frame on the locked tile (the padlock art on
+   ::before, the ring whole, drawn crisp) and on a tile the engine greys (.lk: a tool must never look available and refuse, so it
+   stays grey — desaturated and darker — but at opacity .72 instead of the skin's .5, so it still reads on the night sky, with
+   the rail's lift shadow back). ≤ 360 px: 62 × 61, gap 38.3, the ring 7.5 px. The disc
+   centres and the body mapping are measured from the files (tools/royalflow/boosters/measure_tiles.py).
+   Job 20261014-rf-notes8 (the founder, 14 Oct, note 3: "etrafında 2 tane çizgi var ayrı renkte. Hepsi tek bir gold renkte olsun.
+   ayrıca kilitli olduğundada aynı durumda olsun"): the keyline round the ring is no longer the dark brown (#5A2A0C) but the
+   ring's own deep gold (#C98A1C, the gradient's foot) — one gold, the ring reading 5 px thicker — and the ring's hole is 2 px
+   smaller each side (padding 10.5, ≤ 360 px 9.5): the art's baked orange line, which peeked out on the right and the top of
+   the 8.5-px ring (the second line of the note), is under the gold everywhere; the locked tile is now the
+   SAME tile as the unlocked ones (the Undo body with a padlock, make_locked_tile.py; 230 × 227 mapped as the Undo body:
+   100% × 100.89%), so locked and unlocked share one frame, one face, one gold. */
+html[data-board="splash"] #vp #board .tool { width: 70px; height: 69px; position: relative; overflow: visible; border-radius: 19.8px;
+  background: none !important; box-shadow: 0 0 0 5px #C98A1C; --rf-tile-w: 100%; --rf-tile-h: 100%; --rf-tile-cut: linear-gradient(transparent, transparent); }
+html[data-board="splash"] #vp #board .foot { gap: 43.3px; }
+html[data-board="splash"] #vp #board #tUndo { --rf-tile-art: var(--sk-btn-undo); --rf-tile-w: 104.35%; --rf-tile-h: 100.89%; --rf-tile-cut: radial-gradient(circle at 83.65% 79.48%, #000 11.9px, transparent 11.9px); }
+html[data-board="splash"] #vp #board #tShuffle { --rf-tile-art: var(--sk-btn-shuffle); --rf-tile-w: 107.83%; --rf-tile-h: 100.89%; --rf-tile-cut: radial-gradient(circle at 86.78% 79.27%, #000 11.9px, transparent 11.9px); }
+html[data-board="splash"] #vp #board #tAdd { --rf-tile-art: var(--sk-btn-add); --rf-tile-w: 104.78%; --rf-tile-h: 100.44%; --rf-tile-cut: radial-gradient(circle at 84.34% 79.32%, #000 11.6px, transparent 11.6px); }
+html[data-board="splash"] #vp #board .tool::before, html[data-board="splash"] #vp #board .tool::after {
+  content: ""; position: absolute; display: block; box-sizing: border-box; pointer-events: none; }
+html[data-board="splash"] #vp #board .tool::before { left: 0; top: 0; width: var(--rf-tile-w); height: var(--rf-tile-h); background: var(--rf-tile-art) left top / 100% 100% no-repeat; }
+html[data-board="splash"] #vp #board .tool::after {
+  inset: -3.5px; border-radius: 23.3px; padding: 10.5px;
+  background: radial-gradient(140% 70% at 30% -10%, rgba(255, 250, 214, .95) 0%, rgba(255, 250, 214, 0) 48%), linear-gradient(180deg, #FFE37A 0%, #F6C33B 52%, #E29A22 100%);
+  mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0) content-box, var(--rf-tile-cut); mask-composite: subtract, add, add;
+  -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0) content-box, var(--rf-tile-cut); -webkit-mask-composite: source-out, source-over, source-over; }
+html[data-board="splash"] #vp #board .tool .bank { width: 24px; height: 24px; line-height: 22px; font-size: 13.5px; z-index: 2; }
+html[data-board="splash"] #vp #board #tUndo .bank { left: calc(87.01% - 12px); top: calc(82.47% - 12px); }
+html[data-board="splash"] #vp #board #tShuffle .bank { left: calc(90.45% - 12px); top: calc(82.24% - 12px); }
+html[data-board="splash"] #vp #board #tAdd .bank { left: calc(87.77% - 12px); top: calc(82.3% - 12px); }
+html[data-board="splash"] #vp #board .tool.lk { opacity: .72; filter: saturate(.3) brightness(.86) drop-shadow(0 6px 10px rgba(0, 0, 0, .45)); }
+html[data-rf-lock~="undo"] #vp #board #tUndo, html[data-rf-lock~="shuffle"] #vp #board #tShuffle, html[data-rf-lock~="addGlass"] #vp #board #tAdd {
+  --rf-tile-art: var(--rf-tool-locked); --rf-tile-w: 100%; --rf-tile-h: 100.89%; --rf-tile-cut: linear-gradient(transparent, transparent);
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .45)) !important; }
+@media (max-width: 360px) {
+  html[data-board="splash"] #vp #board .tool { width: 62px; height: 61px; border-radius: 17.5px; box-shadow: 0 0 0 4.5px #C98A1C; }
+  html[data-board="splash"] #vp #board .foot { gap: 38.3px; }
+  html[data-board="splash"] #vp #board #tUndo { --rf-tile-cut: radial-gradient(circle at 83.75% 79.56%, #000 10.5px, transparent 10.5px); }
+  html[data-board="splash"] #vp #board #tShuffle { --rf-tile-cut: radial-gradient(circle at 86.88% 79.35%, #000 10.5px, transparent 10.5px); }
+  html[data-board="splash"] #vp #board #tAdd { --rf-tile-cut: radial-gradient(circle at 84.44% 79.41%, #000 10.3px, transparent 10.3px); }
+  html[data-board="splash"] #vp #board .tool::after { inset: -3px; border-radius: 20.5px; padding: 9.5px; }
+  html[data-board="splash"] #vp #board .tool .bank { width: 21px; height: 21px; line-height: 19px; font-size: 12px; }
+  html[data-board="splash"] #vp #board #tUndo .bank { left: calc(87.01% - 10.5px); top: calc(82.47% - 10.5px); }
+  html[data-board="splash"] #vp #board #tShuffle .bank { left: calc(90.45% - 10.5px); top: calc(82.24% - 10.5px); }
+  html[data-board="splash"] #vp #board #tAdd .bank { left: calc(87.77% - 10.5px); top: calc(82.3% - 10.5px); }
+  html[data-rf-lock~="undo"] #vp #board #tUndo, html[data-rf-lock~="shuffle"] #vp #board #tShuffle, html[data-rf-lock~="addGlass"] #vp #board #tAdd { --rf-tile-cut: linear-gradient(transparent, transparent); }
+}
+
+/* The press of every button (press.ts, job 20261013-rf-ui4, the product lead's note 1): the darkening while pressed — the
+   scale is set inline by press.ts (composed with the element's own transform), the hold and the overshoot are its clock. The
+   win screen (skin/win.js, pinned) is not pressed by the layer: its Continue answers with the claim itself. The board's skin
+   buttons (the gear, the menu's four, the tool tiles — splash.css, pinned: translateY(2px) on :active) press like the rest:
+   scale + darken, the frame with them. */
+#rf .rf-down, #rfHub .rf-down { filter: brightness(.85); }
+html[data-board="splash"] #vp #board .top .sk-gear:active { transform: translateY(1px) scale(.92); }
+html[data-board="splash"] #vp #board .sk-mbtn:active { transform: translateY(1px) scale(.92); filter: brightness(.85); }
+html[data-board="splash"] #vp #board .tool:active { transform: translateY(1px) scale(.93); filter: brightness(.85) drop-shadow(0 3px 6px rgba(0, 0, 0, .45)); }
+
+/* POP_ADD_LIVES (livesPopup.ts, UI polish L7): the plate, the title (POP_PLAY's SVG style), the card's heart / count / countdown,
+   the refill button's label row, the ✕; Home's coin pill pinned above the dim */
+#rf .rf-ool { position: relative; }
+#rf .rf-ool-plate { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-ool-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; font-family: "RF Display", system-ui, sans-serif; }
+#rf .rf-ool-heart, #rf .rf-ool-coin { display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-ool-heart { position: absolute; }
+#rf .rf-ool-coin { width: auto; flex: none; }
+#rf .rf-ool-text { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  paint-order: stroke fill; pointer-events: none; }
+#rf .rf-ool-timer { position: absolute; box-sizing: border-box; border-radius: 999px; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+#rf .rf-ool-time { font-family: "RF Display", system-ui, sans-serif; font-weight: 400; white-space: nowrap; line-height: 1; }
+#rf .rf-ool-btn, #rf .rf-ool-close { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-ool-close::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: max(100%, 44px); height: max(100%, 44px); }
+#rf .rf-ool-row { position: absolute; left: 0; right: 0; margin: 0 auto; height: 0; display: flex; align-items: center; justify-content: center;
+  transform-origin: 50% 50%; pointer-events: none; }
+#rf .rf-ool-btxt { font-family: "RF Display", system-ui, sans-serif; font-weight: 400; white-space: nowrap; paint-order: stroke fill; }
+#rf .rf-ool-btn[aria-disabled="true"] { cursor: default; }   /* L29: the More Lives button at full lives / under an ∞ pass (inert, dimmed inline) */
+#rf .rf-ool-pin { position: absolute; display: block; max-width: none; pointer-events: none; }
+#rf span.rf-ool-pin { font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, sans-serif; font-weight: 600; text-align: center; white-space: nowrap; }
+
+/* UI polish L10 — the Liderlik Tablosu tab (leaderboard.ts): the g01 top band in a comp-px frame (top-anchored), the Dünya /
+   Türkiye tabs (the one not chosen under a dim), the empty line; only the tabs take a tap (and the shared nav) */
+#rfHub .rf-lb { position: absolute; left: 0; top: 0; right: 0; overflow: hidden; z-index: 1; pointer-events: none; }
+#rfHub .rf-lbf { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+#rfHub .rf-lb-plate { position: absolute; left: 0; top: 0; display: block; max-width: none; -webkit-user-drag: none; }
+#rfHub .rf-lb-word { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill; pointer-events: none; }
+#rfHub .rf-page-title { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill; pointer-events: none; z-index: 1; }   /* L37: pageTitle.ts */
+#rfHub .rf-lb-tab { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; pointer-events: auto;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rfHub .rf-lb-dim { position: absolute; display: block; pointer-events: none; }
+#rfHub .rf-lb-tab[data-on="1"] .rf-lb-dim { display: none; }
+#rfHub .rf-lb-empty { position: absolute; transform: translate(-50%, -50%); font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  white-space: nowrap; text-align: center; pointer-events: none; }
+/* UI polish L10 — the Profil page (profile.ts: the Ayarlar page's classes) and its edit popup (the lives popup's frame classes) */
+#rf .rf-pf-text { position: absolute; white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400;
+  paint-order: stroke fill; pointer-events: none; }
+#rf .rf-pf-pic { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-pf-input { position: absolute; box-sizing: border-box; margin: 0; padding: 0; border: 0; outline: 0; background: transparent;
+  font-family: "RF Display", system-ui, sans-serif; font-weight: 400; -webkit-appearance: none; appearance: none; border-radius: 0;
+  min-height: 0; line-height: 1; text-overflow: ellipsis; caret-color: #2B1608; -webkit-user-select: text; user-select: text; pointer-events: auto; }
+#rf .rf-pf-tab, #rf .rf-pf-cell { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; overflow: visible;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-pf-face { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-pf-tabword { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: "RF Display", system-ui, sans-serif;
+  font-weight: 400; paint-order: stroke fill; pointer-events: none; }
+#rf .rf-pf-grid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+#rf .rf-pf-cell { pointer-events: auto; }
+#rf .rf-pf-check { position: absolute; display: block; overflow: visible; pointer-events: none; }
+/* Onboarding I5 — a locked tool (boosters.ts writes <html data-rf-lock>): the kit's padlock tile over the board's tile, no
+   count, no icon; its row on the engine's no-moves card hidden. The arrow over a newly unlocked tool. */
+html[data-rf-lock~="undo"] #board #tUndo, html[data-rf-lock~="shuffle"] #board #tShuffle, html[data-rf-lock~="addGlass"] #board #tAdd {
+  background: var(--rf-tool-locked) center / 100% 100% no-repeat !important; opacity: 1 !important; }
+html[data-rf-lock~="undo"] #board #tUndo > *, html[data-rf-lock~="shuffle"] #board #tShuffle > *, html[data-rf-lock~="addGlass"] #board #tAdd > * {
+  visibility: hidden !important; }
+html[data-rf-lock~="undo"] #failUndo, html[data-rf-lock~="shuffle"] #failShuffle, html[data-rf-lock~="addGlass"] #failAdd { display: none !important; }
+#rf .rf-boost-arrow { position: absolute; display: block; overflow: visible; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .45)); }
+
+/* Onboarding I4 — the new-obstacle card (cards.ts): the founder's designed card fitted whole over its own field colour */
+#rf .rf-card { pointer-events: auto; overflow: hidden; touch-action: none; }
+#rf .rf-card-plate { position: absolute; display: block; max-width: none; pointer-events: none; -webkit-user-drag: none; }
+/* job 20261013-rf-feel5 (note 5): the fx layer behind the plate — the glow, the confetti, the sparkles (cards.ts buildFx; every
+   motion is a Web Animation from POP_NEW_OBSTACLE.entrance, nothing animates here) */
+#rf .rf-card-fx { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+#rf .rf-card-glow { position: absolute; border-radius: 50%; will-change: transform, opacity; }
+#rf .rf-card-confetti { position: absolute; border-radius: 2px; will-change: transform; }
+#rf .rf-card-sparkle { position: absolute; display: block; will-change: transform, opacity; }
+
+/* UI polish L16 — the Continue popup (continuePopup.ts): the plate canvas, the button sprite + live price, the ✕; the engine's
+   no-moves card stays the engine's while the popup is up, only unseen (bridge failCardHidden) */
+body.rf-fail-owned #failOv { visibility: hidden !important; pointer-events: none !important; }
+#rf .rf-continue .rf-panel { flex: 0 0 auto; }
+#rf .rf-cont { position: relative; }
+#rf .rf-cont-plate { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+#rf .rf-cont-btn, #rf .rf-cont-close { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; transform-origin: 50% 50%; }
+#rf .rf-cont-close::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: max(100%, 44px); height: max(100%, 44px); }
+#rf .rf-cont-sprite { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+#rf .rf-cont-row { position: absolute; height: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+#rf .rf-cont-txt { font-family: "RF Display", system-ui, sans-serif; font-weight: 400; white-space: nowrap; paint-order: stroke fill; }
+#rf .rf-cont-coin { display: block; width: auto; flex: none; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+
+/* UI polish L18 — the Mağaza (shop.ts): one page scrolled by the WebView (momentum, bounce), laid out in comp px and scaled
+   by the width; the sign pinned over it; every card a button (the toast "Yakında") */
+#rfHub .rf-shop { position: absolute; left: 0; top: 0; right: 0; overflow: hidden; z-index: 1; pointer-events: auto; }
+#rfHub .rf-shop-scroll { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: auto; touch-action: pan-y; }
+#rfHub .rf-shop-scroll::-webkit-scrollbar { display: none; }
+#rfHub .rf-shop-sizer { position: relative; width: 100%; overflow: hidden; }
+#rfHub .rf-shop-band { position: absolute; left: 0; top: 0; width: 100%; }
+#rfHub .rf-shop-page { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#rfHub .rf-shop-part, #rfHub .rf-shop-card-img { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rfHub .rf-shop-card-img { left: 0; top: 0; width: 100%; height: 100%; }
+#rfHub .rf-shop-card { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; transform-origin: 50% 50%;
+  touch-action: pan-y; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rfHub .rf-shop-word { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill; pointer-events: none; }
+/* L37: the Shop's header — the leaderboard's band and gold rule, pinned over the scroll, the title on it */
+#rfHub .rf-shop-header { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: auto; z-index: 1; }   /* takes the taps over it: a card scrolled under it is not tapped through (.rf-warm * still none) */
+#rfHub .rf-shop-header-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; }
+#rfHub .rf-shop-close { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; z-index: 2;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; transform-origin: 50% 50%; }
+#rfHub .rf-shop-close::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: max(100%, 44px); height: max(100%, 44px); }
+#rfHub .rf-shop-close-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+
+/* UI polish L19 — Home's scene hit area (the fountain and the pandas) → the Journey (home.journeyHit); invisible */
+#rfHub .rf-home-journey { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; appearance: none; }
+#rf .rf-set-band { position: absolute; left: 0; top: 0; pointer-events: none; }
+
+/* UI polish L23: the Daily Gift (dailyGift.ts) */
+#rf .rf-dg .rf-dg-part, #rf .rf-dg .rf-dg-face, #rf .rf-dg .rf-dg-btn-img { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-dg .rf-dg-face, #rf .rf-dg .rf-dg-btn-img { left: 0; top: 0; width: 100%; height: 100%; }
+#rf .rf-dg .rf-dg-dim { position: absolute; background: #000; pointer-events: none; }
+#rf .rf-dg .rf-dg-shade { position: absolute; inset: 0; background: #000; pointer-events: none; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+#rf .rf-dg .rf-dg-card, #rf .rf-dg .rf-dg-hit { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; transform-origin: 50% 50%; -webkit-tap-highlight-color: transparent; }
+#rf .rf-dg .rf-dg-press, #rf .rf-dg .rf-dg-flip { position: absolute; inset: 0; transform-origin: 50% 50%; }
+#rf .rf-dg .rf-dg-flip { will-change: transform; }
+#rf .rf-dg .rf-dg-chosen { z-index: 1; }
+#rf .rf-dg .rf-dg-text { position: absolute; white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill; pointer-events: none; }
+#rf .rf-dg-prize .rf-dg-prize-img { object-fit: contain; transform-origin: 50% 50%; will-change: transform; }
+#rf .rf-dg-prize { cursor: pointer; }
+
+/* event onboarding 3: Dumpling Boost — the intro (his animation on a canvas), "Started!", the event page */
+#rf .rf-db { position: absolute; inset: 0; z-index: 60; overflow: hidden; }
+#rf .rf-db-abs { position: absolute; display: block; max-width: none; -webkit-user-drag: none; pointer-events: none; }
+#rf .rf-db-hit { position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+#rf .rf-db-hit::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: max(100%, 44px); height: max(100%, 44px); }
+#rf .rf-db-text { position: absolute; white-space: nowrap; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill; pointer-events: none; }
+#rf .rf-db-scroll { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+#rf .rf-db-sizer { position: relative; }
+#rf .rf-db-stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+/* TEST PHASE ONLY (job 20261015-rf-soda-flow): the Ayarlar page's Soda sounds switch (green on, grey off) and the readout under it
+   (settings.ts sodaTap / sodaReadout). Remove with them. */
+#rf .rf-set-soda { display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+  background: linear-gradient(180deg, var(--rd-green-light) 0%, var(--rd-green-bottom) 100%); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .6), 0 3px 0 var(--rd-green-shadow), 0 5px 10px rgba(0, 0, 0, .3); }
+#rf .rf-set-soda[data-on="0"] { background: linear-gradient(180deg, #8d929b 0%, #5d626b 100%); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5), 0 3px 0 #3a3e45, 0 5px 10px rgba(0, 0, 0, .3); }
+#rf .rf-set-soda-label { color: #fff; font-family: "RF Display", system-ui, sans-serif; font-weight: 400; paint-order: stroke fill;
+  white-space: nowrap; pointer-events: none; }
+#rf .rf-set-soda-read { position: absolute; box-sizing: border-box; margin: 0; padding: .55em .8em; border-radius: .7em; overflow: hidden;
+  background: rgba(0, 18, 58, .55); color: #fff; font-family: ui-monospace, Menlo, Consolas, monospace; line-height: 1.4;
+  white-space: pre-wrap; word-break: break-word; pointer-events: none; }
+
+/* Royal Routine (founder 16 Oct; royalRoutine.ts): its rows, bars, band, tabs, flights and popups — positions in comp px on the stage */
+#rf .rf-rr-row { position: absolute; top: 0; }
+#rf .rf-rr-bar { position: absolute; box-sizing: border-box; border: 4px solid; overflow: hidden; pointer-events: none; }
+#rf .rf-rr-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; }
+#rf .rf-rr-track, #rf .rf-rr-bandfill { position: absolute; pointer-events: none; }
+#rf .rf-rr-tab { position: absolute; }
+#rf .rf-rr-dot { position: absolute; border-radius: 50%; box-shadow: 0 0 0 3px #ffffff; pointer-events: none; }
+#rf .rf-rr-glow { position: absolute; border-radius: 106px; opacity: 0; pointer-events: none; background: radial-gradient(ellipse at center, rgba(255, 250, 200, 0.9), rgba(255, 220, 90, 0.35) 60%, rgba(255, 200, 0, 0) 100%); box-shadow: 0 0 40px 12px rgba(255, 220, 90, 0.8); }
+#rf .rf-rr-fly { z-index: 3; }
+#rf .rf-rr-chest { transform-origin: 50% 100%; }
+#rf .rf-rr-pop { position: absolute; inset: 0; z-index: 2; pointer-events: auto; }
+#rf .rf-rr-pop .rf-db-stage { position: absolute; top: 0; transform-origin: 0 0; }
+#rf .rf-rr .rf-db-stage { transform-origin: 0 0; }
+
+/* Prism Party (founder 16 Oct; prismParty.ts): its page, list, foot and the level-end bar over Home — comp px on its stage */
+#rf .rf-pp .rf-db-stage { transform-origin: 0 0; }
+#rf .rf-pp-tile { background-repeat: repeat-y; background-size: 100% auto; }
+#rf .rf-pp-rail { background: linear-gradient(180deg, #FFE36A, #E0A010); border-radius: 11px; }
+#rf .rf-pp-cur { box-sizing: border-box; border: 3px solid; border-radius: 23px; }
+#rf .rf-pp-bar { box-sizing: border-box; border: 6px solid #FFC93A; border-radius: 40px; background: #5A1AA0; overflow: hidden; }
+#rf .rf-pp-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(180deg, var(--rd-green-light) 0%, var(--rd-green-face) 55%, var(--rd-green-bottom) 100%); }
+#rf .rf-pp-line { border-radius: 7px; }
+#rf .rf-pp-node { box-sizing: border-box; border-style: solid; border-radius: 50%; }
+#rf .rf-pp-card { box-sizing: border-box; border-style: solid; box-shadow: 0 6px 0 rgba(60, 10, 80, 0.35); }
+#rf .rf-pp-foot { position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; }
+#rf .rf-pp-foot .rf-db-stage { pointer-events: none; }
+#rf .rf-pp-foot .rf-db-hit { pointer-events: auto; }
+#rf .rf-pp-show { position: absolute; inset: 0; z-index: 61; pointer-events: none; }
+#rf .rf-pp-fx { position: absolute; display: block; max-width: none; pointer-events: none; }
+#rf .rf-pp-mini { box-shadow: 0 4px 10px rgba(40, 0, 60, 0.5); }
+#rf .rf-pp-badge { position: absolute; left: 4%; bottom: 26%; color: #FFFFFF; font-family: "RF Display", system-ui, sans-serif; -webkit-text-stroke: 0.12em #8A0A0A; paint-order: stroke fill; pointer-events: none; line-height: 1; }
+/* Kuro's Gauntlet (founder 16 Oct; kurosGauntlet.ts): the page, matchmaking, the map and the popups — comp px on their stages */
+#rf .rf-kg .rf-db-stage { transform-origin: 0 0; }
+#rf .rf-kg-pop { z-index: 3; }
+#rf .rf-kg-seat { box-sizing: border-box; border-style: solid; border-radius: 50%; box-shadow: 0 10px 18px rgba(30, 0, 50, 0.45); }
+#rf .rf-kg-av { border-radius: 50%; }
+#rf .rf-kg-group { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; pointer-events: none; }
+#rf .rf-kg-bar { box-sizing: border-box; border-style: solid; border-radius: 999px; overflow: hidden; }
+#rf .rf-kg-box { box-sizing: border-box; border: 3px solid; }
+#rf .rf-kg-pill { border-radius: 999px; }
+#rf .rf-kg-num { font-family: "RF Display", system-ui, sans-serif; }
+#rf .rf-kg-fly { position: absolute; z-index: 62; pointer-events: none; }
+#rf .rf-kg-av { box-sizing: border-box; border-style: solid; overflow: hidden; box-shadow: 0 6px 12px rgba(30, 0, 50, 0.4); }
+#rf .rf-kg-avimg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; display: block; max-width: none; pointer-events: none; }
+/* Bram's Tower (founder 16–17 Oct; bramsTower.ts): the tower page, its head band, How to play, the results popup, the Home badge */
+#rf .rf-bt .rf-db-stage { transform-origin: 0 0; }
+#rf .rf-bt .rf-bt-bram { pointer-events: auto; }   /* job 20261021-rf-bram-look: a tap on Bram — a hop (his canvas inside it stays rf-db-abs) */
+#rf .rf-bt-wall { background-repeat: repeat-y; }
+#rf .rf-bt-fill { background-repeat: repeat-y; background-size: 100% auto; }
+#rf .rf-bt-head { position: absolute; left: 0; right: 0; top: 0; pointer-events: none; }
+#rf .rf-bt-headfill { position: absolute; left: 0; right: 0; top: 0; height: 0; }
+#rf .rf-bt-head .rf-db-hit { pointer-events: auto; }
+#rf .rf-bt-win { box-sizing: border-box; border: 6px solid; border-radius: 999px; box-shadow: 0 6px 12px rgba(10, 20, 60, 0.35); }
+#rf .rf-bt-pop { position: absolute; inset: 0; z-index: 3; pointer-events: auto; overflow: hidden; }
+#rf .rf-bt-results { z-index: 62; }
+#rf .rf-bt-bubble { box-sizing: border-box; border: 5px solid; box-shadow: 0 10px 20px rgba(20, 30, 80, 0.35); }
+#rf .rf-bt-tail { box-sizing: border-box; transform: rotate(45deg); }   /* job 20261023-rf-bram-chests: the bubble's tail to its chest */
+#rf .rf-bt-item { overflow: visible; }
+#rf .rf-bt-chest { transform-origin: 50% 85%; }
+#rf .rf-bt-badge, #rfHub .rf-bt-badge { position: absolute; right: 2%; top: 2%; box-sizing: border-box; border: 3px solid; border-radius: 50%; color: #FFFFFF; text-align: center; font-family: "RF Display", system-ui, sans-serif; pointer-events: none; }
+/* Cloud Courier (founder 17 Oct; cloudCourier.ts): the cloud page (his sky: the blue band repeated up over the sunset foot), its fixed head and foot, the labels, How to play */
+#rf .rf-cc .rf-db-stage { transform-origin: 0 0; }
+#rf .rf-cc-sky { background-repeat: repeat-y; background-size: 100% auto; background-position: 0 100%; }
+#rf .rf-cc-head { position: absolute; left: 0; right: 0; top: 0; pointer-events: none; overflow: hidden; }
+#rf .rf-cc-foot { position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; }
+#rf .rf-cc-head .rf-db-hit, #rf .rf-cc-foot .rf-db-hit { pointer-events: auto; }
+#rf .rf-cc-panel { box-sizing: border-box; border: 4px solid; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 8px 18px rgba(40, 20, 120, 0.25); }
+#rf .rf-cc-label { box-sizing: border-box; border-style: solid; border-radius: 999px; box-shadow: 0 6px 10px rgba(10, 20, 80, 0.35); }
+#rf .rf-cc-warn { box-sizing: border-box; border-style: solid; }
+#rf .rf-cc-chest { transform-origin: 50% 85%; }
+#rf .rf-cc-flag { transform-origin: 30% 100%; }
+#rf .rf-cc-flag[data-state="ahead"] { filter: saturate(0.55) brightness(0.92); }
+#rf .rf-cc-panda { pointer-events: none; }
+/* job 20261023-rf-cc-chests: a chest's light while it waits for its Al; the Al as one piece (its picture, word and hit); Al's show —
+   the popup's light (a glow, turning rays faded out by a radial mask), its words on holders that scale about their point */
+#rf .rf-cc-glow { border-radius: 50%; }
+#rf .rf-cc-tag { overflow: visible; }
+#rf .rf-cc-popglow { border-radius: 50%; }
+#rf .rf-cc-rays { border-radius: 50%; -webkit-mask-image: radial-gradient(circle, #000 0%, #000 26%, transparent 70%); mask-image: radial-gradient(circle, #000 0%, #000 26%, transparent 70%); }
+#rf .rf-cc-popword { width: 0; height: 0; overflow: visible; transform-origin: 0 0; }
+#rf .rf-cc-popitem { overflow: visible; }
+/* Fountain Frenzy (founder 17 Oct; fountainFrenzy.ts — Prism Party's page classes rf-pp-* reused): his cream cards with the
+   gold rim as a 9-slice (border-image, no layout border), the formula's inset box, his Next Reward bar (cream track, sky fill) */
+#rf .rf-ff-card { box-sizing: border-box; border-style: solid; border-width: 0; }
+#rf .rf-ff-formula { box-sizing: border-box; border: 3px solid; border-radius: 40px; }
+#rf .rf-ff-bar { box-sizing: border-box; border: 6px solid #D9A07A; border-radius: 40px; background: #F3E4D6; overflow: hidden; box-shadow: inset 0 3px 6px rgba(90, 40, 10, 0.25); }
+#rf .rf-ff-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; transform-origin: 0 50%; transform: scaleX(0); border-radius: 34px; background: linear-gradient(180deg, #7FE3FF 0%, #22B5FA 55%, #0E8AE0 100%); }
+
+/* ── Royal Disc Build 59 — economy base + Daily Gift + Dumpling Boost ─────────────────────────────────────────────────── */
+/* the Daily Gift's prize step: the light behind the prize (POP_DAILY_GIFT prize.glow; RF job 20261020-rf-offers-v2) and the live labels */
+#rf .rf-dg-prize .rf-dg-prize-glow { position: absolute; border-radius: 50%; pointer-events: none; transform-origin: 50% 50%; will-change: transform, opacity; }
+#rf .rf-dg .rf-dg-front-label { left: 0; top: 0; max-width: 100%; overflow: hidden; text-overflow: clip; }
+/* every event page's i and × at one place (RF job 20261020-rf-topbtn; topButtons.ts) */
+#rf .rf-topbtn { z-index: 1; }
+#rf .rf-topbtn-art { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; max-width: none; object-fit: contain; pointer-events: none; -webkit-user-drag: none; }
+/* Dumpling Boost's ladder: the reward strips, Play for the waiting stage (the lives popup's gold, the kit's lettering) */
+#rf .rf-db-rewards { overflow: visible; }
+#rf .rf-db-rewards .rf-db-reward-icon { position: absolute; display: block; object-fit: contain; max-width: none; pointer-events: none; -webkit-user-drag: none; }
+#rf .rf-db-play { pointer-events: auto; }
+#rf .rf-db-play-face { position: absolute; inset: 0; border-radius: 999px; background: linear-gradient(180deg, #ffd54a 0%, #ffb81f 100%); box-shadow: 0 10px 0 #b8741a, 0 16px 28px rgba(60, 10, 0, .35), inset 0 3px 0 rgba(255, 255, 255, .45); transform-origin: 50% 50%; }
+#rf .rf-db-play-word { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+/* the Bank's Special Offers card (the Daily Gift, free): its words live over the card */
+#rfHub .rf-shop-special { overflow: visible; }
+#rfHub .rf-shop-cardword { transform-origin: 50% 50%; }
+
+/* ── Royal Disc Build 60 — Royal Routine (rroutine-v4) + Prism Party (v3) + the Win Report: Royal Flow's rf.css blocks (RF HEAD 06256b1) the
+   ported modules need beyond Build 59's copy — the fly kit (tokens, crops, rings, labels), the Routine's day layers / Claim pill / chest
+   ticks / bubble / coin area / pieces, the multiplier badge on Home's button (#rfHub), the v3 page, room, steps popup and list ── */
+#rf .rf-fly-token { position: absolute; inset: 0; pointer-events: none; }
+#rf .rf-fly-piece { transform-origin: 50% 50%; will-change: transform; filter: drop-shadow(0 2px 3px rgba(0, 10, 60, .45)); }
+/* Win Report v2: an event's icon cropped to its disc; the glow under a token; the ring a landing bursts out of a button */
+#rf .rf-fly-crop { overflow: hidden; pointer-events: none; }
+#rf .rf-fly-crop > img { display: block; pointer-events: none; -webkit-user-drag: none; }
+#rf .rf-fly-glow { position: absolute; border-radius: 50%; transform-origin: 50% 50%; will-change: transform, opacity; pointer-events: none; }
+#rf .rf-fly-ring { position: absolute; box-sizing: border-box; border-style: solid; border-radius: 50%; transform-origin: 50% 50%; will-change: transform, opacity; pointer-events: none; }
+#rf .rf-fly-token .rf-pp-mini { will-change: transform, opacity; }
+#rf .rf-fly-token .rf-fly-plus { will-change: transform, opacity; }   /* job 20261020-rf-dboost-fix: a token's gain alone ("+N"), moved by winReport.ts */
+#rf .rf-fly-label { white-space: nowrap; line-height: 1; will-change: transform, opacity; pointer-events: none; paint-order: stroke fill; z-index: 1; }
+/* job 20261023-rf-rroutine-chests: a chest claimed by itself — its tick in its own box turning upright as it comes (about its
+   middle), the light behind it (a circle inside the band); the chests' popup's chests swell and shake about their foot */
+#rf .rf-rr-chesttick { transform-origin: 50% 50%; }
+#rf .rf-rr-chestglow { border-radius: 50%; pointer-events: none; }
+#rf .rf-rr-popchest { transform-origin: 50% 100%; }
+#rf .rf-rr-pop { position: absolute; inset: 0; z-index: 2; pointer-events: auto; }
+#rf .rf-rr-pop .rf-db-stage { position: absolute; top: 0; transform-origin: 0 0; }
+#rf .rf-rr .rf-db-stage { transform-origin: 0 0; }
+/* job 20261020-rf-rroutine-v2: every day's rows in their own layer (no size: it blocks nothing); the Claim's pill — its glow
+   behind it, its shine sweeping inside its rim (royalRoutine.rows.claimFx; driven by the page's frame loop, no CSS animation);
+   the chests' bubble and its pointer (royalRoutine.tip) */
+#rf .rf-rr-day { position: absolute; left: 0; top: 0; }
+#rf .rf-rr-claimglow { position: absolute; pointer-events: none; opacity: 0; will-change: opacity; }
+#rf .rf-rr-shinebox { position: absolute; overflow: hidden; pointer-events: none; }
+#rf .rf-rr-shine { position: absolute; left: 0; top: -20%; height: 140%; will-change: transform; }
+#rf .rf-rr-tip { z-index: 4; box-sizing: border-box; pointer-events: none; }   /* job 20261020-rf-rroutine-v3: no will-change — a layer of its own, drawn while it grew from scale 0, kept its pictures soft ("ikonlar daha net görünsün"): it is painted with the page */
+#rf .rf-rr-tickglow { will-change: transform, opacity; }   /* job 20261020-rf-rroutine-v3: the light behind a Claim's tick (royalRoutine.ts claimShow), shown for its burst only */
+#rf .rf-rr-tipptr { position: absolute; box-sizing: border-box; }
+#rf .rf-rr-piece { will-change: transform; }
+#rf .rf-pp-badge, #rfHub .rf-pp-badge { position: absolute; left: 4%; bottom: 26%; color: #FFFFFF; font-family: "RF Display", system-ui, sans-serif; -webkit-text-stroke: 0.12em #8A0A0A; paint-order: stroke fill; pointer-events: none; line-height: 1; }
+/* job 20261019-rf-rroutine-fix v2: the Royal Routine page's coin area (royalRoutine.stash) — the timer's make: a gold-rimmed magenta bar under the coin */
+#rf .rf-rr-stash { pointer-events: none; z-index: 2; will-change: transform; }
+#rf .rf-rr-stashbar { position: absolute; box-sizing: border-box; border-style: solid; box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.18), 0 3px 0 rgba(60, 0, 30, 0.45); }
+/* Prism Party v3 (job 20261023-rf-prism-v3; prismParty.ts — the founder's designs of 23 Oct): the head pinned by its logo (its plate
+   reaches up over the status bar), his dark room and Başla under it; the multiplier rail; the active chip's green glow; the earn
+   line (its words and the drop in a row); his bar (the groove from config, the blue fill as wide as the step's share); the steps
+   popup over the page (z 2: over the page's i and ×) — the scrim (a tap closes), the frame (his panel and its title, scaled with the
+   page; only the panel takes a tap), the list (no scroll bar, its edges fading); the gold line through the nodes. His active chip
+   has no glow (v2's had one) */
+#rf .rf-pp3 .rf-db-stage { transform-origin: 0 0; }
+#rf .rf-pp3-head, #rf .rf-pp3-foot, #rf .rf-pp3-room { position: absolute; pointer-events: none; }
+#rf .rf-pp3-head .rf-db-hit, #rf .rf-pp3-foot .rf-db-hit { pointer-events: auto; }
+#rf .rf-pp3-room > .rf-db-hit { left: 0; top: 0; width: 100%; height: 100%; pointer-events: auto; }
+#rf .rf-pp3-roombox { box-sizing: border-box; }
+#rf .rf-pp3-rail { border-radius: 11px; box-shadow: 0 1px 0 rgba(20, 30, 120, 0.35); }
+#rf .rf-pp3-tag { overflow: visible; }
+#rf .rf-pp3-earn { display: flex; align-items: center; white-space: nowrap; pointer-events: none; }
+#rf .rf-pp3-earn .rf-db-text { position: static; }
+#rf .rf-pp3-earndrop { display: block; width: auto; max-width: none; }
+#rf .rf-pp3-bar { box-sizing: border-box; overflow: hidden; box-shadow: inset 0 3px 2px rgba(120, 50, 20, 0.3), 0 2px 0 rgba(255, 246, 226, 0.9); }
+#rf .rf-pp3-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; }
+#rf .rf-pp3-steps { position: absolute; inset: 0; z-index: 2; }
+#rf .rf-pp3-scrim { position: absolute; inset: 0; pointer-events: auto; }
+#rf .rf-pp3-frame { pointer-events: none; }
+#rf .rf-pp3-panel { box-sizing: border-box; pointer-events: auto; }
+#rf .rf-pp3-panelfill { box-sizing: border-box; box-shadow: inset 0 6px 6px rgba(255, 255, 255, 0.28); }
+#rf .rf-pp3-list { position: absolute; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: none; scrollbar-width: none; pointer-events: auto;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%); }
+#rf .rf-pp3-list::-webkit-scrollbar { display: none; }
+#rf .rf-pp3-line { border-radius: 8px; box-shadow: 0 0 0 2px rgba(110, 40, 0, 0.45); }
+
+
+/* Build 72: the same safe, logo-first visual explanation in every event. */
+#rf .rd-event-guide{position:absolute;inset:0;z-index:1200;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 18%,var(--guide-color),#070b20 85%);color:white;animation:rdGuideIn .2s ease-out;touch-action:manipulation}
+#rf .rd-guide-stage{position:absolute;left:0;top:0;width:390px;height:730px;transform-origin:0 0;font-family:'RF Display',sans-serif}
+#rf .rd-guide-logo{position:absolute;left:35px;top:0;width:320px;height:137px;animation:rdGuidePiece .35s cubic-bezier(.2,.8,.3,1.1) both;filter:drop-shadow(0 5px 8px #0005)}
+#rf .rd-guide-logo img,#rf .rd-guide-picture>img{width:100%;height:100%;object-fit:contain}
+#rf .rd-guide-step{position:absolute;left:18px;width:354px;height:138px;display:flex;align-items:center;gap:14px;animation:rdGuidePiece .32s ease-out var(--delay) both}
+#rf .rd-guide-step:nth-of-type(2){flex-direction:row-reverse}
+#rf .rd-guide-picture{position:relative;flex:0 0 144px;height:132px;filter:drop-shadow(0 5px 6px #0004)}
+#rf .rd-guide-copy{flex:1;text-align:center;text-shadow:0 2px 2px #0008}
+#rf .rd-guide-copy p{margin:0;font-size:21px;line-height:1.18;color:#fff}
+#rf .rd-guide-copy small{display:block;margin-top:9px;color:#ffe39c;font-size:16px;line-height:1.2}
+#rf .rd-guide-number{position:absolute;left:0;top:1px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(#ffe783,#f6aa16);box-shadow:0 3px #8d4911;color:#643400;font-size:20px;text-shadow:0 1px #fff9}
+#rf .rd-guide-cloud>img:first-child{position:absolute;left:12px;top:0;width:120px;height:106px;z-index:1}
+#rf .rd-guide-cloud .rd-guide-cloud-base{position:absolute;bottom:0;left:0;width:144px;height:48px}
+#rf .rd-guide-step:not(:nth-of-type(3)):after{content:'';position:absolute;width:30px;height:27px;left:160px;bottom:-17px;background:url('assets/rf/EV_DBOOST/info_arrow.webp') center/contain no-repeat;opacity:.85}
+#rf .rd-guide-progress{position:absolute;left:12px;right:12px;height:18px;bottom:7px;border:3px solid #ffe59a;border-radius:14px;background:#182659;overflow:hidden}
+#rf .rd-guide-progress i{display:block;width:70%;height:100%;background:linear-gradient(var(--rd-green-light),var(--rd-green-bottom))}
+#rf .rd-guide-note{position:absolute;left:24px;right:24px;top:624px;margin:0;text-align:center;font-size:16px;line-height:1.25;color:#ffe39c;animation:rdGuideIn .3s 1s both}
+#rf .rd-guide-tap{position:absolute;bottom:5px;left:25px;width:340px;padding:13px 0;border:0;background:none;color:white;font:20px/1.2 'RF Display',sans-serif;text-shadow:0 2px 3px #000;animation:rdGuideIn .3s 1s both;cursor:pointer;box-shadow:none}
+#rf .rd-guide-leave{opacity:0;transition:opacity .17s ease-out}
+@keyframes rdGuideIn{from{opacity:0}to{opacity:1}}
+@keyframes rdGuidePiece{from{opacity:0;translate:0 10px;scale:.94}to{opacity:1;translate:0 0;scale:1}}
+@media(prefers-reduced-motion:reduce){#rf .rd-event-guide,#rf .rd-guide-logo,#rf .rd-guide-step,#rf .rd-guide-tap,#rf .rd-guide-note{animation:none}}
+#rf .rf-cc-step-number{box-sizing:border-box;border:7px solid #ffdc64;border-radius:60px;background:linear-gradient(#529dff,#1a5dda 48%,#103eab);box-shadow:0 6px 0 #9a5a12,inset 0 5px 0 #a2d7ff,inset 0 -6px 0 #092f87,0 9px 12px #24246245}
+#rf .rf-cc-step-digit{filter:drop-shadow(0 3px 0 #123b90)}
+#rf .rf-cc-chest{filter:drop-shadow(0 10px 7px #473b7050)}
+#rf .rd-event-timer{isolation:isolate;display:block;overflow:visible;box-sizing:border-box;font-variant-numeric:tabular-nums;text-shadow:0 2px #59052b;paint-order:stroke fill}
+#rf .rd-event-timer:before{content:'';position:absolute;z-index:-1;pointer-events:none;left:calc(-146px * var(--et-unit));top:0;width:calc(388px * var(--et-unit));height:calc(118px * var(--et-unit));background:url('assets/rf/EV_CC/timer.webp') center/100% 100% no-repeat}
+#rf .rd-guide-logo svg{overflow:hidden}
+#rf #rfPpInfoPage{background:radial-gradient(ellipse at 50% 16%,#462260 0%,#1c1535 50%,#060d1b 100%)!important}
+#rf .rd-event-guide{pointer-events:auto}
+
+/* Royal Flow's copied components retain their own typography and measurements. */
+html[data-disc-shell] #game {isolation:isolate}
+html[data-disc-shell]:not([data-rf-revealed]) #game {background:#0044FC var(--rf-field)}
+html[data-disc-shell] #loading,html[data-disc-shell] #menu,html[data-disc-shell] #result,html[data-disc-shell] #tune-panel {display:none!important}
+#rfHub {position:absolute;inset:0;z-index:100;overflow:hidden;visibility:hidden;pointer-events:none}
+#rfHub.active {visibility:visible;pointer-events:auto}
+#rfHub button,#rf button {font:inherit;letter-spacing:normal;text-transform:none;margin:0}
+#rfHub img,#rf img {max-width:none}
+#rfHub [hidden],#rf [hidden] {display:none!important}
+#rfHub .rf-home-scene {object-fit:cover;object-position:center}
+#rfHub .rf-home-journey {background:none;border:0}
+.rd-boot {position:absolute;inset:0;overflow:hidden;background:#267ee6;pointer-events:auto}
+.rd-boot>img {width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+#rdLoadStatus {position:absolute;bottom:max(5%,env(safe-area-inset-bottom));left:0;right:0;margin:0;text-align:center;color:#fff;font:16px 'RF Display',sans-serif;text-shadow:0 2px 3px #46240c}
+.rd-boot>button {position:absolute;bottom:15%;left:25%;width:50%;padding:15px;border-radius:20px;background:#68c410;color:white;border:2px solid gold}
+#rdWin {position:absolute;inset:0;background:#030812;pointer-events:auto}
+#rdCoach {position:absolute;z-index:30;left:7%;right:7%;bottom:max(8%,calc(env(safe-area-inset-bottom) + 20px));padding:10px 14px;border-radius:16px;background:#133774eb;border:2px solid #eec055;color:#fff;text-align:center;font:14px/1.35 'RF Display',sans-serif;pointer-events:none;box-shadow:0 4px 14px #07183c55}
+#rdCoach[hidden] {display:none}
+#rf .rd-exit {position:absolute;bottom:21%;left:22%;width:56%;min-height:45px;z-index:5;color:#fff;background:linear-gradient(#e64656,#b91131);border:2px solid #ffd85a;box-shadow:0 3px #790d24;font:17px 'RF Display',sans-serif}
+#rfSettings:not([data-on-board="true"]) #rdExitLevel {display:none}
+@media(prefers-reduced-motion:reduce) {#rdCoach{transition:none}}
+
+#rfSetSoda,#rfSetSodaRead{display:none!important}
+
+#rdCompletedLabel {position:absolute;background:#fff0d9;color:#704021;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"RF Display";line-height:1.1}
+
+/* Royal Flow's brief tutorial seal sits on the last real Disc frame. */
+#rf .rf-seal-logo{mix-blend-mode:screen}
+#rf .rd-tutorial{pointer-events:none}
+#rf .rd-tutorial-tip{position:absolute;left:7%;right:7%;bottom:19%;text-align:center;color:#fff;font:17px/1.3 'RF Display',sans-serif;letter-spacing:-.02em;text-shadow:0 2px 0 #18357c,1px 0 #18357c,-1px 0 #18357c;pointer-events:none}
+
+/* English artwork labels: live text remains crisp at phone scale. */
+#rf .rd-english-labels { overflow: visible; }
+#rf .rf-jr-header ~ .rd-english-labels { z-index: 3 !important; }
+#rf .rd-daily-continue-label { position:absolute; left:12%; top:24%; width:76%; height:53%; display:flex; align-items:center; justify-content:center; border-radius:24px; background:linear-gradient(#73ee03,#44c500); color:white; font-family:"RF Display",sans-serif; font-size:clamp(18px,6vw,28px); -webkit-text-stroke:1.4px #1c5c00; paint-order:stroke fill; pointer-events:none; }
+
+/* Included only while DISC_ITERATION_TOOLS is enabled. */
+#rf .rd-iteration-open{position:absolute;left:17%;width:66%;top:43%;min-height:44px;z-index:6;border:2px solid #ffdf7d;border-radius:22px;background:linear-gradient(#3378c7,#164b91);color:white;font:16px 'RF Display',sans-serif;padding:8px}
+#rdIterationTools{z-index:100200;padding: max(16px,env(safe-area-inset-top)) 12px max(16px,env(safe-area-inset-bottom));backdrop-filter:none;background:#102840e8}
+#rdIterationTools .tune-card{max-height:100%;padding:16px;scrollbar-gutter:stable;color:#183458}
+#rdIterationTools header{position:sticky;top:-16px;background:#fff9e9;padding:12px 0;z-index:2}
+#rdIterationTools h2{font-size:23px}#rdIterationTools header small{font-size:10px}
+#rdIterationTools .close{min-width:44px;min-height:44px}
+#rdIterationTools p,#rdIterationTools label,#rdIterationTools .slider-label,#rdIterationTools .tabs button,#rdIterationTools .text-button{font-size:14px}
+#rdIterationTools select,#rdIterationTools input[type=number],#rdIterationTools textarea{font-size:16px}
+#rdIterationTools input[type=range]{min-height:36px;touch-action:pan-y}
+#rdIterationTools .parameter-help,#rdIterationTools .slider-limits{font-size:12px}
+#rdIterationTools .gold-button{font-size:16px;min-height:44px}
+.rd-iteration-actions{display:flex;gap:6px;margin:14px 0}.rd-iteration-actions button{border:1px solid #d5c79e;border-radius:10px;padding:8px;color:#284d79;background:#fff;min-height:44px}
+#rdIterationGrid{display:grid;gap:8px;margin-top:12px}#rdIterationGrid button{border:1px solid #c6d0de;border-radius:12px;background:#fff;padding:12px;text-align:left;color:#224c79;min-height:56px}#rdIterationGrid button.current{border:2px solid #c68b21;background:#fff0bd}#rdIterationGrid b,#rdIterationGrid span{display:block}#rdIterationGrid span{font-size:12px;margin-top:4px}
+#rdIterationTools textarea{display:block;width:100%;margin:10px 0;resize:vertical}#rdIterationCopy{min-height:44px}
+#rdIterationStatus{color:#226a3c;font-weight:700}#rdIterationExit{padding:12px}
+/* Build 55: the Bellek tab — label/value rows, wrapping long value lists. */
+.rd-memory-rows{display:grid;gap:6px;margin-top:10px}.rd-memory-row{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:8px;border:1px solid #e3d9bd;border-radius:10px;background:#fff;padding:8px 10px;font-size:13px;color:#224c79}.rd-memory-row b{color:#183458}.rd-memory-row span{overflow-wrap:anywhere}#rdIterationMemoryStamp{color:#6a5a2a;font-size:12px;min-height:1em}#rdIterationMemory .rd-iteration-actions{flex-wrap:wrap}
+/* Build 59: the Ekonomi · Etkinlik and Analitik tabs */
+#rdIterationLiveops .rd-iteration-actions,#rdIterationAnalytics .rd-iteration-actions{flex-wrap:wrap}#rdIterationQa{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed #e3d9bd}#rdIterationQa[hidden]{display:none}.rd-qa-switch{display:flex;align-items:center;gap:8px;font-size:14px;color:#183458}.rd-analytics-row{grid-template-columns:minmax(160px,46%) 1fr;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}#rdIterationAnalyticsStamp{color:#6a5a2a;font-size:12px;min-height:1em}
+
+#rdIterationMega .rd-mega-preview{height:152px;display:flex;align-items:center;justify-content:center;gap:20px;border-radius:14px;background:#eaf2fb;margin:12px 0}#rdMegaPreview{height:auto;max-width:128px;transition:width .12s}#rdMegaScaleValue{font-size:28px;font-weight:800;color:#173b73}#rdMegaScaleRange{display:block;width:100%;accent-color:#2267b2;min-height:44px}#rdIterationMega .rd-mega-limits{display:flex;justify-content:space-between;font-size:12px;color:#53677f}#rdIterationMega .rd-mega-number{display:flex;align-items:center;justify-content:space-between;margin:16px 0;gap:12px}#rdMegaScale{width:96px;padding:10px;border:1px solid #8ca8cc;border-radius:9px;background:white;color:#183458}#rdIterationMega .rd-iteration-actions{flex-wrap:wrap}#rdMegaSaved{min-height:20px;color:#226a3c;font-weight:700}
+
+#rdSuperTop .power-wrap{position:relative;margin:auto}#rdSuperTop .power-wrap:after{content:'';position:absolute;inset:-7%;border:2px solid #a9ff67;border-radius:50%;pointer-events:none;opacity:0}#rdSuperTop .power-wrap.ready:after{animation:aura 2s ease-out infinite}#rdSuperTop .power{position:relative;border:0;background:transparent;padding:0;display:block;width:100%;aspect-ratio:1;color:inherit;transition:transform .16s;isolation:isolate;-webkit-tap-highlight-color:transparent}#rdSuperTop .power:enabled:hover{transform:scale(1.035)}#rdSuperTop .power:enabled:active{transform:scale(.95)}#rdSuperTop .power svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}#rdSuperTop .power .wand{position:absolute;width:67%;height:75%;object-fit:contain;left:16.5%;top:12.2%;transform:rotate(31deg);pointer-events:none;filter:drop-shadow(0 3px 1px #1122675c)}#rdSuperTop .power-wrap.exhausted .wand, #rdSuperTop .power-wrap.locked .wand{filter:grayscale(.82) brightness(.82)}#rdSuperTop .power-wrap.exhausted .blue-surface, #rdSuperTop .power-wrap.locked .blue-surface{opacity:.65}#rdSuperTop .power-wrap.exhausted .frame, #rdSuperTop .power-wrap.locked .frame{filter:saturate(.25)}#rdSuperTop .charge-fill, #rdSuperTop .charge-shine{transition:stroke-dasharray .35s cubic-bezier(.2,.7,.3,1)}#rdSuperTop .power-wrap.ready .power{animation:readyPulse 2s ease-in-out infinite}#rdSuperTop .power-wrap.firing .power{animation:castPulse .45s ease-out 2}#rdSuperTop .status-pill{position:absolute;left:50%;bottom:-2%;transform:translateX(-50%);z-index:3;background:linear-gradient(#244c9e,#10265c);border:2px solid #ffe199;box-shadow:0 3px 0 #07235d;padding:4px 12px;border-radius:20px;color:#fffef5;white-space:nowrap;font-size:16px;font-weight:900;min-width:48%;min-height:29px;text-align:center;pointer-events:none;text-shadow:0 1px #0006}#rdSuperTop .ready .status-pill{background:linear-gradient(var(--rd-green-light),var(--rd-green-bottom));border-color:#fff3a6;box-shadow:0 3px #0e6718;color:#fff;font-size:15px}#rdSuperTop .exhausted .status-pill, #rdSuperTop .locked .status-pill{background:linear-gradient(#748394,#435168);border-color:#b3c4d5;font-size:13px;box-shadow:0 3px #283345}#rdSuperTop .usage{display:flex;gap:7px;align-items:center;justify-content:center;margin-top:17px}#rdSuperTop .usage i{display:block;width:10px;height:10px;border-radius:50%;background:linear-gradient(140deg,#fff7ba,#ffb82b);box-shadow:0 1px 2px #583c10}#rdSuperTop .usage i.spent{background:#43516c;box-shadow:inset 0 1px 2px #192234}#rdSuperTop .usage-label{font-size:11px;color:#ced4e8;margin-left:2px}#rdSuperTop .lock-mark{position:absolute;bottom:17%;right:18%;font-size:23px;z-index:2;color:#fff;display:none}#rdSuperTop .locked .lock-mark{display:block}
+@keyframes readyPulse{0%,100%{filter:drop-shadow(0 0 2px var(--rd-green-light)44)}50%{filter:drop-shadow(0 0 12px var(--rd-green-light)70)}}@keyframes aura{0%{transform:scale(.94);opacity:.7}85%,100%{transform:scale(1.08);opacity:0}}@keyframes hand{0%,100%{transform:translateY(4px) rotate(-15deg)}50%{transform:translateY(-7px) rotate(-15deg)}}@keyframes castPulse{0%{transform:scale(1)}35%{transform:scale(.9)}70%{transform:scale(1.07)}100%{transform:scale(1)}}
+
+@keyframes gainFlash{0%{filter:brightness(1)}35%{filter:brightness(1.28)}100%{filter:brightness(1)}}
+@keyframes ringSweep{0%{stroke-dashoffset:100;opacity:0}20%{opacity:.9}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes readySweep{0%{stroke-dashoffset:100;opacity:.12}20%{opacity:.8}85%{opacity:.8}100%{stroke-dashoffset:0;opacity:.12}}
+@keyframes readyArrival{0%{transform:scale(1)}22%{transform:scale(.96)}53%{transform:scale(1.12)}77%{transform:scale(.99)}100%{transform:scale(1)}}
+@keyframes readyHalo{0%{opacity:.1;transform:scale(.92)}30%{opacity:.9}100%{opacity:0;transform:scale(1.2)}}
+@keyframes plusRise{0%{opacity:0;transform:translateY(5px) scale(.7)}20%{opacity:1;transform:translateY(-4px) scale(1.06)}100%{opacity:0;transform:translateY(-26px) scale(.85)}}
+@keyframes winScatter{0%{opacity:0;transform:translate(0,0) scale(.5)}14%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(65deg) scale(.15)}}
+
+#rdSuperTop{position:absolute;left:4.5%;bottom:max(8.5%,calc(env(safe-area-inset-bottom) + 28px));width:clamp(64px,18vw,72px);z-index:35;pointer-events:auto;font-family:'RF Display',sans-serif;color:white}
+#rdSuperTop button.power{min-height:64px;box-shadow:none;outline-offset:5px;border-radius:50%;cursor:pointer;touch-action:manipulation}
+#rdSuperTop .status-pill{font-size:9px;min-height:17px;min-width:70%;padding:1px 6px;border-width:1.5px;bottom:-2%}
+#rdSuperTop .usage{gap:4px;margin-top:6px}#rdSuperTop .usage i{width:5px;height:5px}#rdSuperTop .usage-label{display:none}
+#rdSuperTop .power-wrap:after{border:0;inset:1%;box-shadow:0 0 8px 2px #baff6470}
+#rdSuperTop .rd-super-title{text-align:center;font-size:9px;margin-top:5px;text-shadow:0 1px 2px #153775;letter-spacing:.02em}
+#rdSuperTop .charge-plus{font-size:12px}#rdSuperTop .win-spark{width:4px;height:6px}
+#rdSuperTop .rd-super-tip{position:absolute;left:0;bottom:136%;width:240px;max-width:75vw;padding:12px 15px;background:linear-gradient(#1b5fbd,#16377c);border:2px solid #ffe499;border-radius:15px;text-align:center;font-size:14px;line-height:1.35;box-shadow:0 4px 12px #12377366;pointer-events:none}
+#rdSuperTop .rd-super-tip:after{content:'';position:absolute;left:22px;top:100%;border:9px solid transparent;border-top-color:#ffe499}
+#rdSuperTop .rd-super-hand{position:absolute;width:38px;left:56%;top:51%;filter:drop-shadow(0 2px 2px #35261170);pointer-events:none;animation:hand 1.25s ease-in-out infinite}
+#rdIterationSuperTop label{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0;font-size:14px}#rdIterationSuperTop input{width:90px;padding:10px;border-radius:8px;border:1px solid #6684b8;background:#13264a;color:#fff;font:inherit}
+@media(prefers-reduced-motion:reduce){#rdSuperTop *,#rdSuperTop *:after{animation:none!important;transition:none!important}}
+
+#rdSuperTop .ready .status-pill,#rdSuperTop .exhausted .status-pill,#rdSuperTop .locked .status-pill{font-size:9px}
+#rdSuperTop button.power:disabled{opacity:1;cursor:default}
+#rdSuperTop .rd-super-hand{z-index:6}
+
+/* Charging never changes the HUD anchor or animates its transform. */
+#rdSuperTop .power-wrap{height:var(--power-size);width:var(--power-size);transform:none}
+#rdSuperTop .power-wrap.ready .power,#rdSuperTop .power-wrap.firing .power{animation:none}
+#rdSuperTop .ready .charge-fill,#rdSuperTop .ready .charge-shine{transition:none;stroke-dasharray:none!important}
+#rdSuperTop .ready .charge-sweep{display:none}
+#rdSuperTop .power-wrap .power{z-index:1}
+.wand-ready-particles{position:absolute;inset:-8%;pointer-events:none;opacity:0;background:radial-gradient(ellipse,#bdff5630,transparent 70%);transition:opacity .18s}
+.ready .wand-ready-particles{opacity:1}
+.wand-ready-particles i{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;background:#eaff9b;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 2px #b5ff58);transform:rotate(var(--a)) translateY(calc(var(--power-size) * -.51));animation:wandReadySpark 1.8s var(--delay) ease-in-out infinite}
+@keyframes wandReadySpark{0%,100%{opacity:.3}50%{opacity:1}}
+#rdWandCast{position:absolute;inset:0;z-index:50;pointer-events:none;overflow:hidden}
+#rdWandCast canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#rdWandCast>img{position:absolute;width:clamp(96px,30cqw,150px);height:auto;filter:drop-shadow(0 0 13px #cfff68) drop-shadow(0 4px 2px #28436c);will-change:transform;z-index:2}
+.wand-cast-halo{position:absolute;width:50cqw;height:50cqw;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(#e8ff9888,#9dff3620 45%,transparent 70%)}
+@media(prefers-reduced-motion:reduce){.wand-ready-particles i{animation:none;opacity:.7}}
+
+#rdSuperTop .power-wrap.ready:after{animation:none;inset:-3%;opacity:.2;box-shadow:0 0 7px #baff65;border:0}
+#rdSuperTop .exhausted .charge-origin,#rdSuperTop .locked .charge-origin,#rdSuperTop .firing .charge-origin{display:none}
+
+#rdBoosters{position:absolute;right:4.5%;bottom:max(8.5%,calc(env(safe-area-inset-bottom) + 28px));display:flex;flex-direction:column;gap:13px;z-index:35;pointer-events:auto;width:clamp(62px,17vw,70px);font-family:'RF Display',sans-serif}#rdBoosters button{padding:0;border:0;background:transparent;color:white;text-shadow:0 2px #18355f;touch-action:manipulation;transition:transform .1s}#rdBoosters button:active{transform:scale(.92)}#rdBoosters button:disabled{opacity:.55}#rdBoosters button.booster-active{opacity:1}.booster-art{display:block;position:relative;width:100%;aspect-ratio:1}.booster-art img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px #17314a66)}.booster-stock{position:absolute;right:-2px;bottom:0;min-width:23px;padding:1px 5px;border-radius:12px;border:2px solid #fff3ae;background:#1d8d43;font-size:13px;line-height:1.3;box-shadow:0 2px #175632}.booster-name{display:block;white-space:nowrap;font-size:10px;margin-top:4px}.booster-active .booster-art:before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(#73eeff var(--charge),#ffffff15 0);mask:radial-gradient(transparent 64%,#000 65%);animation:boostRing .7s ease-in-out infinite alternate}.booster-active .booster-stock{background:#1c67bb}.booster-locked{filter:grayscale(.8)}@keyframes boostRing{to{filter:drop-shadow(0 0 7px #9af3ff)}}
+#rdBoosterHint{position:absolute;bottom:30%;left:50%;transform:translateX(-50%);max-width:70%;padding:7px 12px;border-radius:16px;background:#163d73e8;border:1px solid #ffe193;color:#fff3be;text-align:center;font:12px/1.4 'RF Display',sans-serif;z-index:34;text-shadow:0 1px #153354;pointer-events:none}
+#rdBoosterShop{position:absolute;inset:0;z-index:160;display:flex;align-items:flex-end;justify-content:center;background:linear-gradient(transparent 15%,#06214088);padding:18px 18px max(22px,env(safe-area-inset-bottom));pointer-events:auto;font-family:'RF Display',sans-serif;color:#fff}#rdBoosterShop{z-index:170;align-items:center;background:#062140b0}.pre-card{width:min(100%,330px);border:3px solid #ffe3a0;border-radius:24px;background:linear-gradient(#2458ab,#143470);box-shadow:0 8px 0 #0b244c,0 15px 35px #0004;text-align:center;padding:16px 18px 10px;text-shadow:0 2px #112e66}.pre-card small{font-size:11px;color:#ffdc77;letter-spacing:.06em}.pre-card h2{font-size:23px;line-height:1.2;margin:5px 0 10px}.pre-card h3{font-size:16px;margin:2px 0}.pre-card p{font:12px/1.4 system-ui,sans-serif;margin:7px 0 10px;color:#e6f2ff;text-shadow:none}.shop-buy{display:block;width:100%;border:2px solid #ffef9d;border-radius:13px;background:linear-gradient(#ffe46d,#ffbc34);box-shadow:0 4px #b97715;color:#593819;font:18px 'RF Display',sans-serif;padding:11px 8px;margin:15px 0 11px;text-shadow:0 1px #fff7c7}.pre-card .pre-note{font-size:11px;margin-bottom:0;color:#c9e0ff}.shop-art{width:90px}.shop-close{border:0;background:transparent;color:white;font:14px 'RF Display',sans-serif;padding:8px}.pre-card button:active{transform:scale(.96)}
+@media(max-height:650px){.pre-card{padding:9px 16px}.pre-card h2{font-size:20px}.pre-card p{margin:4px 0}#rdBoosters{gap:6px;width:59px}.booster-name{font-size:9px}}
+/* Build 66: mirrored rails, φ = 1.618; side inset and inter-button gap = size / φ². */
+#hud{--power-size:clamp(60px,calc(100vw / 5.236),78px);--power-inset:calc(var(--power-size) / 2.618);--power-gap:calc(var(--power-size) / 2.618);--power-center:76.4%}
+#rdBoosters,#rdSuperTop{width:var(--power-size);top:var(--power-center);bottom:auto;transform:translateY(-50%)}
+#rdSuperTop{left:var(--power-inset)}#rdBoosters{right:var(--power-inset);gap:var(--power-gap)}
+#rdBoosters .booster-name{font-size:clamp(9px,2.6vw,11px);margin-top:5px}#rdSuperTop .rd-super-title{font-size:10px}#rdSuperTop button.power{min-height:0}
+#rdBoosters .booster-stock{right:-1px;bottom:0;min-width:25px;min-height:25px;display:grid;place-items:center;border-radius:50%;padding:1px 5px;line-height:1}
+#rdBoosters [data-booster=infinite_disc] .booster-stock{right:0;bottom:0;min-width:30%;height:30%;font-size:14px;border:0;background:var(--rd-green-face);box-shadow:inset 0 0 0 2px var(--rd-green-edge),0 2px var(--rd-green-shadow)}
+#rdBoosters [data-booster=infinite_disc].booster-active .booster-stock{font-size:11px;border-radius:14px;background:#165bc4;min-width:42px}
+#rdBoosterHint{bottom:auto;top:57%;font-size:12px}
+.rd-unlock{pointer-events:auto;position:absolute;inset:0;z-index:190000;background:#060b16;color:#fff6d9;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:max(24px,env(safe-area-inset-top)) 20px max(30px,env(safe-area-inset-bottom));font-family:'RF Display',sans-serif;text-align:center}
+.rd-unlock[hidden],#rdBoosterSpotlight[hidden],#rdBoosterCoach[hidden],#rdBoosterShop[hidden]{display:none!important}
+.rd-unlock h2{position:relative;z-index:1;font-size:clamp(30px,9.5vw,48px);line-height:1.08;margin:0 0 3vh;letter-spacing:-.02em;color:#fff0d0;-webkit-text-stroke:2px #571924;paint-order:stroke fill;filter:drop-shadow(3px 0 #ff0878) drop-shadow(-3px 0 #ff0878) drop-shadow(0 3px #ff0878) drop-shadow(0 -3px #ff0878) drop-shadow(0 4px #8b0047)}
+.rd-unlock .unlock-hero{position:relative;width:min(100%,440px);aspect-ratio:1.4;overflow:hidden;flex-shrink:0;margin:1vh 0;animation:unlockFloat 2.4s ease-in-out infinite}
+.rd-unlock .unlock-hero img{position:absolute;width:100%;height:auto;left:0;top:50%;transform:translateY(-49.5%)}
+.rd-unlock h3{position:relative;z-index:1;margin:1vh 0 14px;font-size:clamp(28px,8vw,42px);line-height:1.1;color:#ffdd21;-webkit-text-stroke:2px #56101c;paint-order:stroke fill;filter:drop-shadow(3px 0 #ff0878) drop-shadow(-3px 0 #ff0878) drop-shadow(0 3px #ff0878) drop-shadow(0 -3px #ff0878)}
+.rd-unlock p{position:relative;z-index:1;margin:4px 0;line-height:1.3}.unlock-gift{color:#ffdc55;font-size:17px;letter-spacing:.05em}.unlock-keep{font:14px system-ui,sans-serif;color:#f6e8d3}
+.rd-unlock button{position:relative;z-index:1;background:transparent;border:0;color:white;font:22px 'RF Display',sans-serif;min-height:56px;margin-top:5vh;padding:12px 28px;text-shadow:0 2px #7e111e;touch-action:manipulation;animation:unlockTap 1.8s ease-in-out infinite}
+.unlock-confetti{position:absolute;inset:0;pointer-events:none}.unlock-confetti i{position:absolute;top:0;border-radius:1px;will-change:transform;box-shadow:0 0 5px #ffffff22}
+#rdBoosterSpotlight{position:fixed;z-index:200100;pointer-events:none;border:3px solid #ffe66b;box-shadow:0 0 0 200vmax #020b25b0,0 0 22px #fff586;transition:top .12s,left .12s;animation:coachPulse 1s ease-in-out infinite alternate}
+#rdBoosterCoach{position:fixed;z-index:200101;pointer-events:none;text-align:center;font-family:'RF Display',sans-serif;color:white}#rdBoosterCoach p{border:2px solid #ffdc75;border-radius:15px;background:#173b79;padding:12px;margin:0;box-shadow:0 4px 0 #0a2050;font-size:16px;line-height:1.3}#rdBoosterCoach span{font-size:36px;display:block;animation:coachHand .8s ease-in-out infinite alternate}
+@keyframes coachHand{to{transform:translateY(7px)}}@keyframes coachPulse{to{border-color:white}}@keyframes unlockFloat{50%{transform:translateY(-7px)}}@keyframes unlockTap{50%{opacity:.6}}
+@media(max-height:620px){.rd-unlock h2{font-size:29px;margin-bottom:0}.rd-unlock .unlock-hero{width:75%;margin:0}.rd-unlock h3{font-size:27px;margin:0 0 8px}.rd-unlock button{margin-top:2vh;font-size:19px}.unlock-gift{font-size:15px}#rdBoosterCoach p{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.rd-unlock .unlock-hero,.rd-unlock button,#rdBoosterSpotlight,#rdBoosterCoach span{animation:none}}
+
+.rd-unlock{outline:none}.rd-unlock .unlock-hero{mask-image:radial-gradient(ellipse 50% 50% at center,#000 78%,transparent 100%)}
+
+/* Sticky TNT is selected only in the existing level popup. */
+.rd-sticky-picker{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(#fbf7eb,#ffeddd);border-radius:calc(36px * var(--s));pointer-events:auto;color:#995a4f;text-align:center;font-family:'RF Display',sans-serif;isolation:isolate}
+.rd-sticky-picker h3{font:calc(57px * var(--s)) 'RF Display',sans-serif;margin:0 0 calc(12px * var(--s));text-shadow:0 1px #fff;white-space:nowrap}
+.rd-sticky-pick{position:relative;flex-shrink:0;width:calc(290px * var(--s));height:calc(290px * var(--s));padding:0;border:calc(8px * var(--s)) solid #d8ae8e;border-radius:26%;background:#fff8eb;box-shadow:0 calc(5px * var(--s)) #c39476;touch-action:manipulation;cursor:pointer}
+.rd-sticky-pick img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;border-radius:22%}
+.rd-sticky-pick[aria-pressed=true]{background:#d5ffaf;border-color:#68c52a;box-shadow:0 0 calc(22px * var(--s)) #6ee440}
+.rd-sticky-count,.rd-sticky-check{position:absolute;right:calc(-18px * var(--s));bottom:calc(-9px * var(--s));display:grid;place-items:center;min-width:calc(80px * var(--s));height:calc(80px * var(--s));border:calc(5px * var(--s)) solid #fff3bb;border-radius:50%;background:#c91637;color:#fff;font-size:calc(48px * var(--s));text-shadow:0 1px #57081a;line-height:1}
+.rd-sticky-check{display:none;background:var(--rd-green-face)}.rd-sticky-pick[aria-pressed=true] .rd-sticky-check{display:grid}
+.rd-sticky-note{font:calc(36px * var(--s))/1.2 'RF Display',sans-serif;margin:calc(15px * var(--s)) 0 0;white-space:nowrap}
+.rd-sticky-picker[data-locked=true] .rd-sticky-pick{filter:grayscale(1);opacity:.55}
+.rd-sticky-buy{position:absolute;inset:auto 10% calc(8px * var(--s));background:var(--rd-green-face);color:white;border:2px solid #ffc94f;border-radius:12px;font:calc(40px * var(--s)) 'RF Display',sans-serif;padding:calc(18px * var(--s))}
+.rd-sticky-buy[hidden],.rd-sticky-count[hidden]{display:none}.rd-sticky-buy:disabled{background:#aaa}.rd-sticky-teach .rd-sticky-pick,.rd-sticky-play-teach{animation:rdStickyPulse 1s ease-in-out infinite}
+@keyframes rdStickyPulse{50%{filter:drop-shadow(0 0 10px #fff66a)}}
+.rd-sticky-unlock .unlock-hero{width:min(65vw,310px);aspect-ratio:1;background:radial-gradient(#fff7c9 40%,#ffe08388 65%,transparent 71%)}
+.rd-sticky-unlock .unlock-hero img{position:static;width:100%;height:100%;object-fit:contain;transform:none;mix-blend-mode:multiply}
+
+/* The title/name hierarchy uses 1 : φ; the four rows share the phone's safe height. */
+.rd-unlock{--unlock-name:clamp(38px,11.6vw,51px);display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:1fr 2.618fr 1fr .618fr;justify-items:center;align-items:center;padding:max(28px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom));cursor:pointer}
+.rd-unlock h2{font-size:calc(var(--unlock-name) / 1.618);line-height:1.16;letter-spacing:0;margin:0;align-self:end;max-width:100%}
+.rd-unlock .unlock-hero{width:min(100%,420px);max-height:100%;margin:0;align-self:center}
+.rd-unlock h3{font-size:var(--unlock-name);line-height:1.13;margin:0;max-width:100%;text-wrap:balance;letter-spacing:0;align-self:start}
+.rd-unlock button{margin:0;font-size:clamp(18px,5.2vw,23px);min-height:48px;padding:8px 14px;align-self:center}
+.rd-sticky-unlock .unlock-hero{width:min(62vw,280px,31dvh)}
+@media(max-height:620px){.rd-unlock{--unlock-name:36px;grid-template-rows:1fr 2.15fr 1fr .618fr;padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(18px,env(safe-area-inset-bottom))}.rd-unlock .unlock-hero{width:min(85%,290px)}.rd-sticky-unlock .unlock-hero{width:min(52vw,180px)}}
+.rf-pp-fallback .rd-sticky-picker{position:relative;--s:.28;padding:18px;margin:12px 0}
+
+/* Shared stock badge and fixed launcher-height rails. */
+#game{--stock-green:var(--rd-green-face);--stock-edge:var(--rd-green-edge);--stock-shadow:var(--rd-green-shadow)}
+#hud{--power-size:clamp(60px,18cqw,78px);--power-center:82%;--power-gap:6px}
+#rdBoosters{height:calc(var(--power-size) * 2 + var(--power-gap));gap:var(--power-gap)}
+#rdSuperTop{height:calc(var(--power-size) + 14px)}
+#rdBoosters .booster-name,#rdSuperTop .rd-super-title{display:none}
+#rdBoosters .booster-stock,#rdBoosters [data-booster=infinite_disc] .booster-stock,#rdBoosters [data-booster=infinite_disc].booster-active .booster-stock,.rd-sticky-count,.rd-sticky-check{background:var(--stock-green);border:0;box-shadow:inset 0 0 0 2px var(--stock-edge),0 2px var(--stock-shadow);color:white;text-shadow:0 1px var(--rd-green-shadow)}
+#rdBoosters .booster-stock,#rdBoosters [data-booster=infinite_disc] .booster-stock,#rdBoosters [data-booster=infinite_disc].booster-active .booster-stock{width:30%;height:30%;min-width:0;min-height:0;right:0;bottom:0;border-radius:50%;font-size:14px;padding:0}
+#rdBoosters .booster-active .booster-art:before{background:#caff79;mask:radial-gradient(transparent 64%,#000 65%)}
+#rdUnlimitedTimer{position:absolute;top:15%;left:24%;width:52%;z-index:40;text-align:center;pointer-events:none;font-family:'RF Display',sans-serif;color:#fff5ca;text-shadow:0 2px #4a220b}
+#rdUnlimitedTimer strong{font-size:clamp(18px,5cqw,24px);color:#ffdb64;-webkit-text-stroke:.6px #663216;paint-order:stroke fill}
+.unlimited-track{height:14px;margin:7px 0 2px;border:2px solid #ffdf83;border-radius:5px;background:#423416;box-shadow:0 2px 0 #713b17,inset 0 1px 3px #0008;overflow:hidden}
+.unlimited-track i{display:block;width:100%;height:100%;transform-origin:left center;background:linear-gradient(var(--rd-green-edge),var(--rd-green-light) 50%,var(--rd-green-bottom));box-shadow:inset 0 1px #f2ffc9}
+#rdUnlimitedTimer span{font-size:13px}
+
+/* Phone feedback: larger 20.5% phone-width controls, mirrored at launcher height. */
+#hud{--power-size:clamp(64px,20.5cqw,90px)}
+#rdBoosters .booster-art{isolation:isolate}
+#rdBoosters .booster-active .booster-art:before{inset:-9%;z-index:-1;border:0;border-radius:50%;mask:none;background:radial-gradient(ellipse at 50% 60%,#eeffb5 12%,#baff5cb0 40%,#9ef33d45 58%,transparent 73%);filter:blur(3px);animation:boosterUnderGlow 1.5s ease-in-out infinite}
+@keyframes boosterUnderGlow{0%,100%{opacity:.65;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+.rd-sticky-pick[aria-pressed=true]{border-color:#d8ae8e;background:#fff8eb;box-shadow:0 calc(5px * var(--s)) #c39476,0 0 calc(45px * var(--s)) #b7ff6b}
+@media(prefers-reduced-motion:reduce){#rdBoosters .booster-active .booster-art:before{animation:none}}
+
+#rdBoosters button{-webkit-tap-highlight-color:transparent}
+
+/* Sticky TNT: original artwork, 1.25x, no square plate. */
+.rd-sticky-pick,.rd-sticky-pick[aria-pressed=true]{width:calc(362.5px * var(--s));height:calc(362.5px * var(--s));border:0;border-radius:50%;background:none;box-shadow:none;isolation:isolate;outline:none}
+.rd-sticky-pick img{border-radius:0;position:relative;z-index:1}
+.rd-sticky-pick:before{content:"";position:absolute;inset:6%;border-radius:50%;z-index:0;opacity:0;background:radial-gradient(ellipse,#e5ff9f 14%,#82f53b 49%,#52d62d80 62%,transparent 73%);transition:opacity .16s,transform .2s;transform:scale(.85)}
+.rd-sticky-pick[aria-pressed=true]:before{opacity:1;transform:scale(1.15)}
+.rd-sticky-pick[aria-pressed=true] img{filter:drop-shadow(0 0 calc(10px * var(--s)) #6ddf2c)}
+.rd-sticky-check{right:calc(-2px * var(--s));bottom:calc(4px * var(--s));width:calc(115px * var(--s));height:calc(115px * var(--s));font-size:calc(76px * var(--s));z-index:2;box-shadow:inset 0 0 0 calc(5px * var(--s)) var(--rd-green-edge),0 calc(6px * var(--s)) var(--rd-green-shadow),0 0 calc(14px * var(--s)) var(--rd-green-light)}
+.rd-sticky-pick[aria-pressed=true] .rd-sticky-check{animation:rdStickyCheck .25s cubic-bezier(.2,.9,.3,1.4)}
+.rd-sticky-count{z-index:2;right:calc(4px * var(--s));bottom:calc(9px * var(--s))}
+.rd-sticky-picker h3{margin-bottom:calc(4px * var(--s))}.rd-sticky-note{margin-top:calc(4px * var(--s))}
+@keyframes rdStickyCheck{from{transform:scale(.4)}to{transform:scale(1)}}
+/* Let white paper in the supplied PNG blend into the existing cream popup. */
+.rd-sticky-pick,.rd-sticky-pick[aria-pressed=true]{isolation:auto}
+.rd-sticky-pick:before{background:radial-gradient(ellipse,transparent 38%,#abff5d99 54%,#64e635b0 64%,transparent 76%)}
+.rd-sticky-pick[aria-pressed=true] img{filter:none}
+
+#rdObstacleCoach{position:fixed;inset:0;z-index:55;pointer-events:none;color:white}#rdObstacleCoach[hidden]{display:none!important}#rdObstacleCoach svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}.obstacle-tint{fill:#061125;fill-opacity:.35}.obstacle-halo{fill:none;stroke:#ffe36a;stroke-width:3;filter:drop-shadow(0 0 7px #ffda43);animation:obstacleGlow 1.3s ease-in-out infinite}.obstacle-route,.obstacle-arrow{fill:none;stroke:#fff1a6;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 2px #174477)}.obstacle-route{stroke-dasharray:8 10;animation:obstacleRoute 1.2s linear infinite}#rdObstacleCoach p{position:absolute;margin:0;padding:15px 17px;border:2px solid #ffdd7b;border-radius:18px;background:linear-gradient(#2967ad,#183b75);box-shadow:0 5px 15px #06142a55;font:18px/1.25 'RF Display',sans-serif;text-align:center;text-shadow:0 1px 1px #17336b;box-sizing:border-box}.obstacle-hand{position:absolute;font-size:40px;filter:drop-shadow(0 2px 2px #163353);animation:obstaclePoint 1.1s ease-in-out infinite;transform-origin:top left}#rdObstacleReveal .unlock-hero{margin:3vh 0}#rdObstacleReveal button{margin-top:7vh}@keyframes obstacleGlow{50%{stroke-opacity:.6}}@keyframes obstacleRoute{to{stroke-dashoffset:-36}}@keyframes obstaclePoint{50%{transform:translateY(8px)}}@media(max-height:620px){#rdObstacleCoach p{font-size:15px;padding:11px 14px}#rdObstacleReveal .unlock-hero{margin:0}#rdObstacleReveal button{margin-top:2vh}}@media(prefers-reduced-motion:reduce){.obstacle-halo,.obstacle-route,.obstacle-hand{animation:none}}
+
+#rdBoardMenu,#rdGameplayDialog{position:absolute;inset:0;z-index:450;pointer-events:auto;background:#0009;font-family:'RF Display',sans-serif;touch-action:manipulation}
+#rdBoardMenu[hidden],#rdGameplayDialog[hidden],#rdGameplayDialog [hidden]{display:none!important}
+#rdBoardMenu{background:rgba(0,0,0,.71)}
+#rdBoardMenu .rd-menu-dismiss{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:transparent;box-shadow:none}
+.rd-menu-rail{position:absolute;left:var(--menu-x);top:var(--menu-top,90px);display:flex;flex-direction:column;align-items:center;gap:var(--menu-gap);animation:rdMenuIn .18s ease-out}
+#rdBoardMenu .rd-menu-rail button{width:var(--menu-size);height:var(--menu-size);padding:0;border:0;background:transparent;border-radius:50%;box-shadow:none;min-width:44px;min-height:44px}
+.rd-menu-rail img{width:100%;height:100%;object-fit:contain;display:block}
+
+
+#rdBoardMenu .rd-menu-rail .rd-menu-tools{height:44px;color:#fff;font:24px 'RF Display';opacity:.8}
+#rdGameplayDialog{display:flex;align-items:center;justify-content:center;padding:16px;background:#000b}
+.rd-flow-panel{position:relative;width:min(calc(100% - 14px),360px,calc((100dvh - 100px) * .80267));aspect-ratio:1204/1500;animation:rdFlowIn .24s cubic-bezier(.2,.9,.3,1.12);container-type:inline-size}
+.rd-flow-plate,.rd-flow-ribbon{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
+.rd-flow-ribbon{pointer-events:none}
+#rdGameplayDialog h2{position:absolute;left:14%;right:17%;top:6.9%;margin:0;text-align:center;font:8.4cqw/1.2 'RF Display',sans-serif;color:#fff3d9;-webkit-text-stroke:1.5px #202d45;paint-order:stroke fill;text-shadow:0 2px #182238;white-space:nowrap}
+#rdGameplayDialog .rd-flow-close{position:absolute;left:84.5%;top:1.8%;width:14%;height:11.5%;border:0;padding:0;border-radius:50%;background:transparent;box-shadow:none;min-width:44px;min-height:44px}
+.rd-flow-content{position:absolute;left:15%;right:14%;top:28%;height:35.5%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:5px;color:#5a3210}
+.rd-flow-art{position:relative;width:41%;height:49%;display:flex;justify-content:center;align-items:center}
+.rd-flow-art img{max-width:100%!important;max-height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px #6a3b1222)}
+.rd-flow-art strong{position:absolute;right:-22%;bottom:0;color:#fff5bc;background:linear-gradient(#ffdc3f,#eca000);border:2px solid #fff29d;border-radius:12px;font:10cqw/1.05 'RF Display';padding:2px 6px;-webkit-text-stroke:1px #914000;paint-order:stroke fill;box-shadow:0 2px #a05b03;transform:rotate(-7deg)}
+#rdGameplayDialog h3{font:4.7cqw/1.12 'RF Display';margin:0;color:#694319}
+#rdGameplayDialog .rd-flow-content p{font:4.8cqw/1.23 'RF Display';margin:0;max-width:100%}
+#rdGameplayDialog[data-mode="quit"] .rd-flow-content p{color:#b81d22;font-size:6cqw}
+#rdGameplayDialog .rd-flow-primary{position:absolute;left:19%;top:69.6%;width:64.5%;height:20.3%;border:0;padding:0;border-radius:25%;background:none;box-shadow:none;overflow:hidden;transition:transform .1s}
+.rd-flow-green{display:none;position:absolute;inset:0;background-image:url('assets/rf/POP_ADD_LIVES/plate.webp');background-size:155.16% 492.61%;background-position:53.74% 87.22%;pointer-events:none}
+#rdGameplayDialog[data-mode="continue"] .rd-flow-green{display:block}
+.rd-flow-button-label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:5px;color:white;font:8.5cqw/1 'RF Display';-webkit-text-stroke:1.5px #5a0a0a;paint-order:stroke fill;white-space:nowrap}
+#rdGameplayDialog[data-mode="continue"] .rd-flow-button-label{font-size:6.5cqw;-webkit-text-stroke-color:#174d00}
+.rd-flow-button-label img{width:8cqw;height:8cqw;object-fit:contain}
+#rdGameplayDialog button:active:not(:disabled){transform:scale(.96)}
+#rdGameplayDialog button:disabled{opacity:.65}
+.rd-flow-wallet{position:absolute;left:18px;top:max(22px,env(safe-area-inset-top));background:#fff0d8;display:flex;align-items:center;gap:6px;height:29px;border-radius:8px;padding:2px 14px 2px 4px;color:#754113;font-size:14px;border:1px solid #eabf63}
+.rd-flow-wallet img{width:34px;height:34px;object-fit:contain}
+#rdGameplayDialog .rd-flow-error{position:absolute;top:91%;left:9%;right:9%;color:white;font:3.6cqw/1.1 'RF Display';text-align:center;margin:0}
+@keyframes rdFlowIn{from{transform:scale(.86) translateY(18px);opacity:0}to{transform:none;opacity:1}}
+@keyframes rdMenuIn{from{transform:translateY(-12px);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.rd-flow-panel,.rd-menu-rail{animation:none}}
+
+#rf .rd-level-play-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font:calc(115px * var(--s))/1 'RF Display';-webkit-text-stroke:calc(9px * var(--s)) #245900;paint-order:stroke fill;pointer-events:none;text-shadow:0 calc(6px * var(--s)) #164400}
+#rf .rf-pp-play[data-retry="true"] .rd-level-play-label{font-size:calc(89px * var(--s))}
+
+/* Ambient gold has a soft volume, slow light rotation and moving sparkles. */
+.rfw-coin-ambient,.rfw-coin-rays,.rfw-coin-shimmer{transform-origin:220px 386px;transform-box:view-box;pointer-events:none}
+.rfw-coin-ambient{animation:rfwCoinBreath 2.6s ease-in-out infinite}
+.rfw-coin-rays{animation:rfwCoinRays 18s linear infinite}
+.rfw-coin-shimmer{animation:rfwCoinShimmer 2.1s ease-in-out infinite}
+@keyframes rfwCoinBreath{0%,100%{opacity:.65;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes rfwCoinRays{to{transform:rotate(360deg)}}
+@keyframes rfwCoinShimmer{0%,100%{opacity:.25;transform:rotate(-7deg) scale(.96)}50%{opacity:1;transform:rotate(7deg) scale(1.06)}}
+.rfw-paused .rfw-coin-ambient,.rfw-paused .rfw-coin-rays,.rfw-paused .rfw-coin-shimmer{animation-play-state:paused}
+.rfw-reduced .rfw-coin-ambient,.rfw-reduced .rfw-coin-rays,.rfw-reduced .rfw-coin-shimmer{animation:none}
+@media(prefers-reduced-motion:reduce){.rfw-coin-ambient,.rfw-coin-rays,.rfw-coin-shimmer{animation:none}}
+
+#pause.rd-original-gear{background-position:center;background-size:100% 100%;background-color:transparent;border:0;box-shadow:none;filter:drop-shadow(0 3px 4px #0008)}
+#pause.rd-original-gear>svg{display:none}
+#rdBoardMenu .rd-menu-gear{position:absolute;left:var(--menu-x);top:var(--gear-y);width:var(--menu-size);height:var(--menu-size);border:0;padding:0;background:transparent;box-shadow:none}
+.rd-menu-gear img{display:block;width:100%;height:100%}
+#rdBoardMenu .rd-menu-rail button{filter:drop-shadow(0 4px 6px #0008);-webkit-tap-highlight-color:transparent}
+#rdBoardMenu .rd-menu-rail button.off{filter:grayscale(1) brightness(.55) drop-shadow(0 4px 6px #0008)}
+
+/* Replace only the worn lettering strip; the original popup bodies stay in place. */
+.rd-clean-ribbon{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.rd-flow-plate,#rf .rd-clean-popup>.rf-ool-plate{clip-path:inset(22.2% 0 0)}
+#rdGameplayDialog h2{left:14%;right:14%;top:11.2%;transform:translateY(-50%);line-height:1.12;text-shadow:0 2px #182238}
+#rdGameplayDialog .rd-flow-close{left:85.1%;top:2.25%;width:13.8%;height:11.1%}
+#rf .rd-clean-popup .rf-ool-close{left:calc(1025px * var(--s))!important;top:calc(34px * var(--s))!important;width:calc(166px * var(--s))!important;height:calc(166px * var(--s))!important}
+#rf .rd-daily-reward{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+#rf .rf-dg .rf-dg-front-label{font-variant-numeric:tabular-nums;text-align:center}
+
+/* Build 75: shared ink-centered titles and larger, clean event identities. */
+#rdGameplayDialog h2{inset:0;max-width:none;transform:none;line-height:0;pointer-events:none}
+.rd-popup-title-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.rd-flow-panel{animation:none}
+.rd-flow-content{left:15%;right:15%;top:27.6%;height:36.2%;gap:8px;justify-content:center}
+.rd-flow-art{width:68%;height:65%;flex:none}
+.rd-flow-art img{width:100%;height:100%;object-fit:contain}
+#rdGameplayDialog .rd-flow-content h3:empty{display:none}
+#rdGameplayDialog .rd-flow-content p{font-size:5.6cqw;line-height:1.18;max-width:100%}
+#rdGameplayDialog[data-mode="risk"] .rd-flow-art{width:95%;height:62%}
+#rdGameplayDialog[data-mode="risk"] .rd-flow-content p{font-size:5.5cqw}
+#rdGameplayDialog[data-mode="continue"] .rd-flow-art{width:56%;height:65%}
+.rd-flow-art strong{font-size:11cqw;right:-8%;bottom:0}
+#rdGameplayDialog[data-mode="quit"] .rd-flow-content p{font-size:6cqw}
+
+/* The frame, inner card, title, icon and action now share the same 602 px axis. */
+.rd-flow-plate,#rf .rd-clean-popup>.rf-ool-plate{display:none}
+#rdGameplayDialog .rd-flow-primary{left:18.106%;width:63.788%;top:69.667%;height:20%}
+.rd-flow-green{display:none!important}
+#rdGameplayDialog[data-mode="continue"] .rd-clean-ribbon{--rd-button-top:#a7ff24;--rd-button-bottom:#3ec500}
+#rf .rd-clean-popup :is(.rf-ool-heart,.rf-ool-text,.rf-ool-timer,.rf-ool-btn){translate:calc(-16.5px * var(--s)) 0}
+#rf #rfLivesPanel .rf-ool-heart{scale:1.18}
+#rdGameplayDialog .rd-flow-primary:focus-visible{outline:none;filter:brightness(1.08) drop-shadow(0 0 4px #fff3)}
+
+/* Build 76 — native Royal Disc plates, one measured coordinate system. */
+#rdGameplayDialog .rd-royal-panel,#rf .rd-royal-panel{position:relative;flex:none;container-type:normal;max-width:none;animation:none;background:none;border:0;padding:0;box-shadow:none}
+.rd-royal-frame,.rd-royal-title{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
+#rdGameplayDialog .rd-flow-content{gap:calc(34px * var(--s));padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center}
+#rdGameplayDialog .rd-flow-art,#rdGameplayDialog[data-mode="risk"] .rd-flow-art,#rdGameplayDialog[data-mode="continue"] .rd-flow-art{width:calc(330px * var(--s));height:calc(310px * var(--s));flex:none}
+#rdGameplayDialog .rd-flow-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 1px #6a3b1220)}
+#rdGameplayDialog[data-mode="quit"] .rd-flow-art{width:calc(300px * var(--s));height:calc(290px * var(--s))}
+#rdGameplayDialog .rd-flow-content p,#rdGameplayDialog[data-mode] .rd-flow-content p{font:calc(69px * var(--s))/1.15 'RF Display';color:#965642;max-width:100%;text-align:center}
+#rdGameplayDialog .rd-flow-art strong{right:calc(-16px * var(--s));bottom:calc(-5px * var(--s));font-size:calc(100px * var(--s));padding:calc(6px * var(--s)) calc(15px * var(--s));border-radius:calc(32px * var(--s));transform:none}
+#rdGameplayDialog .rd-flow-primary,#rf .rd-lives-refill{position:absolute;display:block;overflow:visible;background:none;border:0;border-radius:0;box-shadow:none;padding:0;margin:0;min-width:0;min-height:0;cursor:pointer}
+.rd-royal-button-face,.rd-royal-action{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#rdGameplayDialog .rd-flow-close,#rf .rd-lives-close{position:absolute;display:block;min-width:0;min-height:0;border:0;padding:0;background:transparent;box-shadow:none;border-radius:50%;cursor:pointer}
+#rdGameplayDialog .rd-flow-error{top:92%;font-size:calc(43px * var(--s))}
+#rf .rd-lives-title{position:absolute;inset:0;margin:0;pointer-events:none}
+#rf .rd-lives-heart{position:absolute;display:block;object-fit:contain}
+#rf :is(.rd-lives-count,.rd-lives-next,.rd-lives-timer){position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'RF Display';line-height:1;margin:0;padding:0;box-sizing:border-box}
+#rf .rd-lives-count{font-size:calc(100px * var(--s));color:#fff9ee;-webkit-text-stroke:calc(7px * var(--s)) #850b35;paint-order:stroke fill}
+#rf .rd-lives-next{font-size:calc(65px * var(--s));color:#965642}
+#rf .rd-lives-timer{border:calc(5px * var(--s)) solid #dca66b;border-radius:calc(30px * var(--s));background:#ffe6ba;color:#865023;font-size:calc(64px * var(--s))}
+#rf .rd-lives-refill:active{transform:scale(.96)}
+.rd-event-icon-name{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#rf .rd-sticky-picker.rd-boss-picker{background:none;color:#fff6dd;text-shadow:0 calc(5px * var(--s)) #a94b18}
+#rf .rd-boss-picker h3{text-shadow:0 calc(5px * var(--s)) #a94b18}
+#rdGameplayDialog[data-skin="boss"] .rd-flow-content p{color:#fff7df;text-shadow:0 calc(5px * var(--s)) #a44218}
+#rdGameplayDialog .rd-flow-close,#rf .rd-lives-close{min-width:44px;min-height:44px}
+#rf .rd-sticky-pick img.rd-sticky-cutout{mix-blend-mode:normal}
+
+/* Build 77: pure geometry for shared pill faces and ink-centered labels. */
+#rf .rd-sticky-picker{background:none}
+#rf .rd-sticky-note{font-size:calc(55px * var(--s));line-height:1.15;margin-top:calc(13px * var(--s))}
+#rf .rd-sticky-picker[data-required="true"] .rd-sticky-note{font-size:calc(38px * var(--s));white-space:normal;max-width:95%}
+#rf .rd-sticky-picker h3{margin-bottom:calc(12px * var(--s))}
+#rf .rd-sticky-pick,#rf .rd-sticky-pick[aria-pressed=true]{width:calc(330px * var(--s));height:calc(330px * var(--s))}
+#rdGameplayDialog[data-mode="risk"] .rd-flow-art{width:calc(375px * var(--s));height:calc(350px * var(--s))}
+#rdGameplayDialog[data-mode="risk"] .rd-flow-content{gap:calc(22px * var(--s))}
+
+/* Build 78: each event has one horizontal name plate beneath its cropped emblem. */
+#rdGameplayDialog[data-mode="risk"] .rd-flow-art{width:calc(760px * var(--s));height:calc(344px * var(--s));max-width:100%}
+#rdGameplayDialog[data-mode="risk"] .rd-flow-content{gap:calc(26px * var(--s))}
+</style><meta name="royal-disc-build" content="disc-shell-v17-physics-v2-local">
+<style id="desktop-build18-layout">
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
+body{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,#34778a,#153c55 45%,#0b2338)}
+#game{position:relative;inset:auto;width:min(100vw,calc(100vh * 440 / 956));width:min(100vw,calc(100dvh * 440 / 956));height:100vh;height:100dvh;max-width:100vw;max-height:none;aspect-ratio:auto;border-radius:0;box-shadow:0 0 64px #0005}
+.desktop-caption{display:none}
+.overlay{padding-top:max(20px,env(safe-area-inset-top));padding-bottom:max(20px,env(safe-area-inset-bottom))}
+@media(max-aspect-ratio:440/956){#game{width:100vw}}
+</style><style>
+html,body { width:100%; height:100%; margin:0; padding:0; overflow:hidden; background:#153556; }
+#game { position:fixed; inset:0; width:100%; height:100%; height:100dvh; max-height:none; border-radius:0; box-shadow:none; aspect-ratio:auto; }
+.overlay { padding-top:max(20px,env(safe-area-inset-top)); padding-bottom:max(20px,env(safe-area-inset-bottom)); }
+.desktop-caption { display:none; }
+</style><link rel="stylesheet" href="screen-flow.css"><style id="branded-first-paint">#rdPreboot{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#0044fc url('assets/rf/terra-bumper/assets/field_852x1846.png') center/cover no-repeat;transition:opacity .22s ease-out;pointer-events:auto}#rdPreboot img{display:block;width:96%;height:auto;max-width:none;pointer-events:none}@media(prefers-reduced-motion:reduce){#rdPreboot{transition:none}}</style><link rel="stylesheet" href="review-game.css?v=bbcd80092e59"></head><body><div id="rdPreboot" aria-label="Terra Games"><img src="assets/disc-ui/studio-wordmark.png" alt="Terra Games" fetchpriority="high"></div>
+<main id="game" aria-label="Royal Disc game">
+ <canvas id="canvas" aria-label="Game board. Point at a spot on the table to aim. Move to adjust; release to shoot. Arrow keys aim; space shoots." tabindex="0"></canvas>
+ <div id="loading" hidden><p id="load-text"></p><i id="load-bar"></i></div>
+ <div id="hud" hidden>
+  <div class="shot-card" aria-label="Discs remaining"><span>DISC</span><strong id="shots">25</strong></div>
+  <div class="heading"><span id="level-pill">LEVEL 1</span></div>
+  <button class="round pause" id="pause" aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.3 2h5.4l.7 3a8 8 0 0 1 1.4.8l2.9-.9 2.7 4.6-2.2 2.1v1.6l2.2 2.1-2.7 4.6-2.9-.9a8 8 0 0 1-1.4.8l-.7 3H9.3l-.7-3a8 8 0 0 1-1.4-.8l-2.9.9-2.7-4.6 2.2-2.1v-1.6L1.6 9.5l2.7-4.6 2.9.9A8 8 0 0 1 8.6 5l.7-3Z"/><circle cx="12" cy="12.3" r="3.5"/></svg></button>
+ </div>
+ <div id="flash"></div>
+ <section id="result" class="overlay" hidden aria-modal="true" role="dialog" aria-labelledby="result-title"><div class="result-card"><div class="stars" id="stars">★ ★ ★</div><h2 id="result-title">Beautiful smash!</h2><p id="result-description"></p><button id="next" class="gold-button">Next level <span>›</span></button><button id="replay" class="text-button">Play again</button><button id="review-result" class="text-button">Rate & Add Notes</button></div></section>
+ <section id="menu" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="menu-title"><div class="menu-card"><header><h2 id="menu-title">Settings</h2><button class="close" data-close="menu" aria-label="Return to Game">×</button></header>
+ <nav class="settings-actions" aria-label="Game Settings">
+  <button id="reset">Restart</button>
+  <button id="sound" aria-pressed="true"><span>Sound On</span></button>
+  <button id="tuning">Physics Settings</button>
+ </nav><p id="toast" role="status" aria-live="polite"></p><button id="review-menu" class="gold-button">Level Review →</button><h3>120 Levels · Tower Campaign</h3><button id="start-mastery" class="gold-button">Continue from Level 61 →</button><label>Level Range<select id="level-chapter"></select></label><div id="test-grid"></div><button id="playground" class="gold-button">Material playground <span>∞</span></button><p class="fine">Arrow keys to aim · Space to fire · R to restart</p></div></section>
+ <section id="tune-panel" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="tune-title"><div class="tune-card"><header><div><small>PHYSICS PLAYGROUND</small><h2 id="tune-title">Make it feel right</h2></div><button class="close" data-close="tune-panel" aria-label="Close tuning">×</button></header>
+  <div class="tabs"><button class="selected" data-tab="play">Playground</button><button data-tab="physics">Physics</button><button data-tab="notes">Baseline</button><button data-tab="review">Testing</button></div>
+  <div id="tab-play" class="tab-content"><p>Compare all seven materials with unlimited discs. Aim and release always uses the same launch strength.</p><p class="fine">Real contact pushes and tipping; ice glides, glass fractures locally. Trial profile: plastic is lighter and more responsive than wood. Each material can be tuned separately. Upright cans resist skating.</p><div id="material-grid"></div><div class="select-row"><label>Size<select id="lab-size"><option value="0">Cube</option><option value="1">Short · 2 units</option><option value="2">Long · 3 units</option><option value="3">Extra long · 4 units</option></select></label><label>Colour<select id="lab-colour"><option value="0">Ruby</option><option value="1">Jade / Amber</option><option value="2">Ivory / Jade</option><option value="3">Violet / Blue</option><option value="4">Blue / Violet</option></select></label></div><div class="select-row"><label>Orientation<select id="lab-orientation"><option value="horizontal">Horizontal</option><option value="vertical">Upright</option></select></label><label>Environment<select id="lab-environment"><option value="lake">Castle lake</option><option value="background">Royal cliff</option><option value="desert">Toon desert</option><option value="waterfalls">Toon waterfalls</option></select></label></div><div class="select-row"><label>Test setup<select id="lab-setup"></select></label><label>Crown disc artwork<select id="lab-disc"><option value="disc">V1 · rounded crown</option><option value="discV2">V2 · alternate crown</option></select></label></div><label class="check"><input id="lab-wall" type="checkbox"> Add the red crown wall</label><button id="start-lab" class="gold-button">Play this material <span>→</span></button><div id="lab-measurement"></div><button id="save-lab" class="text-button">Save comparison & settings</button></div>
+  <div id="tab-review" class="tab-content" hidden><h3>120 Levels · Phone Testing</h3><p>Play levels and rate how they feel. Notes are saved on this device, separately from earlier campaign reviews.</p><p><a href="campaign120.html" rel="noopener">Level Designs & Test Results ↗</a></p><p id="review-summary" role="status"></p><div class="select-row"><label>Player Name / Nickname<input id="review-player" maxlength="60"></label><label>Device / Browser<input id="review-device" maxlength="120" placeholder="e.g. iPhone 15 / Safari"></label></div><label>Level<select id="review-level"></select></label><div class="review-actions"><button id="review-start" class="gold-button">Play Selected Level</button><button id="review-resume" class="text-button">First Unrated Level</button></div><h3 id="review-current"></h3><p class="fine">1 = poor, 3 = acceptable, 5 = excellent. Leave unrated fields blank.</p><div class="review-ratings"><label>Shooting / Aiming<select id="rate-shooting" aria-label="Shooting / Aiming"><option value="">Not Rated</option><option value="1">1 / 5</option><option value="2">2 / 5</option><option value="3">3 / 5</option><option value="4">4 / 5</option><option value="5">5 / 5</option></select></label><label>Impact Feel<select id="rate-impact" aria-label="Impact Feel"><option value="">Not Rated</option><option value="1">1 / 5</option><option value="2">2 / 5</option><option value="3">3 / 5</option><option value="4">4 / 5</option><option value="5">5 / 5</option></select></label><label>Tipping / Collapse<select id="rate-collapse" aria-label="Tipping / Collapse"><option value="">Not Rated</option><option value="1">1 / 5</option><option value="2">2 / 5</option><option value="3">3 / 5</option><option value="4">4 / 5</option><option value="5">5 / 5</option></select></label><label>Final Object Cleanup<select id="rate-cleanup" aria-label="Final Object Cleanup"><option value="">Not Rated</option><option value="1">1 / 5</option><option value="2">2 / 5</option><option value="3">3 / 5</option><option value="4">4 / 5</option><option value="5">5 / 5</option></select></label><label>Visual Clarity<select id="rate-visuals" aria-label="Visual Clarity"><option value="">Not Rated</option><option value="1">1 / 5</option><option value="2">2 / 5</option><option value="3">3 / 5</option><option value="4">4 / 5</option><option value="5">5 / 5</option></select></label></div><label>Issue Type<select id="review-issue"><option value="none">None / General Note</option value="aim">Aiming</option><option value="motion">Impact / Movement</option><option value="stuck">Stuck / Unreachable Object</option><option value="budget">Disc Budget</option><option value="visual">Visuals</option><option value="performance">Stutter / Performance</option></select></label><label>Notes<textarea id="review-note" rows="3" maxlength="2000" placeholder="What happened, on which shot, and how did it feel?"></textarea></label><div class="review-actions"><button id="review-save" class="gold-button">Save Rating</button><button id="review-next" class="text-button">Save & Next Level</button></div><details><summary>A/B Settings Comparison</summary><p id="review-config" class="fine"></p><p class="fine">Apply changes in Physics, then save to A or B. Loading a preset restarts the level. Use Restore Defaults to return to the baseline.</p><div class="review-actions"><button id="preset-save-A">Save Current Settings to A</button><button id="preset-load-A">Apply A</button><button id="preset-save-B">Save Current Settings to B</button><button id="preset-load-B">Apply B</button><button id="review-baseline">Restore Defaults</button></div><h4>Same Physics, Two Backgrounds</h4><div class="review-actions"><button id="review-bg-lake">Royal Lake</button><button id="review-bg-desert">Golden Desert</button></div></details><details><summary>Shared Review Decisions</summary><p class="fine">Mark these after a shared playtest. Automated tests do not approve these decisions.</p><div id="review-decisions"></div></details><button id="review-export" class="gold-button">Download Session as JSON</button></div>
+  <div id="tab-physics" class="tab-content" hidden><p class="parameter-help"><b>Shared Contact Profile · Trial 1</b> — baseline for comparison; balance is not final.</p><p>Minimums ÷ 3 · maximums × 3. Zero stays zero. Drag a slider or type an exact value, then apply. Each material is tuned independently.</p><div id="global-sliders"></div><label class="material-select">Material<select id="physics-material"></select></label><p class="parameter-help">Only the selected material changes. Wood and plastic are independent.</p><div id="material-sliders"></div><section class="contact-settings"><h3 id="contact-title">Disc & Floor Contact</h3><p class="parameter-help">Only the selected material changes. Floor friction uses Table Friction above. These bounce values are independent of object-to-object bounce.</p><div id="contact-sliders"></div></section><details class="contact-preview"><summary>Material Contact Table · Calculated</summary><p class="parameter-help">This table shows draft settings. Choose Apply &amp; Restart to use them. Friction = √(A × B); bounce uses the lower value. No need to edit each pair separately.</p><div id="contact-preview"></div><p class="parameter-help">Cans have separate upright grip and rolling resistance. Stone stacks use 40% side friction, with speed- and angle-based rebound on new impacts only. Resting contacts do not bounce again. Stacked supports use the table values. Ice sliding and glass break rules remain unchanged. TNT uses the configured radius and impulse.</p></details><button id="apply-tuning" class="gold-button">Apply & restart</button><button id="restore-tuning" class="text-button">Restore starting settings</button><button id="export-tuning" class="text-button">Save settings & shot record</button></div>
+  <div id="tab-notes" class="tab-content" hidden><div id="core-baseline"></div><p><a href="settings-update.html" rel="noopener">Core 48 · Shared Contact Profile</a></p><p><b>v65 artist catalogue with approved updates</b>: Royal Knot plastics v69 and soft wood platform v67. Castle stones v60, fleur bottles v58, flush crown disc V1 v70 and disc V2 v61, vivid environments v59, silver v37, wood v49, ice v20, TNT v32 and blocker v53 are retained.</p><p class="fine">A small can-centre aiming tolerance helps touch and mouse input. Empty-table aiming follows the exact pointer ray. No in-flight steering.</p><details><summary>Reference measurements & change history</summary><div id="baseline-notes"></div></details><p class="fine">Physics runs at 240 steps per second. This is a browser prototype; Unity will need its own calibration. Settings marked as choices are not recovered engine values.</p></div>
+ </div></section>
+</main><div class="desktop-caption"><b>ROYAL DISC</b><span>v65 + plastic v69 + platform v67 + disc V1 v70 · Core 48</span></div>
+<script src="review-game.js?v=bbcd80092e59"></script></body></html>

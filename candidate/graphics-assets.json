@@ -1,0 +1,224 @@
+{
+  "graphics": "Design24",
+  "source": "Approved Elevator Arena art",
+  "addedAssets": [
+    {
+      "file": "art/disc/crown-disc-gold-rounded-v70.glb",
+      "bytes": 4656932,
+      "sha256": "e82302df1ae7e5d3941a0883710eb832dd5f4faa7396137589f85cd502cd50c1"
+    },
+    {
+      "file": "art/disc/crown-disc-gold-rounded-v70.glb.gz",
+      "bytes": 1196233,
+      "sha256": "36e8d691bba19b617479eff457f22d537b0dd4520d6a6e0b22a33859c0c50936"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/1x/1.png",
+      "bytes": 425157,
+      "sha256": "eadc94aeef55db7a0756fc40c80cc0027319598253b78de25ce16544ecd2df74"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/1x/2.png",
+      "bytes": 391083,
+      "sha256": "4514c2fed65374f11f37e55658184b6a9f803165e8494b3de6e6945e6306d678"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/1x/3.png",
+      "bytes": 362322,
+      "sha256": "eab41755cddf2b121ec111fd61f649d8ae8a02e892811f84c94cc9186950d689"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/1x/4.png",
+      "bytes": 458089,
+      "sha256": "b6029bfeafe57d0982dbd2418b5db0c15cf8e3b41ec4593dda5612a5d60b89d9"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/1x/5.png",
+      "bytes": 448162,
+      "sha256": "0a93ec775feedaa1b4d9196f411b268ecd653c82d84cd5f7f89a0ce97ee9c2f4"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/2x/1.png",
+      "bytes": 597489,
+      "sha256": "b9f07fc69527a4d0469baa4e660946256a1db752d7e4ca7acc3f9f38c8d7d0dd"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/2x/2.png",
+      "bytes": 550465,
+      "sha256": "0294b25673382e9f3173314e624c2135706940164d7d3fc0c916b4f083b31eb1"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/2x/3.png",
+      "bytes": 496152,
+      "sha256": "a05c4e046c1d07b2a9f733016ff732b70aaf7207542778d0ba91314cc9f1155b"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/2x/4.png",
+      "bytes": 646193,
+      "sha256": "db03f919a2a4a7d33328c2bdc26a0ff3766e0fc2b3fa4792bbf8f00d2b27bc4e"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/2x/5.png",
+      "bytes": 630679,
+      "sha256": "62c83a561667c6527691549ee4aa9d031bac92be4bef8dd0d153b8c7b27d139d"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/3x/1.png",
+      "bytes": 838695,
+      "sha256": "ec19b553a3749541cac1fc2908a069b47dba936c9a5bb24cf79e8990ac50efd4"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/3x/2.png",
+      "bytes": 787951,
+      "sha256": "7f3ed0c972e67e86b4fd3c326f7cc971bf8cb229cb5187a8b9537f690aa8e33d"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/3x/3.png",
+      "bytes": 740303,
+      "sha256": "ff2d40293ef8d3863b25e8e9493cd27402f3ebe7f3235187a5e19b6cccbadf64"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/3x/4.png",
+      "bytes": 894633,
+      "sha256": "5f7961dd525de9e707b2d0ee7d3af3c280532684b49558bc8c1b0468a727c245"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/3x/5.png",
+      "bytes": 889406,
+      "sha256": "ee146e5ad3cb0b1b9ec8d64e0619d6d2d0194d0864648311e9741b57b4e4bd59"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/4x/1.png",
+      "bytes": 997475,
+      "sha256": "440550a0d89f8f7019cce9586297a93b77c9446a81364b64a94e35d38255539a"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/4x/2.png",
+      "bytes": 946535,
+      "sha256": "10f18a7d6e0bda2f918a946211336bff949911db596436a513222243f9c1e1f4"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/4x/3.png",
+      "bytes": 896766,
+      "sha256": "f80dcc23aa064e65809ea14a0fdc5081f5f9999f018503791bf97510ccf2a8ee"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/4x/4.png",
+      "bytes": 1068521,
+      "sha256": "aa4be94e71af8494b724c6a5865862f913b45e3ce9d9d145ec545106845cd9cc"
+    },
+    {
+      "file": "art/plastic-new-2/dikey/4x/5.png",
+      "bytes": 1066278,
+      "sha256": "92055c460b576b9f21772b808a2053855a213845ea3b9b95bf8f2d4de1c83c63"
+    },
+    {
+      "file": "art/plastic-new-2/manifest.json",
+      "bytes": 9936,
+      "sha256": "6d2216e0d50dfc10169552654f806385cf3c68add9701ae91ea35fdabf4a1553"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/1x/1.png",
+      "bytes": 425157,
+      "sha256": "eadc94aeef55db7a0756fc40c80cc0027319598253b78de25ce16544ecd2df74"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/1x/2.png",
+      "bytes": 391083,
+      "sha256": "4514c2fed65374f11f37e55658184b6a9f803165e8494b3de6e6945e6306d678"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/1x/3.png",
+      "bytes": 362322,
+      "sha256": "eab41755cddf2b121ec111fd61f649d8ae8a02e892811f84c94cc9186950d689"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/1x/4.png",
+      "bytes": 458089,
+      "sha256": "b6029bfeafe57d0982dbd2418b5db0c15cf8e3b41ec4593dda5612a5d60b89d9"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/1x/5.png",
+      "bytes": 448162,
+      "sha256": "0a93ec775feedaa1b4d9196f411b268ecd653c82d84cd5f7f89a0ce97ee9c2f4"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/2x/1.png",
+      "bytes": 487775,
+      "sha256": "0bd68c2e68c139f9d674cf00ab46ecae540e96fd824207ffe1ae33d97b297dc4"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/2x/2.png",
+      "bytes": 529906,
+      "sha256": "ab3e94c3fc4b8cc24afc60bf05fe19bad9d13d61bfe986e14b96c45902d486c1"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/2x/3.png",
+      "bytes": 435520,
+      "sha256": "cfce9cdf5bac9e3d9d9946cc2eb706b2072a1e51a17cefcf3dc67963f9ef5405"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/2x/4.png",
+      "bytes": 458900,
+      "sha256": "c7cb7db713ba898cbc38ee7f9036043dc5dac2d6120e71c676b9ca1cf5a3e707"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/2x/5.png",
+      "bytes": 530362,
+      "sha256": "5dd074b838947f9d25cc2cd6264c165593c6a767816e4714f42ce250b029165b"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/3x/1.png",
+      "bytes": 516490,
+      "sha256": "fc901a901ef48d9981cb3fed7a0141d6c1222efa1ec519dccbceb269e78767e4"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/3x/2.png",
+      "bytes": 559310,
+      "sha256": "c54d0997a54a87b404b45b69869b5c3eed90c887605bbc946188b1802a52ce1b"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/3x/3.png",
+      "bytes": 461802,
+      "sha256": "1bf67486d69dc9ff5438d3a11a7942b2f94598f2e8659fb05dd372f8fbe40b32"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/3x/4.png",
+      "bytes": 485097,
+      "sha256": "278f77b174d01c814c7d37722c9ecd3bae8eff6b605c23bcce2e90710cb5a116"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/3x/5.png",
+      "bytes": 558286,
+      "sha256": "b684cc1fe66607d560bcdc19258729ee36790e90afe49d10961e7bc550986305"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/4x/1.png",
+      "bytes": 548357,
+      "sha256": "cee1753dbde9350f18880d2134e53b8f535eb2448113c4d1e1b991d4dea40310"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/4x/2.png",
+      "bytes": 587591,
+      "sha256": "d1bb6b71352cbee1705fa5e0d1d5e15144f53fd0b0ff68d93b5e2ce2acffd0b3"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/4x/3.png",
+      "bytes": 492152,
+      "sha256": "7365059ff168de8b86a855dd30ebd76d102ff94fc36f9b8ee56832b8efecef35"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/4x/4.png",
+      "bytes": 512355,
+      "sha256": "8b8e3578993e85297ed5cdfbd3cbc8567513fff4e72f2a89e43b10bf139fe4e6"
+    },
+    {
+      "file": "art/plastic-new-2/yatay/4x/5.png",
+      "bytes": 586805,
+      "sha256": "39c731fb0e464dcd417b77f48a84a471a05adcbbbc669ee2cc769992eb6039cc"
+    }
+  ],
+  "originalAssetsRetained": true,
+  "plasticRenderer": "Supplied artwork with coloured satin sides; no second polymer pass",
+  "disc": "Original rounded Crown Disc v70; collider unchanged"
+}

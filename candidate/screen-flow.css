@@ -1,0 +1,130 @@
+/* Full-bleed screen artwork; only live controls respect safe-area insets. */
+#rfHub .rf-home-scene{object-fit:cover;object-position:50% 50%}
+#rf .rd-boot>img{position:absolute;left:0;top:0;max-width:none;padding:0;object-fit:fill;object-position:center}
+#rf .rd-boot>img[hidden]{display:none}
+#rf .rd-boot{background:#193d63}
+#rf .rd-boot{background:linear-gradient(#159df5 0%,#219af2 35%,#e7d9ac 57%,#f9e8cf 72%,#f5dfc3 100%)}
+#rfHub .rf-home-oyna{clip-path:inset(5.5% 3.2% 9.5% 3% round 14% / 30%)}
+#rf #rdLoadError{position:absolute;left:0;right:0;bottom:max(8px,env(safe-area-inset-bottom));text-align:center;color:#fff;font:16px/1.2 'RF Display',sans-serif;text-shadow:0 2px 4px #16203d;pointer-events:none}
+#rf .rd-journey-card{border:12px solid #efc156;border-radius:52px;overflow:hidden;background:#142d65;box-shadow:0 10px 0 #805018,0 18px 24px #00143c80}
+#rf .rd-journey-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 56%}
+#rf .rd-journey-card[data-kind=locked] .rd-journey-scene{filter:brightness(.5) saturate(.6)}
+#rf .rd-journey-ribbon{position:absolute;left:50%;top:-10px;transform:translateX(-50%);width:440px;height:160px;background:linear-gradient(#4b8ce3,#124d9f);border:7px solid #f7d677;border-radius:0 0 42px 42px;box-shadow:0 8px 12px #061d4b70}
+#rf .rd-journey-lock{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:150px;height:150px;object-fit:contain}
+
+#rf .rd-obstacle-reveal{position:absolute;inset:0;z-index:2000;background:#050a14;pointer-events:auto;overflow:hidden;isolation:isolate}
+#rf .rd-obstacle-continue{position:absolute;inset:0;border:0;padding:0;width:100%;height:100%;background:transparent;box-shadow:none;border-radius:0;opacity:1;touch-action:manipulation}
+#rf .rd-obstacle-art{display:block;width:100%;height:100%;object-fit:contain;object-position:center;pointer-events:none}
+#rf .rd-obstacle-confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#rf .rd-obstacle-confetti i{position:absolute;top:-28px;width:8px;height:15px;border-radius:2px;opacity:0;animation:rd-confetti-fall linear infinite;will-change:transform}
+@keyframes rd-confetti-fall{0%{transform:translate3d(0,-20px,0) rotate(0deg);opacity:0}8%{opacity:.85}85%{opacity:.75}100%{transform:translate3d(var(--drift),100vh,0) rotate(var(--turn));opacity:0}}
+#rf .rd-obstacle-reveal.rd-hidden .rd-obstacle-confetti i{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){#rf .rd-obstacle-confetti{display:none}}
+
+#rf .rf-cs-backdrop{position:absolute;display:block;max-width:none;pointer-events:none}
+#rf .rf-cs-backdrop[hidden]{display:none}
+
+/* Inactive screens must not retain full-screen painted/composited surfaces. */
+#rf .rf-warm,#rfHub .rf-warm{visibility:hidden;will-change:auto}
+#rf .rf-warm *,#rfHub .rf-warm *{will-change:auto!important;visibility:hidden!important}
+#rf .rd-boot{z-index:3000}
+#rfHub .rf-hud-plus{border-radius:0}
+
+html:not([data-rf-revealed]),html:not([data-rf-revealed]) body,html:not([data-rf-revealed]) #game{background:#0044FC var(--rf-field)}
+#rf .rd-boot{will-change:opacity}
+
+/* First-level guidance: balanced lines above the old low-screen caption. */
+#rf .rd-tutorial-tip{top:62%;bottom:auto;left:8%;right:8%;margin:0;text-align:center;white-space:pre-line;font-size:clamp(15px,4cqw,19px);line-height:1.45}
+
+/* Build 79: progress lives only on the area-to-area vertical path. */
+#rf .rf-journey{background:radial-gradient(ellipse at 50% 30%,#214e87,#0b2855 82%)!important}
+#rf .rf-jr-rail:not(.rf-jr-fill){background:linear-gradient(90deg,#0a2046,#183d70 45%,#0b2854)!important;border:9px solid #f4ca60;box-sizing:border-box;box-shadow:0 8px 0 #85521d,inset 5px 0 8px #0008,0 0 0 3px #b77b22}
+#rf .rf-jr-fill{background:linear-gradient(90deg,var(--rd-green-bottom),var(--rd-green-light) 20%,var(--rd-green-face) 48%,var(--rd-green-face) 80%,var(--rd-green-bottom))!important;box-shadow:inset 4px 0 0 var(--rd-green-edge),inset -4px 0 0 var(--rd-green-shadow)}
+#rf .rf-jr-ms-label,#rf .rf-jr-tile{outline:none;box-shadow:0 10px 0 #9b6014,inset 0 5px 0 #fff5c4,inset 0 -4px 0 #dba333}
+#rf .rf-jr-ms-label[data-state=claimed],#rf .rf-jr-tile[data-state=claimed]{background:linear-gradient(var(--rd-green-light),var(--rd-green-face) 45%,var(--rd-green-bottom))!important;opacity:1;filter:none}
+#rf .rf-jr-tile:disabled{opacity:1;filter:none}
+#rf .rd-jr-level-ink,#rf .rd-jr-claim-ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+#rf .rf-jr-tile-ic,#rf .rf-jr-tile[data-state=claimable] .rf-jr-tile-ic{left:50%!important;top:16px!important;width:230px!important;height:230px!important;transform:translateX(-50%);object-fit:contain}
+#rf .rf-jr-tile[data-kind=coins] .rf-jr-tile-ic{width:290px!important;height:190px!important;top:36px!important}
+#rf .rf-jr-tile[data-kind=lives] .rf-jr-tile-ic{width:232px!important;height:206px!important;top:28px!important}
+#rf .rd-jr-prize{position:absolute;left:0;right:0;top:254px;height:80px;pointer-events:none}
+#rf .rd-jr-prize svg{display:block;width:100%;height:100%;overflow:visible}
+#rf .rf-jr-tile-band{box-shadow:inset 0 4px 0 #ffffb766;border-top:3px solid #ffe49a;box-sizing:border-box}
+#rf .rf-jr-tile[data-state=claimed] .rf-jr-tile-band{border-top-color:#d4ff8b99}
+#rf .rf-jr-tile-glow{box-shadow:none!important;background:radial-gradient(ellipse,#ffdd88bb 35%,#ffdd8866 60%,transparent 72%)}
+#rf .rd-jr-claim-flash{position:absolute;inset:0;border-radius:28px;background:radial-gradient(ellipse,#fff8c0,transparent 75%);pointer-events:none;opacity:0}
+#rf .rd-jr-node{position:absolute;box-sizing:border-box;border:8px solid #ffe7a5;border-radius:50%;background:#14335c;box-shadow:0 0 0 4px #b57d25;pointer-events:none}
+#rf .rd-jr-node[data-state=claimed],#rf .rd-jr-node[data-state=claimable]{background:var(--rd-green-face)}
+#rf .rd-jr-current{overflow:visible;box-sizing:border-box;border:9px solid #ffdc70;border-radius:37px;background:linear-gradient(#fff0a6,#efb73a);box-shadow:0 8px 0 #926020,inset 0 4px 0 #fffbe8}
+#rf .rd-jr-marker-crown{position:absolute;top:-60px;left:50%;transform:translateX(-50%);font-size:68px;color:#ffdc70;text-shadow:0 3px #9b5e16}
+#rf .rd-journey-card{box-shadow:0 8px 0 #926020,inset 0 4px 0 #fffbe8}
+#rf .rd-jr-stash{position:absolute;z-index:3;left:12px;right:12px;display:flex;justify-content:center;gap:7px;pointer-events:none}
+#rf .rd-jr-stash[hidden]{display:none}
+#rf .rd-jr-stash-item{position:relative;display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;max-width:132px;flex:1;padding:7px 6px;border:3px solid #ffd363;border-radius:18px;background:linear-gradient(#1a5799,#12386b);box-shadow:0 3px 0 #83501c;color:#fff;font:18px/1 'RF Display',sans-serif}
+#rf .rd-jr-stash-item img{display:block;object-fit:contain;width:36px;height:40px;flex:none}
+#rf .rd-jr-stash-item b{font:inherit;text-align:center;white-space:nowrap;flex:1;min-width:0;height:26px;display:block}
+#rf .rd-jr-stash:has(.rd-jr-stash-item:nth-child(3)) .rd-jr-stash-item{flex-direction:column;gap:5px;font-size:15px;padding:6px 3px}
+#rf .rd-jr-stash:has(.rd-jr-stash-item:nth-child(3)) .rd-jr-stash-item img{width:30px;height:32px}
+#rf .rd-jr-home-booster{position:absolute;transform:translateX(-50%);display:flex;align-items:center;gap:14px;width:270px;max-width:90%;height:102px;padding:10px 16px;box-sizing:border-box;background:linear-gradient(#fff8d8,#f6d377);border:4px solid #ffdd70;border-radius:24px;box-shadow:0 5px 0 #9d631b;color:#693d0b;font-family:'RF Display',sans-serif;pointer-events:none}
+#rf .rd-jr-home-booster img{width:76px;height:76px;object-fit:contain}
+#rf .rd-jr-home-booster div{flex:1;text-align:center}
+#rf .rd-jr-home-booster small{display:block;font-size:16px;line-height:1.1}
+#rf .rd-jr-home-booster b{display:block;font-size:28px;font-weight:400;line-height:1.15;margin:4px 0}
+#rf .rd-jr-home-booster span{display:block;font-size:11px;line-height:1.2}
+
+#rf .rd-jr-stash-item b svg{display:block;width:100%;height:100%}
+#rf .rd-jr-stash:has(.rd-jr-stash-item:nth-child(3)) .rd-jr-stash-item b{flex:none;width:100%;height:24px}
+
+/* Build80: edge extensions use the original image's actual boundary colours. */
+#rf .rd-boot{background:#159df5}
+#rf .rd-boot .rd-launch-edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+/* Stable touch target: only the artwork presses, never the button hit rectangle. */
+#rf .rd-sticky-pick,#rf .rd-sticky-pick[aria-pressed=true]{transform:none!important;touch-action:manipulation;overflow:visible}
+#rf .rd-sticky-pick>*{pointer-events:none}
+#rf .rd-sticky-pick img{transition:transform .12s ease-out;filter:none}
+#rf .rd-sticky-pick.rd-pick-down img{transform:scale(.94)}
+#rf .rd-sticky-pick[aria-pressed=true]:before{inset:-3%;opacity:1;transform:scale(1);border:calc(7px * var(--s)) solid var(--rd-green-edge);background:linear-gradient(var(--rd-green-light),var(--rd-green-face) 55%,var(--rd-green-bottom));box-shadow:0 calc(8px * var(--s)) var(--rd-green-shadow)}
+#rf .rd-sticky-check{font-family:system-ui,sans-serif;font-weight:900;font-size:calc(78px * var(--s));background:var(--rd-green-face)}
+/* Logo first, then alternating picture/copy pairs in Royal Routine's teaching order. */
+#rf .rd-guide-logo,#rf .rd-guide-step,#rf .rd-guide-tap,#rf .rd-guide-note{animation:none}
+#rf .rd-guide-step{left:18px;width:354px;height:142px;display:flex;align-items:center;gap:12px;will-change:transform,opacity}
+#rf .rd-guide-step[data-side=right]{flex-direction:row-reverse}
+#rf .rd-guide-logo{will-change:transform,opacity}
+#rf .rd-guide-picture{position:relative;left:auto;top:auto;width:134px;flex:0 0 134px;height:124px;filter:none}
+#rf .rd-guide-copy{position:relative;left:auto;right:auto;top:auto;flex:1;min-width:0;height:auto;display:block;text-align:left}
+#rf .rd-guide-step[data-side=right] .rd-guide-copy{text-align:right}
+#rf .rd-guide-copy p{width:100%;font-size:19px;line-height:26px;white-space:nowrap;text-align:inherit}
+#rf .rd-guide-copy small{display:block;margin-top:8px;font-size:13px;line-height:19px;white-space:normal;text-align:inherit}
+#rf .rd-guide-number{width:25px;height:25px;font-size:16px;left:0;top:1px}
+#rf .rd-guide-step[data-side=right] .rd-guide-number{left:auto;right:0}
+#rf .rd-guide-step:not(:nth-of-type(3)):after{width:26px;height:23px;left:164px;bottom:-12px}
+#rf .rd-guide-note{white-space:nowrap;font-size:16px;top:630px}
+#rf .rd-guide-cloud>img:first-child{width:120px;height:100px;left:7px}
+#rf .rd-guide-cloud .rd-guide-cloud-base{width:134px;height:44px}
+#rf .rd-guide-art-badge{position:absolute;inset:0;display:grid;place-items:center;font:30px/1 'RF Display';color:white;text-shadow:0 2px 0 #214b0d;-webkit-text-stroke:1px #214b0d;paint-order:stroke fill}
+/* Same widths, shorter cards, with clear space for reward / amount / action. */
+#rf .rf-jr-tile-ic,#rf .rf-jr-tile[data-state=claimable] .rf-jr-tile-ic{top:7px!important;width:170px!important;height:170px!important}
+#rf .rf-jr-tile[data-kind=coins] .rf-jr-tile-ic{width:220px!important;height:145px!important;top:18px!important}
+#rf .rf-jr-tile[data-kind=lives] .rf-jr-tile-ic{width:180px!important;height:160px!important;top:12px!important}
+#rf .rd-jr-prize{top:177px;height:66px}
+#rf .rf-jr-tile-band[hidden]{display:none}
+#rf .rf-jr-badge.rd-jr-collected-check{left:50%!important;top:auto!important;bottom:0;width:116px!important;height:100px!important;margin-left:-58px;border:0!important;border-radius:0;background:transparent!important;box-shadow:none;filter:drop-shadow(0 3px 0 var(--rd-green-shadow))}
+
+#rfHub .rd-shop-coin-patch{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#rf .rd-sticky-pick{isolation:isolate!important}
+#rf .rd-sticky-pick[aria-pressed=true]{background:linear-gradient(var(--rd-green-light),var(--rd-green-face) 55%,var(--rd-green-bottom))!important;box-shadow:0 2px var(--rd-green-shadow),0 0 0 2px var(--rd-green-edge)!important}
+#rf .rd-sticky-pick[aria-pressed=true] img{transform:scale(.9)}
+#rf .rd-sticky-check{min-width:calc(115px * var(--s));border:2px solid var(--rd-green-edge);text-shadow:0 1px var(--rd-green-shadow)}
+
+
+/* Build82: distinct cream reward area, gold rim and shared-green action face. */
+#rf .rf-jr-tile[data-state=claimable] .rf-jr-tile-band{border-top:0;overflow:visible;box-shadow:inset 0 4px 0 #c9ff8399}
+#rf .rf-jr-tile[data-state=claimable] .rf-jr-tile-band:before{content:'';position:absolute;left:0;right:0;top:-10px;height:10px;background:linear-gradient(#fff1b3 0 25%,#cf932d 25% 65%,#245a09 65%);pointer-events:none}
+#rf .rd-jr-routine-check{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+#rf .rf-jr-badge.rd-jr-collected-check{filter:none}
+#rf #rfDbInfoPage .rd-guide-step:first-of-type .rd-guide-picture>img{box-sizing:border-box;padding:4px}
+
+/* Build 83: final approved Bank cards, typography in the existing comp coordinate system. */
+#rfHub .rd-bank-svg{display:block;width:100%;height:100%;overflow:visible;font-family:"RF Display",system-ui,sans-serif;font-weight:400;pointer-events:none}
+#rfHub .rd-bank-svg text{font-family:"RF Display",system-ui,sans-serif;font-weight:400;letter-spacing:normal}
+#rfHub .rd-bank-card{isolation:isolate}
