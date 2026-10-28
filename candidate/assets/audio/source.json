@@ -1,0 +1,25 @@
+{
+  "title": "Royal Smash late glass break after the final shot",
+  "sourceFilename": "WhatsApp Video 2026-10-18 at 10.10.30.mp4",
+  "sourceSha256": "967406dbe060367e51851a136e42087ff464f6ea8ff4ed3d8a4993bc3464d7e9",
+  "sourceStartSeconds": 34.94,
+  "sourceEndSeconds": 35.39,
+  "outputSha256": "e57304e036a78ea5a94081d95c77a49f226ccc1de44a4d7b1afc793ad91e9ea0",
+  "license": "Third-party game audio supplied by the user; reuse license not established",
+  "edit": {
+    "mono": true,
+    "sampleRate": 44100,
+    "bits": 16,
+    "durationSeconds": 0.45,
+    "peakDbFS": -3,
+    "headFadeSeconds": 0.001,
+    "tailFadeSeconds": 0.015,
+    "pitchChange": false,
+    "stockAudio": false,
+    "syntheticLayers": false,
+    "sourceSeparation": false
+  },
+  "processing": "Direct cut of the late blue-glass break after the last shot. Mono conversion, -3 dBFS level, 1 ms/15 ms edge fades only. No spectral suppression, high-pass filtering, synthesis or pitch change.",
+  "evidence": "Ball counter remains at 3 through the selected break; blue glass fractures around 34.90\u201335.15 seconds, after the final shot around 33.5 seconds. Cut ends before the separate falling-column impact around 35.5 seconds.",
+  "limitation": "Source frames, waveform, format and exact source correspondence checked. No subjective listening verification. The source is the recorded game mix, not an exported original SFX stem."
+}

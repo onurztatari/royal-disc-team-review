@@ -1,0 +1,8 @@
+SOURCE PROVENANCE
+
+WhatsApp Video 2026-10-18 at 10.10.30.mp4
+Source interval: 34.940–35.390 seconds.
+Supplied by the user as a Royal Smash gameplay recording.
+Direct excerpt after the final shot; mono conversion, level and edge fades only.
+Third-party game audio. No reuse license was established.
+See source.json and reference/audio-processing.json.

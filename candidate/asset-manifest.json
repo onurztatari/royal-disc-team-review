@@ -1,0 +1,148 @@
+{
+  "wood": {
+    "url": "assets/wood.glb",
+    "bytes": 4182932,
+    "sha256": "f0f90c61e49b9f2b29f1119faadd5b21d26fecf3b2cc13796f6ea8fa0746389f",
+    "source": "Frozen artist v65 / wood",
+    "revision": "Stackable beams and upright logs v49"
+  },
+  "ice": {
+    "url": "assets/ice.glb",
+    "bytes": 4618708,
+    "sha256": "e06ba59637fccc69c504cda40c38b0a103567d9b9212c940e1ee2750215a0203",
+    "source": "Frozen artist v65 / ice",
+    "revision": "Artist ice v20"
+  },
+  "can": {
+    "url": "assets/can-artwork-78.glb",
+    "bytes": 7179500,
+    "sha256": "5ffcc4e884a7c7b8deb106a73d8325383686dddc126ea8c07c06e929be45c06b",
+    "source": "/Users/onur.z.tatari/Documents/Terra Games/output/royal-disc/artwork-next-20261019/review/source-assets/straight-containers-v78/Models/Royal-Container-Cylinder-v78.glb",
+    "sourceSHA256": "6eeb24b67fbee142be6dba1fa0beefe432b3ff89e1d9e62903ae2fe2c6db272c",
+    "revision": 78,
+    "artworkRevision": 78,
+    "runtimeOptimized": true
+  },
+  "disc": {
+    "url": "art/disc/crown-disc-gold-rounded-v70.glb",
+    "bytes": 4656932,
+    "sha256": "e82302df1ae7e5d3941a0883710eb832dd5f4faa7396137589f85cd502cd50c1",
+    "gzip": {
+      "url": "art/disc/crown-disc-gold-rounded-v70.glb.gz",
+      "bytes": 1196233
+    },
+    "source": "Artist design HTML / Crown Disc V1 flush v70, original full-resolution mesh",
+    "revision": "Design 24 \u00b7 Original rounded gold disc"
+  },
+  "platform": {
+    "url": "assets/platform.glb",
+    "bytes": 5480752,
+    "sha256": "77afdb3eea274fb70270f4e932686e3472f51febff8e0acf282fc343e0c9cf81",
+    "source": "Pinned artist update / artwork-updates/platform-v67.glb",
+    "revision": "Soft wood platform v67"
+  },
+  "background": {
+    "url": "assets/background.glb",
+    "bytes": 2126400,
+    "sha256": "f51e0ed35f8635786b4f0772d1e4ceb78b613bc77b8bf4926157509065a98e30",
+    "source": "Frozen artist v65 / stageModels.background",
+    "revision": "Vivid cliff v59"
+  },
+  "lake": {
+    "url": "assets/lake.glb",
+    "bytes": 1942688,
+    "sha256": "213d9ee07def1d2d6651b2decf83ee648001167e22e2599e9bc6c400573d5d2d",
+    "source": "Frozen artist v65 / stageModels.lake",
+    "revision": "Vivid castle lake v59"
+  },
+  "plastic": {
+    "url": "assets/plastic-artwork-77.glb",
+    "bytes": 6781876,
+    "sha256": "d8e62e491455f6f3589a2df192d582bd67b5712374a22ae1d6f533c25694ae52",
+    "source": "Approved artist HTML v80 / plastic-readability.js",
+    "sourceSHA256": "827d86b10e45dd6879a7dc34a4598b716fffb0e3fa56539dcaeb9b21a4fdc249",
+    "revision": 80,
+    "artworkRevision": 80,
+    "runtimeOptimized": true,
+    "materialHelperSHA256": "5b165cb10f9a870ebea50ebaa57a6b2980de2bf8ef13f38dfb2b96be68838a5b",
+    "geometryRevision": 77,
+    "finish": "analytic-vivid-matte-polymer"
+  },
+  "tnt": {
+    "url": "assets/tnt.glb",
+    "bytes": 3378084,
+    "sha256": "c16c2a337d494c5b7f07c0a59bc098b8728ea7a88120c26f77973672080c1574",
+    "source": "Frozen artist v65 / stageModels.tnt",
+    "revision": "Square artist TNT v32"
+  },
+  "desert": {
+    "url": "assets/desert.glb",
+    "bytes": 1688252,
+    "sha256": "c317dc3f6cc4d376a3f4687195d614ce6d6c9a1163e821f977f8ae6f62bac282",
+    "source": "Frozen artist v65 / stageModels.desert",
+    "revision": "Vivid desert v59"
+  },
+  "waterfalls": {
+    "url": "assets/waterfalls.glb",
+    "bytes": 1710144,
+    "sha256": "2833a5170f3d11f7b1e9dc1f046a4fcacbc2aec1a3bf05ee276b19101a53a8c4",
+    "source": "Frozen artist v65 / stageModels.waterfalls",
+    "revision": "Vivid waterfalls v59"
+  },
+  "blocker": {
+    "url": "assets/blocker.glb",
+    "bytes": 77672,
+    "sha256": "ef9cfece0c17ab0da198c97411b3d7fccc2e073f76525ef6bf068fd05960b798",
+    "source": "Frozen artist v65 / stageModels.blocker",
+    "revision": "Full red raised crown v53"
+  },
+  "glass": {
+    "url": "assets/glass-artwork-80.glb",
+    "bytes": 2936240,
+    "sha256": "2e073cb739a8ed1756ae59d805fcf07b209d6492f6ab0fa24391abefad823b1a",
+    "sourceSHA256": "f38e06447b030f85e766879c214b0e21130b2aa7a721fa75aeb0957aac88bbe6",
+    "revision": 80,
+    "runtimeOptimized": true,
+    "artworkRevision": 80,
+    "source": "Approved artist HTML v80 / glass-readability.js",
+    "materialHelperSHA256": "bb8ff442c23c57882cb8462c0f727a57a18f8d2aabe7e5b54efee91e09aa7b97"
+  },
+  "stone": {
+    "url": "assets/stone.glb",
+    "bytes": 21526512,
+    "sha256": "38795bdfc8f46e51d8ab6b190ecabd6a5cccb68aaacf7fadb99bc164c7d21545",
+    "source": "Frozen artist v65 / stones",
+    "revision": "Castle stones v60"
+  },
+  "discV2": {
+    "url": "assets/discV2.glb",
+    "bytes": 2987496,
+    "sha256": "54d3348f4c0b4fb40fb0453c76de9218c38fd2fa33d62e9aa21fd3b67693fda2",
+    "source": "Frozen artist v65 / discV2",
+    "revision": "Rounded Crown Disc V2 v61"
+  },
+  "font": {
+    "url": "assets/font.ttf",
+    "bytes": 52708,
+    "sha256": "bcac194b2c80941682789e854d0515855a41dfa0d3f209fbf1725b15cd9fd063",
+    "source": "Frozen artist v65 / assets/TitanOne-Regular.ttf",
+    "revision": "Artist v65"
+  },
+  "discImage": {
+    "url": "assets/discImage.png",
+    "bytes": 3691236,
+    "sha256": "62189a58eca48cd3255e26a890a9af0380973017b8007761191a4cdf1f8ffec1",
+    "source": "Pinned artist update / artwork-updates/disc-v70.png",
+    "revision": "Flush Crown Disc V1 preview v70"
+  },
+  "canSquare": {
+    "url": "assets/canSquare-artwork-78.glb",
+    "bytes": 5487764,
+    "sha256": "ae0b6a93397d0d6ff93df524dcf0c948222df90136297f2d4ac4b36a8a8d7c8d",
+    "source": "/Users/onur.z.tatari/Documents/Terra Games/output/royal-disc/artwork-next-20261019/review/source-assets/straight-containers-v78/Models/Royal-Container-Square-v78.glb",
+    "sourceSHA256": "78d0ed61cd7a71b59b55ae42435ca0d224e24be0bd9da896c7d28c89e335d914",
+    "revision": 78,
+    "artworkRevision": 78,
+    "runtimeOptimized": true
+  }
+}
