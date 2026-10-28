@@ -1,0 +1,474 @@
+{
+  "revision": "artist-new-bottle1-20261024",
+  "colourSpace": "sRGB",
+  "sourcePixelsUnmodified": true,
+  "palette": [
+    "#e81336",
+    "#fcb107",
+    "#1eeb37",
+    "#0097fd",
+    "#9804ff"
+  ],
+  "items": [
+    {
+      "length": 1,
+      "colour": 0,
+      "url": "assets/glass-artist54/1x-1.png",
+      "size": [
+        893,
+        1061
+      ],
+      "sha256": "828a0567d4491d05be908d6cf78a56049574ce00426248164f74d68685646fba",
+      "bytes": 742327,
+      "uv": {
+        "cx": 422.0,
+        "halfWidth": 408.0,
+        "top": 53,
+        "bottom": 1020,
+        "lidCy": 144.392,
+        "lidRx": 380.25600000000003,
+        "lidRy": 91.392,
+        "lidBottom": 305.96000000000004,
+        "bodyTop": 310.04,
+        "bodyBottom": 999.6
+      }
+    },
+    {
+      "length": 1,
+      "colour": 1,
+      "url": "assets/glass-artist54/1x-2.png",
+      "size": [
+        966,
+        1026
+      ],
+      "sha256": "572e8ccd233838a781e46aa9723692de466869b73f2bec051e8bf02f6a3f0642",
+      "bytes": 721169,
+      "uv": {
+        "cx": 443.5,
+        "halfWidth": 410.5,
+        "top": 26,
+        "bottom": 1001,
+        "lidCy": 117.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 280.51,
+        "bodyTop": 284.615,
+        "bodyBottom": 980.475
+      }
+    },
+    {
+      "length": 1,
+      "colour": 2,
+      "url": "assets/glass-artist54/1x-3.png",
+      "size": [
+        912,
+        1113
+      ],
+      "sha256": "017e57c7eecf3df585ba2e9cec53b62c967fcf464872bbd888c03184b83b7903",
+      "bytes": 484612,
+      "uv": {
+        "cx": 436.5,
+        "halfWidth": 411.5,
+        "top": 117,
+        "bottom": 1094,
+        "lidCy": 209.176,
+        "lidRx": 383.51800000000003,
+        "lidRy": 92.176,
+        "lidBottom": 372.13,
+        "bodyTop": 376.245,
+        "bodyBottom": 1073.425
+      }
+    },
+    {
+      "length": 1,
+      "colour": 3,
+      "url": "assets/glass-artist54/1x-4.png",
+      "size": [
+        960,
+        1077
+      ],
+      "sha256": "cc946d11de7291a6f93f5edfa6898e37499c1be1b7282408c8ee918248ceb1ba",
+      "bytes": 476198,
+      "uv": {
+        "cx": 511.5,
+        "halfWidth": 410.5,
+        "top": 91,
+        "bottom": 1066,
+        "lidCy": 182.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 345.51,
+        "bodyTop": 349.615,
+        "bodyBottom": 1045.475
+      }
+    },
+    {
+      "length": 1,
+      "colour": 4,
+      "url": "assets/glass-artist54/1x-5.png",
+      "size": [
+        858,
+        1027
+      ],
+      "sha256": "5c82ac059d26e28fbdca6c4e3a9b49fb1fd2bd4246c0d5d4b893adb0c96317c3",
+      "bytes": 455366,
+      "uv": {
+        "cx": 427.0,
+        "halfWidth": 411.0,
+        "top": 44,
+        "bottom": 1014,
+        "lidCy": 136.06400000000002,
+        "lidRx": 383.052,
+        "lidRy": 92.06400000000001,
+        "lidBottom": 298.82,
+        "bodyTop": 302.93,
+        "bodyBottom": 993.45
+      }
+    },
+    {
+      "length": 2,
+      "colour": 0,
+      "url": "assets/glass-artist54/2x-1.png",
+      "size": [
+        893,
+        1867
+      ],
+      "sha256": "6eb7be3aaf677c0ba276299ab6de8e0ea1e85b9e870af4cc0788d8b19b9c97c7",
+      "bytes": 902914,
+      "uv": {
+        "cx": 422.5,
+        "halfWidth": 408.5,
+        "top": 53,
+        "bottom": 1826,
+        "lidCy": 144.50400000000002,
+        "lidRx": 380.72200000000004,
+        "lidRy": 91.504,
+        "lidBottom": 306.27,
+        "bodyTop": 310.355,
+        "bodyBottom": 1805.575
+      }
+    },
+    {
+      "length": 2,
+      "colour": 1,
+      "url": "assets/glass-artist54/2x-2.png",
+      "size": [
+        947,
+        1832
+      ],
+      "sha256": "ab98236c3263e8f914d2c2a0fe18bb55f5d5e207521074757f952d50ebeb7089",
+      "bytes": 849347,
+      "uv": {
+        "cx": 443.5,
+        "halfWidth": 410.5,
+        "top": 26,
+        "bottom": 1807,
+        "lidCy": 117.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 280.51,
+        "bodyTop": 284.615,
+        "bodyBottom": 1786.475
+      }
+    },
+    {
+      "length": 2,
+      "colour": 2,
+      "url": "assets/glass-artist54/2x-3.png",
+      "size": [
+        1026,
+        1919
+      ],
+      "sha256": "86846931da87f41808bac376a94a69047c1e58dd57d39ad71a16e7c079c69424",
+      "bytes": 528156,
+      "uv": {
+        "cx": 507.0,
+        "halfWidth": 412.0,
+        "top": 117,
+        "bottom": 1900,
+        "lidCy": 209.288,
+        "lidRx": 383.98400000000004,
+        "lidRy": 92.288,
+        "lidBottom": 372.44,
+        "bodyTop": 376.56,
+        "bodyBottom": 1879.4
+      }
+    },
+    {
+      "length": 2,
+      "colour": 3,
+      "url": "assets/glass-artist54/2x-4.png",
+      "size": [
+        903,
+        1883
+      ],
+      "sha256": "aa16c7a408164d8eae19a611483101da3f6fa5686a49e0997fc632d5e175973f",
+      "bytes": 508661,
+      "uv": {
+        "cx": 454.5,
+        "halfWidth": 410.5,
+        "top": 91,
+        "bottom": 1872,
+        "lidCy": 182.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 345.51,
+        "bodyTop": 349.615,
+        "bodyBottom": 1851.475
+      }
+    },
+    {
+      "length": 2,
+      "colour": 4,
+      "url": "assets/glass-artist54/2x-5.png",
+      "size": [
+        858,
+        1833
+      ],
+      "sha256": "60323ad19fe4e09922f1588cff334ad13c6c0142829889cbe6e24adff18a2196",
+      "bytes": 476186,
+      "uv": {
+        "cx": 427.0,
+        "halfWidth": 411.0,
+        "top": 44,
+        "bottom": 1820,
+        "lidCy": 136.06400000000002,
+        "lidRx": 383.052,
+        "lidRy": 92.06400000000001,
+        "lidBottom": 298.82,
+        "bodyTop": 302.93,
+        "bodyBottom": 1799.45
+      }
+    },
+    {
+      "length": 3,
+      "colour": 0,
+      "url": "assets/glass-artist54/3x-1.png",
+      "size": [
+        893,
+        2700
+      ],
+      "sha256": "b74343f9d801c718a814ee848073c87ccda7de36048ea1953921cff71e052911",
+      "bytes": 908333,
+      "uv": {
+        "cx": 422.5,
+        "halfWidth": 408.5,
+        "top": 53,
+        "bottom": 2659,
+        "lidCy": 144.50400000000002,
+        "lidRx": 380.72200000000004,
+        "lidRy": 91.504,
+        "lidBottom": 306.27,
+        "bodyTop": 310.355,
+        "bodyBottom": 2638.575
+      }
+    },
+    {
+      "length": 3,
+      "colour": 1,
+      "url": "assets/glass-artist54/3x-2.png",
+      "size": [
+        944,
+        2665
+      ],
+      "sha256": "1634ca965541a6c5557a381991529c89971fc3a00b242f57849c5b04ce817721",
+      "bytes": 859267,
+      "uv": {
+        "cx": 443.5,
+        "halfWidth": 410.5,
+        "top": 26,
+        "bottom": 2640,
+        "lidCy": 117.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 280.51,
+        "bodyTop": 284.615,
+        "bodyBottom": 2619.475
+      }
+    },
+    {
+      "length": 3,
+      "colour": 2,
+      "url": "assets/glass-artist54/3x-3.png",
+      "size": [
+        924,
+        2707
+      ],
+      "sha256": "ef52f60a2fa2aeaf0026d1118becdc7b418b55f476f918b2a98a1600355b7821",
+      "bytes": 518056,
+      "uv": {
+        "cx": 437.0,
+        "halfWidth": 412.0,
+        "top": 72,
+        "bottom": 2688,
+        "lidCy": 164.288,
+        "lidRx": 383.98400000000004,
+        "lidRy": 92.288,
+        "lidBottom": 327.44,
+        "bodyTop": 331.56,
+        "bodyBottom": 2667.4
+      }
+    },
+    {
+      "length": 3,
+      "colour": 3,
+      "url": "assets/glass-artist54/3x-4.png",
+      "size": [
+        953,
+        2716
+      ],
+      "sha256": "505b1b278216980542f7db7ab8307685cf96955a09dd0d5521917ceee6d01e9f",
+      "bytes": 522896,
+      "uv": {
+        "cx": 504.5,
+        "halfWidth": 410.5,
+        "top": 91,
+        "bottom": 2705,
+        "lidCy": 182.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 345.51,
+        "bodyTop": 349.615,
+        "bodyBottom": 2684.475
+      }
+    },
+    {
+      "length": 3,
+      "colour": 4,
+      "url": "assets/glass-artist54/3x-5.png",
+      "size": [
+        858,
+        2666
+      ],
+      "sha256": "dbbd2715dae66eed109383964e85c14dbffc518a698aa4d8273a5444268ba8d3",
+      "bytes": 481716,
+      "uv": {
+        "cx": 427.0,
+        "halfWidth": 411.0,
+        "top": 44,
+        "bottom": 2653,
+        "lidCy": 136.06400000000002,
+        "lidRx": 383.052,
+        "lidRy": 92.06400000000001,
+        "lidBottom": 298.82,
+        "bodyTop": 302.93,
+        "bodyBottom": 2632.45
+      }
+    },
+    {
+      "length": 4,
+      "colour": 0,
+      "url": "assets/glass-artist54/4x-1.png",
+      "size": [
+        893,
+        3477
+      ],
+      "sha256": "cb5f2573a7b739ca712034b5de5a4aa2a01dc09dc8cdefc1baea471ecc0abce5",
+      "bytes": 909765,
+      "uv": {
+        "cx": 422.5,
+        "halfWidth": 408.5,
+        "top": 53,
+        "bottom": 3436,
+        "lidCy": 144.50400000000002,
+        "lidRx": 380.72200000000004,
+        "lidRy": 91.504,
+        "lidBottom": 306.27,
+        "bodyTop": 310.355,
+        "bodyBottom": 3415.575
+      }
+    },
+    {
+      "length": 4,
+      "colour": 1,
+      "url": "assets/glass-artist54/4x-2.png",
+      "size": [
+        917,
+        3427
+      ],
+      "sha256": "06372a220fe518ea7d18972a5c8731da79377141f50dc3ef563f77ae4e71c786",
+      "bytes": 852097,
+      "uv": {
+        "cx": 437.5,
+        "halfWidth": 410.5,
+        "top": 26,
+        "bottom": 3417,
+        "lidCy": 117.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 280.51,
+        "bodyTop": 284.615,
+        "bodyBottom": 3396.475
+      }
+    },
+    {
+      "length": 4,
+      "colour": 2,
+      "url": "assets/glass-artist54/4x-3.png",
+      "size": [
+        912,
+        3484
+      ],
+      "sha256": "17ee8c7d9a9a156e20dca46045e67d14e0ae81bf601191a02c1722715b0f00d0",
+      "bytes": 521614,
+      "uv": {
+        "cx": 437.0,
+        "halfWidth": 412.0,
+        "top": 72,
+        "bottom": 3465,
+        "lidCy": 164.288,
+        "lidRx": 383.98400000000004,
+        "lidRy": 92.288,
+        "lidBottom": 327.44,
+        "bodyTop": 331.56,
+        "bodyBottom": 3444.4
+      }
+    },
+    {
+      "length": 4,
+      "colour": 3,
+      "url": "assets/glass-artist54/4x-4.png",
+      "size": [
+        917,
+        3436
+      ],
+      "sha256": "68f373543da1c7d018f59922202a594be55a1fc70924b852e2e76b2785ba9459",
+      "bytes": 522685,
+      "uv": {
+        "cx": 486.5,
+        "halfWidth": 410.5,
+        "top": 34,
+        "bottom": 3425,
+        "lidCy": 125.952,
+        "lidRx": 382.586,
+        "lidRy": 91.952,
+        "lidBottom": 288.51,
+        "bodyTop": 292.615,
+        "bodyBottom": 3404.475
+      }
+    },
+    {
+      "length": 4,
+      "colour": 4,
+      "url": "assets/glass-artist54/4x-5.png",
+      "size": [
+        919,
+        3493
+      ],
+      "sha256": "799a21d58fc8a883f01a34d867d8aa16a3f713206d3864055afd7c4ce6161d66",
+      "bytes": 489934,
+      "uv": {
+        "cx": 488.0,
+        "halfWidth": 411.0,
+        "top": 94,
+        "bottom": 3480,
+        "lidCy": 186.06400000000002,
+        "lidRx": 383.052,
+        "lidRy": 92.06400000000001,
+        "lidBottom": 348.82,
+        "bodyTop": 352.93,
+        "bodyBottom": 3459.45
+      }
+    }
+  ]
+}
